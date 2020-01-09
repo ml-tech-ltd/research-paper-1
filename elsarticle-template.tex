@@ -75,9 +75,22 @@
 \address[mysecondaryaddress]{360 Park Avenue South, New York}
 
 \begin{abstract}
-This paper describes a particular way of using intuitionistic fuzzy inference systems (IFIS) as the rules to be followed by agents in an agent-based financial market model. %
-% Amaury: to describe the agents' beliefs? This may make sense, but I'd need to elaborate a bit more.
-The intuitionistic fuzzy rules (IFR) can be used to describe the agents' beliefs, while using the price movements of a financial market as the facts perceived by the agents. For this paper, the price movements are preprocessed using several technical indicators whose calculations are used as inputs for the IFIS of each agent in the model, and thus, the technical indicators' calculations describe the agents' environment. The agents' actions correspond to buy or sell orders which are used to create a simulation of a real financial market. A genetic algorithm is used to find combinations of agents that allow the system to simulate a close representation of a financial market. Lastly, after the agent model has been adjusted to the real financial market price movements, the IFR are examined to obtain explanatory insight about the targeted financial market.
+This paper describes a particular way of using intuitionistic fuzzy inference
+systems (IFIS) as the rules to be followed by agents in an agent-based financial
+market model. %% Amaury: to describe the agents' beliefs? This may make sense,
+%% but I'd need to elaborate a bit more.
+The intuitionistic fuzzy rules (IFR)
+can be used to describe the agents' beliefs, while using the price movements of
+a financial market as the facts perceived by the agents. For this paper, the
+price movements are preprocessed using several technical indicators whose
+calculations are used as inputs for the IFIS of each agent in the model, and
+thus, the technical indicators' calculations describe the agents'
+environment. The agents' actions correspond to buy or sell orders which are used
+to create a simulation of a real financial market. A genetic algorithm is used
+to find combinations of agents that allow the system to simulate a close
+representation of a financial market. Lastly, after the agent model has been
+adjusted to the real financial market price movements, the IFR are examined to
+obtain explanatory insight about the targeted financial market.
 \end{abstract}
 
 \begin{keyword}
@@ -128,6 +141,8 @@ A traditional set is a collection of items that share a common characteristic. T
 
 \subsection{Fuzzy Systems}
 \label{subsection:fuzzy-systems}
+
+%% TODO: Linguistic hedges are often associated to these multiple membership functions to describe them in a more comprehensible way.
 
 In traditional logic one can generate logical inferences, such as \textit{if it's raining, then there are clouds in the sky}. In a similar fashion, one can use fuzzy sets to represent the antecedents and consequents in a logical inference process. For example, one can extend the previous example to: \textit{if it's raining a lot, then there are many clouds in the sky}.
 
@@ -396,11 +411,53 @@ its developed fuzzy logic systems.
 \section{Proposed Method}
 \label{section:proposed-method}
 
-The proposed method involves the use of a multi-agent system which acts in a decentralized fashion. Whereas a centralized multi-agent system depends on an agents which coordinate the actions and communication among the agents, a decentralized multi-agent system involves the use of agents that act autonomously~\cite{andreadis2014classification}. However, it can be noted that the system proposed in this paper has a mechanism that averages the output of the agents to their environment, and another mechanism which sends the input to the agents. Although these mechanisms can be considered characteristic of centralized multi-agent systems, they are not particularly complex processes compared to the rest of the processes involved in the proposed method, which are related to decentralized multi-agent systems.
+The proposed method involves the use of a multi-agent system which acts in a
+decentralized fashion. Whereas a centralized multi-agent system depends on an
+agents which coordinate the actions and communication among the agents, a
+decentralized multi-agent system involves the use of agents that act
+autonomously~\cite{andreadis2014classification}. However, it can be noted that
+the system proposed in this paper has a mechanism that averages the output of
+the agents to their environment, and another mechanism which sends the input to
+the agents. Although these mechanisms can be considered characteristic of
+centralized multi-agent systems, they are not particularly complex processes
+compared to the rest of the processes involved in the proposed method, which are
+related to decentralized multi-agent systems.
 
-The architecture followed by the multi-agent system is based on the one proposed by Shoham ~\cite{Shoham1993}. Particularly, the method presented in this paper adopts the idea of designing agents as a set of beliefs and rules that dictate how agents perceive and interact with their environment.
+The architecture followed by the multi-agent system is based on the one proposed
+by Shoham~\cite{Shoham1993}. Particularly, the method presented in this paper
+adopts the idea of designing agents as a set of beliefs and rules that dictate
+how agents perceive and interact with their environment.
 
-Agent rules are defined by intuitionistic fuzzy inference systems. Fuzzy systems are convenient, as they can be interpreted, in contrast to, for example, neural networks, where the weights associated to the neurons and the connections among themselves.
+\subsection{Agent Rules}
+\label{subsection:agent-rules}
+
+Agent rules are defined by intuitionistic fuzzy inference systems. Fuzzy systems
+are convenient, as they can be interpreted, as opposed to, for example, neural
+networks, where the weights associated to the neurons and the connections among
+themselves become obscure to interpretation. Furthermore, the use of
+intuitionistic fuzzy systems provides an additional layer for interpretation:
+indeterminacy.
+
+Indeterminacy surges as a consequent of the inclusion of non-membership to a
+fuzzy system (see Subsection~\ref{subsection:intuitionistic-fuzzy-sets}). This
+concept allows the designer of a fuzzy system to model doubt or hesitancy in a
+dataset. In the proposed method, indeterminacy is obtained in a heuristical
+manner, as part of the optimization algorithm that searches for a combination of
+agents that are used to create a prediction model.
+
+The membership functions in the fuzzy systems are always defined as Gaussian
+functions, although in future experiments this design choice can
+change. Gaussian membership functions were chosen because of their capability of
+modelling knowledge in a smoother way than their alternatives, such as
+triangular or trapezoidal membership functions. Although other membership
+functions can be better suited for certain situations, the proposed method is
+currently designed for the creation of prediction models for arbitrary datasets,
+where solutions are found using a metaheuristic.
+
+It is usual for a fuzzy rule to contain multiple membership functions to better describe input and output variables. In the proposed method, at least two membership functions
+
+
+
 
 The proposed method is based on the fact that any financial market is constructed by the buy and sell orders from different traders. Agents can be used to represent the traders in the markets, as seen in Figure \ref{figure:agent-based-model}. These agents have three basic actions: buy, sell and hold. A market can then be constructed by using the aggregation of the orders from all the agents that are part of the system: if an agent buys 10 units, the market will then go up 10 units; if an agent sells 10 units, the market will then go down 10 units; if an agent does not buy or sell any amount of units (holds), then the market will not move either up or down. After aggregating all the orders, a final price at a given point in time is reached, and the process is repeated for the next prices.
 
