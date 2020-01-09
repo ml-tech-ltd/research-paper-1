@@ -106,23 +106,99 @@ intuitionistic fuzzy system\sep agent-based model \sep decision support systems
 \section{Introduction}
 \label{section:introduction}
 
-A financial market is constructed by the interactions of a number of traders, where a trader is an entity that is able to buy or sell a number of units of an asset. The traders can either be individual human beings, organizations or even computer programs. An asset can be anything that can be priced and can be divided so different parties can hold a share of the asset. For example, corn can be priced and different parties can hold a share of the corn market by physically owning corn. Lastly, traders can decide to either buy or sell shares of this asset. Although this decision can seem simple, as there can only be two outcomes, the process a trader can follow in order to arrive to an outcome can be very complex.
+A financial market is constructed by the interactions of a number of traders,
+where a trader is an entity that is able to buy or sell a number of units of an
+asset. The traders can either be individual human beings, organizations or even
+computer programs. An asset can be anything that can be priced and can be
+divided so different parties can hold a share of the asset. For example, corn
+can be priced and different parties can hold a share of the corn market by
+physically owning corn. Lastly, traders can decide to either buy or sell shares
+of this asset. Although this decision can seem simple, as there can only be two
+outcomes, the process a trader can follow in order to arrive to an outcome can
+be very complex.
 
-In theory, if one can know all the variables that each trader is taking into consideration to arrive to their particular decisions, the prices in a financial market can be predicted precisely. Obviously, this is near impossible, unless we were simulating a financial market with a handful of people and everyone was telling everyone else what decisions they are going to be taking. Nevertheless, one can create models that closely simulate a financial market, and one can assume that these simulations are generalizations of the real financial market. Several approaches have been taken in the past to create such models with varying success. One of the simplest methods to forecast the prices in a financial market is linear %
-% Amaury: Maybe use a more recent example. It doesn't matter if we change the technique.
-regression \cite{kutner2004applied}, where one is trying to find a function of the form $f(x) = a + bx$ -- or simply a linear function -- that minimizes the distance between the points in the line and the points that represent the prices. Even though linear regression can provide valuable insight, such as determining the general direction of a market in a determined period of time, it is not suitable to be taken as a complete solution to forecasting.
+In theory, if one can know all the variables that each trader is taking into
+consideration to arrive to their particular decisions, the prices in a financial
+market can be predicted precisely. Obviously, this is near impossible, unless we
+were simulating a financial market with a handful of people and everyone was
+telling everyone else what decisions they are going to be taking. Nevertheless,
+one can create models that closely simulate a financial market, and one can
+assume that these simulations are generalizations of the real financial
+market. Several approaches have been taken in the past to create such models
+with varying success. One of the simplest methods to forecast the prices in a
+financial market is linear % % Amaury: Maybe use a more recent example. It
+%% doesn't matter if we change the technique.
+regression \cite{kutner2004applied}, where one is trying to find a function of
+the form $f(x) = a + bx$ --- or simply a linear function --- that minimizes the
+distance between the points in the line and the points that represent the
+prices. Even though linear regression can provide valuable insight, such as
+determining the general direction of a market in a determined period of time, it
+is not suitable to be taken as a complete solution to forecasting.
 
-A better approach to using mathematical formulas to forecast a financial market is to use technical indicators such as the relative strength index or the commodity selection index \cite{Wilder1978}. These technical indicators are used to perform a technique called technical analysis, where one tries to identify what are going to be the future price movements of a market relying solely on the historical prices of the market being analyzed. For example, if a market's prices have been increasing relatively too much in a relatively short period of time, according to technical analysis this market is now considered \textit{overbought}, and the prices could start to violently fall at any moment. It is worth noting that these analyses are often subject to interpretation, i.e. they are subjective analyses. Additionally, these analyses are heuristic, as the trader's experience is heavily involved in the interpretation of the results obtained by the technical indicators.
+A better approach to using mathematical formulas to forecast a financial market
+is to use technical indicators such as the relative strength index or the
+commodity selection index \cite{Wilder1978}. These technical indicators are used
+to perform a technique called technical analysis, where one tries to identify
+what are going to be the future price movements of a market relying solely on
+the historical prices of the market being analyzed. For example, if a market's
+prices have been increasing relatively too much in a relatively short period of
+time, according to technical analysis this market is now considered
+\textit{overbought}, and the prices could start to violently fall at any
+moment. It is worth noting that these analyses are often subject to
+interpretation, i.e. they are subjective analyses. Additionally, these analyses
+are heuristic, as the trader's experience is heavily involved in the
+interpretation of the results obtained by the technical indicators.
 
-One method that does not need interpretation, unlike technical analysis, and that creates a model that tries to simulate a financial market, like linear regression, is artificial neural networks (ANN). ANN-based models are created by using a series of data points -- in the case of financial markets, these data points are historical prices -- as a training set, which is used to adjust weights in the neurons that constitute the ANN. In the end, an ANN is just a very complex mathematical formula that, given an input, one obtains an output, which in the case of a financial market, that output is a price at a given time. Although ANNs can generate models that successfully simulate financial markets, interpreting the model is sometimes desired, as one can obtain insight that can help to better understand a market's behavior, and ANNs fail to accomplish this goal.
+One method that does not need interpretation, unlike technical analysis, and
+that creates a model that tries to simulate a financial market, like linear
+regression, is artificial neural networks (ANN). ANN-based models are created by
+using a series of data points --- in the case of financial markets, these data
+points are historical prices --- as a training set, which is used to adjust
+weights in the neurons that constitute the ANN.\@ In the end, an ANN is just a
+very complex mathematical formula that, given an input, one obtains an output,
+which in the case of a financial market, that output is a price at a given
+time. Although ANNs can generate models that successfully simulate financial
+markets, interpreting the model is sometimes desired, as one can obtain insight
+that can help to better understand a market's behavior, and ANNs fail to
+accomplish this goal.
 
-Agent-based models satisfy two criteria: they are interpretable, as one can examine what are the rules and beliefs that conveyed an agent to a particular decision; and they can simulate a financial market, which helps to provide a model that is closely related to that market's behavior, unlike technical indicators. %
+Agent-based models satisfy two criteria: they are interpretable, as one can
+examine what are the rules and beliefs that conveyed an agent to a particular
+decision; and they can simulate a financial market, which helps to provide a
+model that is closely related to that market's behavior, unlike technical
+indicators. %
 % Amaury: re-think the "unlike technical indicators". Is this true?
-Furthermore, the agents in an agent-based model can use the outputs from several technical indicators as the environment that works as the input to their rules, instead of using the raw historical prices, which already implies that agent-based models can act in a higher order of complexity than technical indicators. For example, the historical prices of a financial market can be pre-processed using technical indicators, and these will serve as the basis for the agents' beliefs, such as believing if a market is overbought or oversold, or if the volatility is too high or too low.
+Furthermore, the agents in an agent-based model can use the outputs from several
+technical indicators as the environment that works as the input to their rules,
+instead of using the raw historical prices, which already implies that
+agent-based models can act in a higher order of complexity than technical
+indicators. For example, the historical prices of a financial market can be
+pre-processed using technical indicators, and these will serve as the basis for
+the agents' beliefs, such as believing if a market is overbought or oversold, or
+if the volatility is too high or too low.
 
-The representation of an agents' beliefs and rules can be achieved through traditional (Boolean) logic, for example: \textit{if relative strength index is greater than 20, then buy}. Nevertheless, fuzzy logic can help to achieve a greater level of detail for the creation of the agents' rules and beliefs. The aforementioned example rule can then be extended to \textit{if relative strength index is low, then buy a big lot}. As can be noted, just as one can use fuzzy logic to create fuzzy inference systems, the agents' actions can also be represented by fuzzy rules.
+The representation of an agents' beliefs and rules can be achieved through
+traditional (Boolean) logic, for example: \textit{if relative strength index is
+greater than 20, then buy}. Nevertheless, fuzzy logic can help to achieve a
+greater level of detail for the creation of the agents' rules and beliefs. The
+aforementioned example rule can then be extended to \textit{if relative strength
+index is low, then buy a big lot}. As can be noted, just as one can use fuzzy
+logic to create fuzzy inference systems, the agents' actions can also be
+represented by fuzzy rules.
 
-The preceding paragraphs serve as a description of the motivation behind the proposed method in this work: using fuzzy inference systems for the creation of agent-based models. However, the reader will find in Section \ref{section:proposed-method} that the proposed method does not use traditional fuzzy systems, but intuitionistic fuzzy systems \cite{Atanassov1986}, which have the objective of better representing the knowledge and decisions of a human trader. Before better examining the method for constructing such agent-based models, a series of related works is presented in Section \ref{section:related-work}, which helps the reader to understand the advantages that the proposed method in this work provides in contrast to other already existing techniques. After understanding the theoretical background of the method, the reader can find an implementation of the method in Section \ref{section:implementation}.
+The preceding paragraphs serve as a description of the motivation behind the
+proposed method in this work: using fuzzy inference systems for the creation of
+agent-based models. However, the reader will find in Section
+\ref{section:proposed-method} that the proposed method does not use traditional
+fuzzy systems, but intuitionistic fuzzy systems \cite{Atanassov1986}, which have
+the objective of better representing the knowledge and decisions of a human
+trader. Before better examining the method for constructing such agent-based
+models, a series of related works is presented in Section
+\ref{section:related-work}, which helps the reader to understand the advantages
+that the proposed method in this work provides in contrast to other already
+existing techniques. After understanding the theoretical background of the
+method, the reader can find an implementation of the method in Section
+\ref{section:implementation}.
 %
 % Amaury: Explain structure of the paper.
 
@@ -131,26 +207,88 @@ The preceding paragraphs serve as a description of the motivation behind the pro
 %
 % Amaury: Maybe reduce the length of this section.
 
-This Section describes the concepts that the reader needs to be familiar with in order to better understand the proposed method in Section \ref{section:proposed-method}.% If the reader is already familiarized with any of the concepts discussed below, it can be omitted.
+This Section describes the concepts that the reader needs to be familiar with in
+order to better understand the proposed method in Section
+\ref{section:proposed-method}.% If the reader is already familiarized with any
+%% of the concepts discussed below, it can be omitted.
 % Amaury: I don't know if it sounds weird to say it can be omitted.
 
 \subsection{Fuzzy Sets}
 \label{subsection:fuzzy-sets}
 
-A traditional set is a collection of items that share a common characteristic. This characteristic serves as a membership, because all the items in a universe either have that characteristic -- and then the item is part of the set -- or it does not have it -- and then the item is not part of the set. Traditional sets can be extended to fuzzy sets, as explained by Zadeh \cite{Zadeh1965}. Fuzzy sets are then a generalization of traditional sets, i.e. any traditional set can be represented as a fuzzy set. The difference between these two type of sets lies in the concept of membership: memberships are not only used to represent binary outcomes, i.e. \textit{true} or \textit{false}, but now a possibly infinite number of outcomes. An item can now be partially a member of a set, and the only way an item is not part of such set is if its membership is totally \textit{false}. In order to represent this grade of membership one can use real numbers. Thus, one can say, for example, that an item is \textit{0.7 green}, \textit{0.5 blue} and \textit{0.0 red}. These values can represent an adverb and an adjective, such as ``very green,'' ``somewhat blue'' and ``not red at all.'' This is especially useful when designing fuzzy systems (see Subsection \ref{subsection:fuzzy-systems}).
+A traditional set is a collection of items that share a common
+characteristic. This characteristic serves as a membership, because all the
+items in a universe either have that characteristic --- and then the item is
+part of the set --- or it does not have it --- and then the item is not part of
+the set. Traditional sets can be extended to fuzzy sets, as explained by Zadeh
+\cite{Zadeh1965}. Fuzzy sets are then a generalization of traditional sets,
+i.e. any traditional set can be represented as a fuzzy set. The difference
+between these two type of sets lies in the concept of membership: memberships
+are not only used to represent binary outcomes, i.e. \textit{true} or
+\textit{false}, but now a possibly infinite number of outcomes. An item can now
+be partially a member of a set, and the only way an item is not part of such set
+is if its membership is totally \textit{false}. In order to represent this grade
+of membership one can use real numbers. Thus, one can say, for example, that an
+item is \textit{0.7 green}, \textit{0.5 blue} and \textit{0.0 red}. These values
+can represent an adverb and an adjective, such as ``very green,'' ``somewhat
+blue'' and ``not red at all.'' This is especially useful when designing fuzzy
+systems (see Subsection \ref{subsection:fuzzy-systems}).
 
 \subsection{Fuzzy Systems}
 \label{subsection:fuzzy-systems}
 
-%% TODO: Linguistic hedges are often associated to these multiple membership functions to describe them in a more comprehensible way.
+%% TODO: Linguistic hedges are often associated to these multiple membership
+%% functions to describe them in a more comprehensible way.
 
-In traditional logic one can generate logical inferences, such as \textit{if it's raining, then there are clouds in the sky}. In a similar fashion, one can use fuzzy sets to represent the antecedents and consequents in a logical inference process. For example, one can extend the previous example to: \textit{if it's raining a lot, then there are many clouds in the sky}.
+In traditional logic one can generate logical inferences, such as \textit{if
+it's raining, then there are clouds in the sky}. In a similar fashion, one can
+use fuzzy sets to represent the antecedents and consequents in a logical
+inference process. For example, one can extend the previous example to:
+\textit{if it's raining a lot, then there are many clouds in the sky}.
 
-There is a number of ways in which one can construct a fuzzy inference system, where one or more inputs or antecedents can be used to generate one or more outputs or consequents. Arguably, the two most popular types of fuzzy inference systems are the ones created by Mamdani and Assilian \cite{Mamdani1975}, and Takagi and Sugeno \cite{Takagi1985}. These systems use a series of fuzzy sets to represent the relationship between an input and its grade of membership to a set. These sets usually represent adjectives that describe the inputs, and are also considered to be the antecedents in the fuzzy inference system. For example, an input of 0.8 can represent a ``very high'' value. After obtaining these grades of membership, one can use these values to ``fire'' or ``activate'' the consequents. In the case of a Mamdani system, the consequents are represented as fuzzy sets, just like the antecedents. In contrast, in a Sugeno system, consequents are represented by mathematical functions. A set of rules is used to determine the relationship between the antecedents and the consequents, for example: \textit{if food quality is high then tip is high}. The aforementioned rule is creating a relationship between the fuzzy set that represents ``high food quality'' in the antecedents, and the fuzzy set that represents ``high tip'' in the consequents. Further continuing with the example, if ``food quality'' is represented by a value of 0.8, the rule that creates the relationship between ``food quality'' and ``tip'' could determine a ``tip'' of 0.8 too, depending on what membership function and what parameters are decided to be used to represent each.
+There is a number of ways in which one can construct a fuzzy inference system,
+where one or more inputs or antecedents can be used to generate one or more
+outputs or consequents. Arguably, the two most popular types of fuzzy inference
+systems are the ones created by Mamdani and Assilian \cite{Mamdani1975}, and
+Takagi and Sugeno \cite{Takagi1985}. These systems use a series of fuzzy sets to
+represent the relationship between an input and its grade of membership to a
+set. These sets usually represent adjectives that describe the inputs, and are
+also considered to be the antecedents in the fuzzy inference system. For
+example, an input of 0.8 can represent a ``very high'' value. After obtaining
+these grades of membership, one can use these values to ``fire'' or ``activate''
+the consequents. In the case of a Mamdani system, the consequents are
+represented as fuzzy sets, just like the antecedents. In contrast, in a Sugeno
+system, consequents are represented by mathematical functions. A set of rules is
+used to determine the relationship between the antecedents and the consequents,
+for example: \textit{if food quality is high then tip is high}. The
+aforementioned rule is creating a relationship between the fuzzy set that
+represents ``high food quality'' in the antecedents, and the fuzzy set that
+represents ``high tip'' in the consequents. Further continuing with the example,
+if ``food quality'' is represented by a value of 0.8, the rule that creates the
+relationship between ``food quality'' and ``tip'' could determine a ``tip'' of
+0.8 too, depending on what membership function and what parameters are decided
+to be used to represent each.
 
-It has been explained how a relationship between antecedents and consequents can be constructed in a fuzzy inference system. Nevertheless, the most interesting problem arises when a problem involves several fuzzy sets to represent different adjectives for single antecedents or consequents. In these cases, depending on the fuzzy rules, a number of consequents can be fired according to the inputs to the system. As seen in Figure \ref{figure:antecedents}, the input -- represented by the dotted vertical black line -- is associated with three fuzzy triangular sets or antecedents, where it ``activates'' two of them. According to a set of fuzzy rules, it then fires a set of triangular fuzzy sets that represent the consequents, as seen in Figure \ref{figure:consequents}.
+It has been explained how a relationship between antecedents and consequents can
+be constructed in a fuzzy inference system. Nevertheless, the most interesting
+problem arises when a problem involves several fuzzy sets to represent different
+adjectives for single antecedents or consequents. In these cases, depending on
+the fuzzy rules, a number of consequents can be fired according to the inputs to
+the system. As seen in Figure \ref{figure:antecedents}, the input ---
+represented by the dotted vertical black line --- is associated with three fuzzy
+triangular sets or antecedents, where it ``activates'' two of them. According to
+a set of fuzzy rules, it then fires a set of triangular fuzzy sets that
+represent the consequents, as seen in Figure \ref{figure:consequents}.
 
-The fuzzy sets that represent the consequents are cut, and new shapes are obtained using those cuts, as represented by the green shapes in Figure \ref{figure:consequents}. These shapes are aggregated and result in the output of the fuzzy inference system, and this result can then be defuzzified using different methods, such as obtaining the centroid of the shape. In this example, a Mamdani fuzzy inference system is considered; in the case of a Sugeno system, for example, the antecedents would be represented by arbitrary mathematical functions, instead of membership functions representing shapes such as the triangles in the example presented above.
+The fuzzy sets that represent the consequents are cut, and new shapes are
+obtained using those cuts, as represented by the green shapes in Figure
+\ref{figure:consequents}. These shapes are aggregated and result in the output
+of the fuzzy inference system, and this result can then be defuzzified using
+different methods, such as obtaining the centroid of the shape. In this example,
+a Mamdani fuzzy inference system is considered; in the case of a Sugeno system,
+for example, the antecedents would be represented by arbitrary mathematical
+functions, instead of membership functions representing shapes such as the
+triangles in the example presented above.
 
 \begin{figure}
 \caption{Antecedents}
@@ -169,7 +307,10 @@ The fuzzy sets that represent the consequents are cut, and new shapes are obtain
 \subsection{Intuitionistic Fuzzy Sets}
 \label{subsection:intuitionistic-fuzzy-sets}
 
-In contrast to the traditional fuzzy sets discussed in Subsection \ref{subsection:fuzzy-sets}, intuitionistic fuzzy sets consider a grade of non-membership in addition to a grade of membership associated to an element in the fuzzy set, as expressed by \ref{eq:ifs-definition}.
+In contrast to the traditional fuzzy sets discussed in Subsection
+\ref{subsection:fuzzy-sets}, intuitionistic fuzzy sets consider a grade of
+non-membership in addition to a grade of membership associated to an element in
+the fuzzy set, as expressed by \ref{eq:ifs-definition}.
 
 % intuitionistic fuzzy set
 \begin{equation}
@@ -177,7 +318,8 @@ In contrast to the traditional fuzzy sets discussed in Subsection \ref{subsectio
   A^{*} = \{\langle x, \mu _{A} (x), \nu _{A} (x) \rangle | x \in E\}
 \end{equation}
 
-For every of the elements contained in an intuitionistic fuzzy set, \ref{eq:intuitionistic-interval} must hold true.
+For every of the elements contained in an intuitionistic fuzzy set,
+\ref{eq:intuitionistic-interval} must hold true.
 
 % intuitionistic interval
 \begin{equation}
@@ -185,7 +327,9 @@ For every of the elements contained in an intuitionistic fuzzy set, \ref{eq:intu
   0 \leq \mu_{A}(x) + \nu_{A}(x) \leq 1
 \end{equation}
 
-Intuitionistic fuzzy sets are an extension to traditional fuzzy sets, as any traditional fuzzy set can be expressed as a particular case of an intuitionistic fuzzy set, as in \ref{eq:ifs-form}.
+Intuitionistic fuzzy sets are an extension to traditional fuzzy sets, as any
+traditional fuzzy set can be expressed as a particular case of an intuitionistic
+fuzzy set, as in \ref{eq:ifs-form}.
 
 % every ordinary fuzzy set has the form
 \begin{equation}
@@ -193,7 +337,11 @@ Intuitionistic fuzzy sets are an extension to traditional fuzzy sets, as any tra
   \{ \langle x, \mu_{A}(x), 1 - \mu_{A}(x) \rangle | x \in E \}
 \end{equation}
 
-If the sum of the membership $\mu_{A}(x)$ and non-membership $\nu_{A}(x)$ of an element is less than $1$, the concept of indeterminacy or hesitancy arises, which is described by \ref{eq:indeterminacy}. Indeterminacy is used to represent doubt in the grade of membership of an element in an intuitionistic fuzzy set and is described by \ref{eq:indeterminacy}.
+If the sum of the membership $\mu_{A}(x)$ and non-membership $\nu_{A}(x)$ of an
+element is less than $1$, the concept of indeterminacy or hesitancy arises,
+which is described by \ref{eq:indeterminacy}. Indeterminacy is used to represent
+doubt in the grade of membership of an element in an intuitionistic fuzzy set
+and is described by \ref{eq:indeterminacy}.
 
 % if
 \begin{equation}
@@ -201,7 +349,15 @@ If the sum of the membership $\mu_{A}(x)$ and non-membership $\nu_{A}(x)$ of an 
   \pi_{A}(x) = 1 - \mu_{A}(x) - \nu_{A}(x)
 \end{equation}
 
-Traditional fuzzy sets can be extended to increase their capabilities of representing uncertainty by introducing the concept of footprint of uncertainty. A footprint of uncertainty is achieved by extending the membership function, where each of its values are now fuzzy sets themselves, instead of crisp values. Indeterminacy serves a different purpose than the one of footprint of uncertainty. Instead of extending the uncertainty provided by traditional fuzzy sets, indeterminacy helps to model doubt. For example, if traditional fuzzy sets can model the following sentence: ``the object is very hot'', indeterminacy can model ``it is unsure that the object is very hot''.
+Traditional fuzzy sets can be extended to increase their capabilities of
+representing uncertainty by introducing the concept of footprint of
+uncertainty. A footprint of uncertainty is achieved by extending the membership
+function, where each of its values are now fuzzy sets themselves, instead of
+crisp values. Indeterminacy serves a different purpose than the one of footprint
+of uncertainty. Instead of extending the uncertainty provided by traditional
+fuzzy sets, indeterminacy helps to model doubt. For example, if traditional
+fuzzy sets can model the following sentence: ``the object is very hot'',
+indeterminacy can model ``it is unsure that the object is very hot''.
 
 \begin{figure}
 \caption{Intuitionistic fuzzy set}
@@ -220,15 +376,29 @@ Traditional fuzzy sets can be extended to increase their capabilities of represe
 \subsection{Intuitionistic Fuzzy Systems}
 \label{subsection:intuitionistic-fuzzy-systems}
 
-Intuitionistic fuzzy sets, like traditional fuzzy sets, can be used to create inference systems. Antecedents and consequents in the system can be handled by intuitionistic fuzzy sets, as in a Mamdani system \cite{Mamdani1975}, or only the antecedents and use mathematical functions for the consequents as in a Sugeno system \cite{Takagi1985}.
+Intuitionistic fuzzy sets, like traditional fuzzy sets, can be used to create
+inference systems. Antecedents and consequents in the system can be handled by
+intuitionistic fuzzy sets, as in a Mamdani system \cite{Mamdani1975}, or only
+the antecedents and use mathematical functions for the consequents as in a
+Sugeno system \cite{Takagi1985}.
 
-Different approaches have been taken in the past by different authors on how to build intuitionistic fuzzy systems. The authors of the present paper have worked in a particular way of achieving this type of systems, and the method is described in \cite{Hernandez-Aguila2016} and \cite{Hernandez-Aguila2017-2}. The method described in the aforementioned works is presented in this Subsection for the reader as a reference implementation.
+Different approaches have been taken in the past by different authors on how to
+build intuitionistic fuzzy systems. The authors of the present paper have worked
+in a particular way of achieving this type of systems, and the method is
+described in \cite{Hernandez-Aguila2016} and \cite{Hernandez-Aguila2017-2}. The
+method described in the aforementioned works is presented in this Subsection for
+the reader as a reference implementation.
 
 % handle inputs
 % alpha-cuts
 % defuzzification
 
-As is explained in \cite{Hernandez-Aguila2016}, in an IFIS, in order for an antecedent to fire a consequent according to a set of fuzzy rules, the final grade of membership of an element has to be expressed in terms of its grade of membership and its grade of non-membership. The resulting grade of membership of an element of $A$ is represented by $i\mu_{A}(x)$, and is defined in (\ref{imembership}).
+As is explained in \cite{Hernandez-Aguila2016}, in an IFIS, in order for an
+antecedent to fire a consequent according to a set of fuzzy rules, the final
+grade of membership of an element has to be expressed in terms of its grade of
+membership and its grade of non-membership. The resulting grade of membership of
+an element of $A$ is represented by $i\mu_{A}(x)$, and is defined in
+(\ref{imembership}).
 
 % i-membership
 \begin{equation}
@@ -236,7 +406,10 @@ As is explained in \cite{Hernandez-Aguila2016}, in an IFIS, in order for an ante
   i\mu_{A}(x) = (\nu_{A}(x) + \mu_{A}(x))\mu_{A}(x)
 \end{equation}
 
-To perform an alpha-cut in a consequent, one has to separate it in two stages: 1) perform a traditional alpha-cut in the membership function following equation (\ref{alpha-cut}), and then 2) perform an alpha-cut in the non-membership function following equation (\ref{nmf-alpha-cut}).
+To perform an alpha-cut in a consequent, one has to separate it in two stages:
+1) perform a traditional alpha-cut in the membership function following equation
+(\ref{alpha-cut}), and then 2) perform an alpha-cut in the non-membership
+function following equation (\ref{nmf-alpha-cut}).
 
 \begin{equation}
   \label{alpha-cut}
@@ -256,7 +429,8 @@ To perform an alpha-cut in a consequent, one has to separate it in two stages: 1
   \end{cases}
 \end{equation}
 
-The aggregation of the fired consequents is performed by applying (\ref{union-operator}) on the alpha-cuts.
+The aggregation of the fired consequents is performed by applying
+(\ref{union-operator}) on the alpha-cuts.
 
 \begin{equation}
   \label{union-operator}
@@ -266,7 +440,12 @@ The aggregation of the fired consequents is performed by applying (\ref{union-op
 \end{aligned}
 \end{equation}
 
-The final modification to the traditional inference process in a FIS is made to the center of area procedure. The equation to calculate the center of area of a traditional fuzzy set is (\ref{center-of-area}). In order to implement a center of area for an intuitionistic fuzzy set, one has to incorporate the concept of $i\mu(x)$, giving as a result (\ref{if-coa}), and its simplification form (\ref{if-coa-simplified}).
+The final modification to the traditional inference process in a FIS is made to
+the center of area procedure. The equation to calculate the center of area of a
+traditional fuzzy set is (\ref{center-of-area}). In order to implement a center
+of area for an intuitionistic fuzzy set, one has to incorporate the concept of
+$i\mu(x)$, giving as a result (\ref{if-coa}), and its simplification form
+(\ref{if-coa-simplified}).
 
 % CoA
 \begin{equation}
@@ -306,16 +485,40 @@ The final modification to the traditional inference process in a FIS is made to 
 \subsection{Multi-agent Systems and Agent-based Models}
 \label{subsection:multi-agent-systems-and-agent-based-models}
 
-A multi-agent system is software that solves a problem using agents. Agents can be seen themselves as programs that interact with their environment, which may include other agents. Agents in the proposed method in this paper follow the structure suggested by Shoham in \cite{shoham1993agent}, where agents have beliefs and rules. Beliefs are used by agents to arrive to an interpretation of their environment, and rules are used to arrive to actions to be performed by the agent towards their environment. The agents in the system are constantly sensing their environment to determine what actions to take according to their beliefs and rules. Multi-agent systems have the objective of solving a practical problem, unlike agent-based models which are more focused to providing a simulation of a problem.
+A multi-agent system is software that solves a problem using agents. Agents can
+be seen themselves as programs that interact with their environment, which may
+include other agents. Agents in the proposed method in this paper follow the
+structure suggested by Shoham in \cite{shoham1993agent}, where agents have
+beliefs and rules. Beliefs are used by agents to arrive to an interpretation of
+their environment, and rules are used to arrive to actions to be performed by
+the agent towards their environment. The agents in the system are constantly
+sensing their environment to determine what actions to take according to their
+beliefs and rules. Multi-agent systems have the objective of solving a practical
+problem, unlike agent-based models which are more focused to providing a
+simulation of a problem.
 
-As mentioned before, agents can also be used to create agent-based models. These models are used to represent a problem so a human being can analyze it and infer new knowledge from it, or it can be used to better understand a problem.
+As mentioned before, agents can also be used to create agent-based models. These
+models are used to represent a problem so a human being can analyze it and infer
+new knowledge from it, or it can be used to better understand a problem.
 
-The proposed method in this paper is both a multi-agent system and an agent-based model. It is a multi-agent system in the sense that it can be used to create a trading strategy, and it is an agent-based model because the agents in the system can be analyzed to understand the state of the market that is serving as the system's environment.
+The proposed method in this paper is both a multi-agent system and an
+agent-based model. It is a multi-agent system in the sense that it can be used
+to create a trading strategy, and it is an agent-based model because the agents
+in the system can be analyzed to understand the state of the market that is
+serving as the system's environment.
 
 %% \subsection{Trading Strategy}
 %% \label{subsection:trading-strategy}
 
-%% A trading strategy is a set of tools used by a trader in order to deter-mine when a particular type of trade should be executed. The type of a trade can be a buy or sell now order (which is executed immediately), or an entry order (which will be executed after the market price reaches a determined threshold). These orders can include other operations, like a stop loss or take profit orders (the trade will stop after a specific amount of units has been gained or lost), and trailing stops (a stop loss which gets constantly updated depending on the price movements). A trading strategy also incorporates a money management strategy, which determines the size of the lot to be traded.
+% A trading strategy is a set of tools used by a trader in order to deter-mine
+% when a particular type of trade should be executed. The type of a trade can be a
+% buy or sell now order (which is executed immediately), or an entry order (which
+% will be executed after the market price reaches a determined threshold). These
+% orders can include other operations, like a stop loss or take profit orders (the
+% trade will stop after a specific amount of units has been gained or lost), and
+% trailing stops (a stop loss which gets constantly updated depending on the price
+% movements). A trading strategy also incorporates a money management strategy,
+% which determines the size of the lot to be traded.
 
 \section{Related Work}
 \label{section:related-work}
@@ -325,88 +528,128 @@ The proposed method in this paper is both a multi-agent system and an agent-base
 
 %% Amaury: Huh? This whole paragraph sounds weird.
 
-In general, this work involves the use of machine learning to forecast
-financial markets. In several efforts, researchers create regression
-models using technical or fundamental indicators as training
-datasets. Examples of regression techniques are autoregression
-\cite{burg1968new}, symbolic regression \cite{billard2002symbolic},
-and linear regression \cite{kutner2004applied}.
+In general, this work involves the use of machine learning to forecast financial
+markets. In several efforts, researchers create regression models using
+technical or fundamental indicators as training datasets. Examples of regression
+techniques are autoregression \cite{burg1968new}, symbolic regression
+\cite{billard2002symbolic}, and linear regression \cite{kutner2004applied}.
 
-The work by Brown, Pelosi and Dirska \cite{brown2013dynamic} uses a
-Niche Genetic Algorithm called Dynamic-radius Species-conserving
-Genetic Algorithm (DSGA) to select stocks to purchase from the Dow
-Jones Index. It is important to mention this work because, in the end,
-the DSS that is presented in the Proposed Method does the same kind of
-recommendation as in their work. More importantly, Brown, et al.,
-uploaded the dataset that the authors of the present work used to
-perform the different experiments. In Section
-\ref{experiments-and-results} a comparison to their work is provided,
-along with many other experiments.
+The work by Brown, Pelosi and Dirska \cite{brown2013dynamic} uses a Niche
+Genetic Algorithm called Dynamic-radius Species-conserving Genetic Algorithm
+(DSGA) to select stocks to purchase from the Dow Jones Index. It is important to
+mention this work because, in the end, the DSS that is presented in the Proposed
+Method does the same kind of recommendation as in their work. More importantly,
+Brown, et al., uploaded the dataset that the authors of the present work used to
+perform the different experiments. In Section \ref{experiments-and-results} a
+comparison to their work is provided, along with many other experiments.
 
-The work by Lu, Lee, and Chiu \cite{Lu2009} point out the complexity
-of financial time-series. They note its noisy nature and propose a
-technique to reduce this noise based in a two-stage modeling approach
-using Independent Component Analysis (ICA) and Support Vector
-Regression (SVR). Their approach first uses ICA for generating
-independent components to identify and remove those containing the
-noise, then the remaining components are used to reconstruct the
-forecasting variables which now contain less noise and are the input
-of the SVR forecasting model. Their work was important for the
-development of the Proposed Method, as we believe that the ABM
-approach can then be used to diminish the noise in the market, by
-using a separate class of agents dedicated to model it.
+The work by Lu, Lee, and Chiu \cite{Lu2009} point out the complexity of
+financial time-series. They note its noisy nature and propose a technique to
+reduce this noise based in a two-stage modeling approach using Independent
+Component Analysis (ICA) and Support Vector Regression (SVR). Their approach
+first uses ICA for generating independent components to identify and remove
+those containing the noise, then the remaining components are used to
+reconstruct the forecasting variables which now contain less noise and are the
+input of the SVR forecasting model. Their work was important for the development
+of the Proposed Method, as we believe that the ABM approach can then be used to
+diminish the noise in the market, by using a separate class of agents dedicated
+to model it.
 
-Lastly, it is imperative to mention the use of Neural Networks in
-regression tasks, as it is a technique that has been proved to be very
-effective for this kind of problems. O'Connor and Madden
-\cite{Connor2005} obtained some remarkable results where they obtained
-an annual 23.5\% of Rate of Investment on Dow Jones data used for
-training and testing. Another example is given by Castillo and Melin
-\cite{castillo2001simulation}, where they compare different hybrid
-architectures that combine Neural Networks and Fuzzy Logic for the
-prediction of financial time-series.
+Lastly, it is imperative to mention the use of Neural Networks in regression
+tasks, as it is a technique that has been proved to be very effective for this
+kind of problems. O'Connor and Madden \cite{Connor2005} obtained some remarkable
+results where they obtained an annual 23.5\% of Rate of Investment on Dow Jones
+data used for training and testing. Another example is given by Castillo and
+Melin \cite{castillo2001simulation}, where they compare different hybrid
+architectures that combine Neural Networks and Fuzzy Logic for the prediction of
+financial time-series.
 
 \subsection{Multi-agent Systems}
 \label{multi-agent-systems}
 
-The core algorithm of the Proposed Method is, at its highest level, a Multi-agent System. It is therefore paramount to mention some works which use MAS for the forecast or understanding of financial markets.
+The core algorithm of the Proposed Method is, at its highest level, a
+Multi-agent System. It is therefore paramount to mention some works which use
+MAS for the forecast or understanding of financial markets.
 
-Klingert and Meyer \cite{Klingert_2012} implement a MAS to analyze the effect of two market mechanisms: the continuous double auction and logarithmic market scoring rule. The purpose of the agent-based simulation model is to see the effect on the number of trades, the accuracy of prediction markets and the standard deviation of the prices in order to prove three hypothesis that they propose. In the end, due to a higher amount of trades and lower standard deviation of the price, their results indicate that the logarithmic market scoring rule seems to have an advantage over the other mechanism.
+Klingert and Meyer \cite{Klingert_2012} implement a MAS to analyze the effect of
+two market mechanisms: the continuous double auction and logarithmic market
+scoring rule. The purpose of the agent-based simulation model is to see the
+effect on the number of trades, the accuracy of prediction markets and the
+standard deviation of the prices in order to prove three hypothesis that they
+propose. In the end, due to a higher amount of trades and lower standard
+deviation of the price, their results indicate that the logarithmic market
+scoring rule seems to have an advantage over the other mechanism.
 
-Sherstov and Stone \cite{Sherstov2005} present three automated stock-trading agents which follow different strategies to predict financial markets, and are compared. The first agent uses Reinforcement Learning, the second a Trend-following strategy, and the last one Market-making. These agents are part of a MAS where the better performing agent is chosen for the testing phase. It is noteworthy to mention that their strategy was used in a live competition and won.
+Sherstov and Stone \cite{Sherstov2005} present three automated stock-trading
+agents which follow different strategies to predict financial markets, and are
+compared. The first agent uses Reinforcement Learning, the second a
+Trend-following strategy, and the last one Market-making. These agents are part
+of a MAS where the better performing agent is chosen for the testing phase. It
+is noteworthy to mention that their strategy was used in a live competition and
+won.
 
-Kendall and Su \cite{Kendall2003} use a MAS to simulate stock markets within which stock traders are modeled as heterogeneous adaptive artificial agents. On average, 80\% of the artificial stock traders were able to trade using successful trading strategies which brings the investors higher returns compared to a simple buy-and-hold strategy.
+Kendall and Su \cite{Kendall2003} use a MAS to simulate stock markets within
+which stock traders are modeled as heterogeneous adaptive artificial agents. On
+average, 80\% of the artificial stock traders were able to trade using
+successful trading strategies which brings the investors higher returns compared
+to a simple buy-and-hold strategy.
 
-The authors of this work gained useful knowledge about MAS from two theses. The first one is the work from Grothmann \cite{Grothmann2002}, ``Multi-agent Market Modeling based on Neural Networks.'' This work served as inspiration for the architecture of the Proposed Method. The second thesis is Boer-Sorb{\'{a}}n's ``Agent-Based Simulation of Financial Markets,'' which gave an overview of approaches to describe and understand financial market's dynamics, and motivated the authors of this work to use the approach of Agent-based Computation to perform financial forecast.
+The authors of this work gained useful knowledge about MAS from two theses. The
+first one is the work from Grothmann \cite{Grothmann2002}, ``Multi-agent Market
+Modeling based on Neural Networks.'' This work served as inspiration for the
+architecture of the Proposed Method. The second thesis is Boer-Sorb{\'{a}}n's
+``Agent-Based Simulation of Financial Markets,'' which gave an overview of
+approaches to describe and understand financial market's dynamics, and motivated
+the authors of this work to use the approach of Agent-based Computation to
+perform financial forecast.
 
-As a final mention, Samanidou, et. al. \cite{Samanidou_2007}, provides the reader a very comprehensive overview of Agent-based Modeling, where different techniques to perform this kind of models are discussed.
+As a final mention, Samanidou, et. al. \cite{Samanidou_2007}, provides the
+reader a very comprehensive overview of Agent-based Modeling, where different
+techniques to perform this kind of models are discussed.
 
 \subsection{Genetic Algorithms}
 \label{genetic-algorithms}
 
-In the Proposed Method, Genetic Programming is used to generate the Membership Functions (MF) of the Fuzzy Inference Systems that act as the agents' functions. The use of Evolutionary Algorithms to generate MF has been proposed before in several works. What follows is the mention of two works which use Genetic Algorithms to perform such a task, and in the next Subsection, one can find more specialized works where Genetic Programming is used.
+In the Proposed Method, Genetic Programming is used to generate the Membership
+Functions (MF) of the Fuzzy Inference Systems that act as the agents'
+functions. The use of Evolutionary Algorithms to generate MF has been proposed
+before in several works. What follows is the mention of two works which use
+Genetic Algorithms to perform such a task, and in the next Subsection, one can
+find more specialized works where Genetic Programming is used.
 
-Thrift \cite{Thrift1991} explores a nowadays widely used technique which involves the use of a Genetic Algorithm (GA) to discover the parameters of the Membership Functions (MF) in a Fuzzy Inference System to obtain a better performance. Homaifar and McCormick \cite{Homaifar1995} go further and use GA to simultaneously design the MF and the rule sets for fuzzy logic controllers.
+Thrift \cite{Thrift1991} explores a nowadays widely used technique which
+involves the use of a Genetic Algorithm (GA) to discover the parameters of the
+Membership Functions (MF) in a Fuzzy Inference System to obtain a better
+performance. Homaifar and McCormick \cite{Homaifar1995} go further and use GA to
+simultaneously design the MF and the rule sets for fuzzy logic controllers.
 
-\subsection{Intuitionistic Fuzzy Systems}\label{subsection:related-work-intuitionistic-fuzzy-systems}
+\subsection{Intuitionistic Fuzzy Systems}
+\label{subsection:related-work-intuitionistic-fuzzy-systems}
 
-There are some noteworthy toolkits for the creation of FISs, and this Section gives a brief description of the ones that have had
-the strongest influence to the present work.
+There are some noteworthy toolkits for the creation of FISs, and this Section
+gives a brief description of the ones that have had the strongest influence to
+the present work.
 
-Wagner presents a robust implementation of FISs developed in Java in \cite{Wagner2013}. The authors of the present work
-have used this particular toolkit for comparisons in the capabilities of the IFIS to model uncertainty against type-1 FISs and interval
-type-2 FISs in \cite{Hernandez-Aguila2016}. Although the toolkit does not provide many tools for representing a FIS graphically or for
-interacting with one, the implementation provides libraries for building type-1, interval type-2, and generalized type-2 fuzzy systems.
+Wagner presents a robust implementation of FISs developed in Java in
+\cite{Wagner2013}. The authors of the present work have used this particular
+toolkit for comparisons in the capabilities of the IFIS to model uncertainty
+against type-1 FISs and interval type-2 FISs in
+\cite{Hernandez-Aguila2016}. Although the toolkit does not provide many tools
+for representing a FIS graphically or for interacting with one, the
+implementation provides libraries for building type-1, interval type-2, and
+generalized type-2 fuzzy systems.
 
-Moreover, the work by Castro et al. \cite{castro2007interval} provides the same capabilities as the work by Wagner, but in this case 
-it is an implementation in Matlab. A direct disadvantage of using this programming language is that Matlab is not
-a free nor open source software.
-Nevertheless, the language is still widely used in the scientific community. Furthermore, this implementation follows an interface 
-similar to the one provided by Matlab's fuzzy logic toolbox, and provides more robust graphical implementations than the 
-current version of Wagner's toolkit.
+Moreover, the work by Castro et al. \cite{castro2007interval} provides the same
+capabilities as the work by Wagner, but in this case it is an implementation in
+Matlab. A direct disadvantage of using this programming language is that Matlab
+is not a free nor open source software.  Nevertheless, the language is still
+widely used in the scientific community. Furthermore, this implementation
+follows an interface similar to the one provided by Matlab's fuzzy logic
+toolbox, and provides more robust graphical implementations than the current
+version of Wagner's toolkit.
 
-The present work aims to provide an easily extensible implementation of an IFS with several tools to analyze 
-its developed fuzzy logic systems.
+The present work aims to provide an easily extensible implementation of an IFS
+with several tools to analyze its developed fuzzy logic systems.
 
 \section{Proposed Method}
 \label{section:proposed-method}
@@ -457,9 +700,20 @@ where solutions are found using a metaheuristic.
 It is usual for a fuzzy rule to contain multiple membership functions to better describe input and output variables. In the proposed method, at least two membership functions
 
 
+%%
 
 
-The proposed method is based on the fact that any financial market is constructed by the buy and sell orders from different traders. Agents can be used to represent the traders in the markets, as seen in Figure \ref{figure:agent-based-model}. These agents have three basic actions: buy, sell and hold. A market can then be constructed by using the aggregation of the orders from all the agents that are part of the system: if an agent buys 10 units, the market will then go up 10 units; if an agent sells 10 units, the market will then go down 10 units; if an agent does not buy or sell any amount of units (holds), then the market will not move either up or down. After aggregating all the orders, a final price at a given point in time is reached, and the process is repeated for the next prices.
+The proposed method is based on the fact that any financial market is
+constructed by the buy and sell orders from different traders. Agents can be
+used to represent the traders in the markets, as seen in Figure
+\ref{figure:agent-based-model}. These agents have three basic actions: buy, sell
+and hold. A market can then be constructed by using the aggregation of the
+orders from all the agents that are part of the system: if an agent buys 10
+units, the market will then go up 10 units; if an agent sells 10 units, the
+market will then go down 10 units; if an agent does not buy or sell any amount
+of units (holds), then the market will not move either up or down. After
+aggregating all the orders, a final price at a given point in time is reached,
+and the process is repeated for the next prices.
 
 \begin{figure}
 \caption{Agent-based model}
@@ -468,11 +722,34 @@ The proposed method is based on the fact that any financial market is constructe
 \label{figure:agent-based-model}
 \end{figure}
 
-As described in Subsection \ref{subsection:multi-agent-systems-and-agent-based-models}, agents have beliefs and rules. Beliefs are used to pre-process the environment data, which in this case is represented by a market's price movements. For example, beliefs can represent the parameters used in technical indicators such as the commodity selection index. This means that although every agent is going to be sensing the same data, beliefs can be used to interpret that data differently and agents can act differently even if two agents are defined to have the same set of rules. Moreover, this approach allows the resulting agent-based model to be examined to infer how traders are perceiving a market and what actions take according to their perceptions.
+As described in Subsection
+\ref{subsection:multi-agent-systems-and-agent-based-models}, agents have beliefs
+and rules. Beliefs are used to pre-process the environment data, which in this
+case is represented by a market's price movements. For example, beliefs can
+represent the parameters used in technical indicators such as the commodity
+selection index. This means that although every agent is going to be sensing the
+same data, beliefs can be used to interpret that data differently and agents can
+act differently even if two agents are defined to have the same set of
+rules. Moreover, this approach allows the resulting agent-based model to be
+examined to infer how traders are perceiving a market and what actions take
+according to their perceptions.
 
-The objective of the agent system is to create a simulated market that resembles a real market. If this is achieved, a hypothesis arises: the beliefs and rules of the agents resemble those of the real traders that created the real market. From a multi-agent system perspective, if the agents closely simulate a real market, one can use the agents's actions to extrapolate the simulated market and to make predictions about the real market. From an agent-based model perspective, the agents can be examined to understand why the real market behaved in some way.
+The objective of the agent system is to create a simulated market that resembles
+a real market. If this is achieved, a hypothesis arises: the beliefs and rules
+of the agents resemble those of the real traders that created the real
+market. From a multi-agent system perspective, if the agents closely simulate a
+real market, one can use the agents's actions to extrapolate the simulated
+market and to make predictions about the real market. From an agent-based model
+perspective, the agents can be examined to understand why the real market
+behaved in some way.
 
-The agents can be constructed manually by changing the beliefs and rules of each of the agents until their simulation resembles a real market. However, this optimization can be achieved more conveniently by using optimization algorithms. A genetic algorithm should be sufficient to find a combination of beliefs and rules for the agents. As the optimization process progresses, the simulated market should start approaching the real market, as shown in Figures \ref{figure:fitting1} and \ref{figure:fitting2}.
+The agents can be constructed manually by changing the beliefs and rules of each
+of the agents until their simulation resembles a real market. However, this
+optimization can be achieved more conveniently by using optimization
+algorithms. A genetic algorithm should be sufficient to find a combination of
+beliefs and rules for the agents. As the optimization process progresses, the
+simulated market should start approaching the real market, as shown in Figures
+\ref{figure:fitting1} and \ref{figure:fitting2}.
 
 \begin{figure}
 \caption{Fitting1}
