@@ -1,9 +1,11 @@
 \listfiles
 \documentclass[review]{elsarticle}
 
+\usepackage[utf8]{inputenc}
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
+
 \usepackage{amsmath}
 
 \usepackage{url}
@@ -371,8 +373,7 @@ In the Proposed Method, Genetic Programming is used to generate the Membership F
 
 Thrift \cite{Thrift1991} explores a nowadays widely used technique which involves the use of a Genetic Algorithm (GA) to discover the parameters of the Membership Functions (MF) in a Fuzzy Inference System to obtain a better performance. Homaifar and McCormick \cite{Homaifar1995} go further and use GA to simultaneously design the MF and the rule sets for fuzzy logic controllers.
 
-\subsection{Intuitionistic Fuzzy Systems}
-\label{subsection:related-work-intuitionistic-fuzzy-systems}
+\subsection{Intuitionistic Fuzzy Systems}\label{subsection:related-work-intuitionistic-fuzzy-systems}
 
 There are some noteworthy toolkits for the creation of FISs, and this Section gives a brief description of the ones that have had
 the strongest influence to the present work.
@@ -394,6 +395,12 @@ its developed fuzzy logic systems.
 
 \section{Proposed Method}
 \label{section:proposed-method}
+
+The proposed method involves the use of a multi-agent system which acts in a decentralized fashion. Whereas a centralized multi-agent system depends on an agents which coordinate the actions and communication among the agents, a decentralized multi-agent system involves the use of agents that act autonomously~\cite{andreadis2014classification}. However, it can be noted that the system proposed in this paper has a mechanism that averages the output of the agents to their environment, and another mechanism which sends the input to the agents. Although these mechanisms can be considered characteristic of centralized multi-agent systems, they are not particularly complex processes compared to the rest of the processes involved in the proposed method, which are related to decentralized multi-agent systems.
+
+The architecture followed by the multi-agent system is based on the one proposed by Shoham ~\cite{Shoham1993}. Particularly, the method presented in this paper adopts the idea of designing agents as a set of beliefs and rules that dictate how agents perceive and interact with their environment.
+
+Agent rules are defined by intuitionistic fuzzy inference systems. Fuzzy systems are convenient, as they can be interpreted, in contrast to, for example, neural networks, where the weights associated to the neurons and the connections among themselves.
 
 The proposed method is based on the fact that any financial market is constructed by the buy and sell orders from different traders. Agents can be used to represent the traders in the markets, as seen in Figure \ref{figure:agent-based-model}. These agents have three basic actions: buy, sell and hold. A market can then be constructed by using the aggregation of the orders from all the agents that are part of the system: if an agent buys 10 units, the market will then go up 10 units; if an agent sells 10 units, the market will then go down 10 units; if an agent does not buy or sell any amount of units (holds), then the market will not move either up or down. After aggregating all the orders, a final price at a given point in time is reached, and the process is repeated for the next prices.
 
