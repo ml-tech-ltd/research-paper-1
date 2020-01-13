@@ -697,8 +697,44 @@ functions can be better suited for certain situations, the proposed method is
 currently designed for the creation of prediction models for arbitrary datasets,
 where solutions are found using a metaheuristic.
 
-It is usual for a fuzzy rule to contain multiple membership functions to better describe input and output variables. In the proposed method, at least two membership functions
+%% It is usual for a fuzzy rule to contain multiple membership functions to
+%% describe input and output variables.
 
+%% Amaury: Mention inputs and outputs in training data set.
+
+In the proposed method, at least two Gaussian membership functions are used to
+describe each agent rule antecedents and consequents. The mean of a Gaussian
+membership function will be equal to a random data point from the training
+dataset, while the spread of the Guassian membership functions that represent a
+fuzzy rule will be equal to the standard deviation of the aforementioned
+randomly chosen data points. This is expressed by
+equation~\ref{equation:membership-function-spread} and depicted in
+Figure~\ref{figure:fuzzy-system-architecture}.
+
+% TODO: Express standard deviation of randomly chosen data points.
+\begin{equation}
+  \label{equation:membership-function-spread}
+  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
+    i\mu_{A}(x)}
+\end{equation}
+
+\begin{figure}
+\caption{Antecedents}
+\centering
+\includegraphics[width=0.6\textwidth]{img/antecedents.png}
+\label{figure:fuzzy-system-architecture}
+\end{figure}
+
+Data points are used as the means of the membership functions as this
+guarantees an agent to be able to react to at least those input values. On the
+other hand, using the standard deviation of those chosen data points as the
+spread of the Gaussian membership functions guarantees that uncertainties
+associated to each membership function will affect at least one of the other
+membership functions. If none of the membership functions were affecting in any
+way the rest of the membership functions, the use of a fuzzy system to
+represent the agent rules would be meaningless.
+
+%% Symmetrical
 
 %%
 
