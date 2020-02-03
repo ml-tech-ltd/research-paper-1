@@ -674,7 +674,7 @@ how agents perceive and interact with their environment.
 \subsection{Agent Rules}
 \label{subsection:agent-rules}
 
-Agent rules are defined by intuitionistic fuzzy inference systems. Fuzzy systems
+Agent rules are defined by Mamdani intuitionistic fuzzy inference systems. Fuzzy systems
 are convenient, as they can be interpreted, as opposed to, for example, neural
 networks, where the weights associated to the neurons and the connections among
 themselves become obscure to interpretation. Furthermore, the use of
@@ -703,12 +703,15 @@ where solutions are found using a metaheuristic.
 %% Amaury: Mention inputs and outputs in training data set.
 
 In the proposed method, at least two Gaussian membership functions are used to
-describe each agent rule antecedents and consequents. The mean of a Gaussian
-membership function will be equal to a random data point from the training
-dataset, while the spread of the Guassian membership functions that represent a
-fuzzy rule will be equal to the standard deviation of the aforementioned
-randomly chosen data points. This is expressed by
-equation~\ref{equation:membership-function-spread} and depicted in
+describe each agent rule antecedents and consequents. The mean of each Gaussian
+membership function is equal to a random data point from the training dataset,
+while the spread of the Guassian membership functions that represent a fuzzy
+rule will be equal to the standard deviation of the aforementioned randomly
+chosen data points. In the case of the antecedents, the means are equal to data
+points from the training data set that represent inputs, while outputs in the
+training data set are used as the means for the membership functions that form
+the consequents. This is expressed by
+Equation~\ref{equation:membership-function-spread} and depicted in
 Figure~\ref{figure:fuzzy-system-architecture}.
 
 % TODO: Express standard deviation of randomly chosen data points.
@@ -725,16 +728,86 @@ Figure~\ref{figure:fuzzy-system-architecture}.
 \label{figure:fuzzy-system-architecture}
 \end{figure}
 
-Data points are used as the means of the membership functions as this
-guarantees an agent to be able to react to at least those input values. On the
-other hand, using the standard deviation of those chosen data points as the
-spread of the Gaussian membership functions guarantees that uncertainties
-associated to each membership function will affect at least one of the other
-membership functions. If none of the membership functions were affecting in any
-way the rest of the membership functions, the use of a fuzzy system to
-represent the agent rules would be meaningless.
+Data points are used as the means of the membership functions as this guarantees
+an agent to be able to react to at least those input values. On the other hand,
+using the standard deviation of those chosen data points as the spread of the
+Gaussian membership functions guarantees that uncertainties associated to each
+membership function will affect ---in terms of fuzzy inferences--- at least one of
+the other membership functions. If none of the membership functions were
+affecting in any way the rest of the membership functions, the use of a fuzzy
+system to represent the agent rules would be meaningless.
 
-%% Symmetrical
+The domain of each membership function is not fixed as it is determined by the
+chosen data points and their standard deviation. The calculation that determines
+the domain of a membership function is expressed by
+Equation~\ref{equation:mf-domain}, and---as a consequent of this
+calculation---the domain of either the antecedents or the consequents in a fuzzy
+system is expressed by Equation~\ref{equation:ant-con-domain}. %% As can be seen in
+%% the latter Equation, the domain of both the antecedents and consequents is
+%% determined by the minimum and the maximum values contained by the union of
+
+%% Amaury: Talk about the range of the membership functions. As we're using
+%% intuitionistic fuzzy sets, the core is not necessarily 1.0.
+
+\begin{equation}
+  \label{equation:mf-domain}
+  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
+    i\mu_{A}(x)}
+\end{equation}
+
+\begin{equation}
+  \label{equation:ant-con-domain}
+  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
+    i\mu_{A}(x)}
+\end{equation}
+
+As the agent rules are represented by intuitionistic fuzzy systems, the core of
+the membership functions is not necessarily equal to 1---or it does not exist,
+if one considers the core of a membership function to be restricted to a value
+of 1---, as in the case of traditional fuzzy systems. The value of the greatest
+grade of membership in a membership function is determined heuristically using
+an optimization algorithm that is explained in
+Subsection~\ref{subsection:meta-heuristic}.%% Talking about height.
+
+% Amaury: Activations.
+
+Indeterminacy in the agent rules is used by the agent to determine if
+the inputs activate a rule or not, in conjunction with an activation
+threshold---which is explained in the next paragraph. Indeterminacy is
+used for this purpose in order to ``soften'' the activation
+threshold. In other words, instead of having a hard threshold, where
+the grade of membership has te be exactly greater than or equal to it
+in order to activate a rule, the method uses indeterminacy to
+transform 
+
+As seen in Figure~\ref{figure:activation-threshold}, an
+input is associated to a grade of membership---as is usual in a fuzzy
+inference system---and this grade of membership can either belong or
+not to an interval $\Lambda$ defined by
+Equation~\ref{equation:activation-interval}. If the grade of
+membership can be found in the interval
+
+%% Fuzzy rules -> MF height -> Indeterminacy -> Activations
+%% Fuzzy rules -> MF height -> 
+
+\begin{equation}
+  \label{equation:ant-con-domain}
+  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
+    i\mu_{A}(x)}
+\end{equation}
+
+%% figure:activation-threshold - Figure depicting how an input is
+%% going to be associated to a membership and how this membership can
+%% be considered or not, depending on the activation threshold.
+
+%% Amaury: Role of indeterminacy.
+
+%% The parts that are determined heuristically (what inputs and
+%% outputs to use as MF means, greatest grade of membership in a
+%% membership function) can be used to add a layer of interpretation.
+
+\subsection{Meta-heuristic}
+\label{subsection:meta-heuristic}
 
 %%
 
