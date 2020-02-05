@@ -539,7 +539,7 @@ Genetic Algorithm called Dynamic-radius Species-conserving Genetic Algorithm
 (DSGA) to select stocks to purchase from the Dow Jones Index. It is important to
 mention this work because, in the end, the DSS that is presented in the Proposed
 Method does the same kind of recommendation as in their work. More importantly,
-Brown, et al., uploaded the dataset that the authors of the present work used to
+Brown, et al., uploaded the data set that the authors of the present work used to
 perform the different experiments. In Section \ref{experiments-and-results} a
 comparison to their work is provided, along with many other experiments.
 
@@ -671,6 +671,15 @@ by Shoham~\cite{Shoham1993}. Particularly, the method presented in this paper
 adopts the idea of designing agents as a set of beliefs and rules that dictate
 how agents perceive and interact with their environment.
 
+The following Subsections describe the proposed method in
+detail. Subsection~\ref{subsection:agent-rules} describes the structure
+followed by each of the agents that shape a predictive model, while
+Subsection~\ref{subsection:multi-agent-system} describes how the agents in the
+predictive model are coordinated and how they interact with their
+environment. Finally, Subsection~\ref{subsection:meta-heuristic} describes a
+meta-heuristic that finds a combination of agents that is suitable to be used
+as a predictive model for particular data sets.
+
 \subsection{Agent Rules}
 \label{subsection:agent-rules}
 
@@ -684,9 +693,9 @@ indeterminacy.
 Indeterminacy surges as a consequent of the inclusion of non-membership to a
 fuzzy system (see Subsection~\ref{subsection:intuitionistic-fuzzy-sets}). This
 concept allows the designer of a fuzzy system to model doubt or hesitancy in a
-dataset. In the proposed method, indeterminacy is obtained in a heuristical
+data set. In the proposed method, indeterminacy is obtained in a heuristical
 manner, as part of the optimization algorithm that searches for a combination of
-agents that are used to create a prediction model.
+agents that are used to create a predictive model.
 
 The membership functions in the fuzzy systems are always defined as Gaussian
 functions, although in future experiments this design choice can
@@ -694,8 +703,8 @@ change. Gaussian membership functions were chosen because of their capability of
 modelling knowledge in a smoother way than their alternatives, such as
 triangular or trapezoidal membership functions. Although other membership
 functions can be better suited for certain situations, the proposed method is
-currently designed for the creation of prediction models for arbitrary datasets,
-where solutions are found using a metaheuristic.
+currently designed for the creation of predictive models for arbitrary data sets,
+where solutions are found using a meta-heuristic.
 
 %% It is usual for a fuzzy rule to contain multiple membership functions to
 %% describe input and output variables.
@@ -704,7 +713,7 @@ where solutions are found using a metaheuristic.
 
 In the proposed method, at least two Gaussian membership functions are used to
 describe each agent rule antecedents and consequents. The mean of each Gaussian
-membership function is equal to a random data point from the training dataset,
+membership function is equal to a random data point from the training data set,
 while the spread of the Guassian membership functions that represent a fuzzy
 rule will be equal to the standard deviation of the aforementioned randomly
 chosen data points. In the case of the antecedents, the means are equal to data
@@ -722,10 +731,10 @@ Figure~\ref{figure:fuzzy-system-architecture}.
 \end{equation}
 
 \begin{figure}
-\caption{Antecedents}
-\centering
-\includegraphics[width=0.6\textwidth]{img/antecedents.png}
-\label{figure:fuzzy-system-architecture}
+  \caption{Antecedents}
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/antecedents.png}
+  \label{figure:fuzzy-system-architecture}
 \end{figure}
 
 Data points are used as the means of the membership functions as this guarantees
@@ -767,34 +776,64 @@ if one considers the core of a membership function to be restricted to a value
 of 1---, as in the case of traditional fuzzy systems. The value of the greatest
 grade of membership in a membership function is determined heuristically using
 an optimization algorithm that is explained in
-Subsection~\ref{subsection:meta-heuristic}.%% Talking about height.
+Subsection~\ref{subsection:meta-heuristic}.
 
-% Amaury: Activations.
+Indeterminacy is used to ``fuzzify'' activation thresholds associated to inputs
+to the agent, which determine if the agent should respond to that input or
+not. This way, the system uses uncertainty---coming from membership
+functions---and indeterminacy---coming from non-membership functions---to model
+the membership of an input and an activation function,
+respectively. Considering the agent system architecture proposed by
+Shoham~\cite{Shoham1993}, in the proposed method an agent's fuzzy system
+represents an agent's rules, while its activation functions represent an
+agent's beliefs.
 
-Indeterminacy in the agent rules is used by the agent to determine if
-the inputs activate a rule or not, in conjunction with an activation
-threshold---which is explained in the next paragraph. Indeterminacy is
-used for this purpose in order to ``soften'' the activation
-threshold. In other words, instead of having a hard threshold, where
-the grade of membership has te be exactly greater than or equal to it
-in order to activate a rule, the method uses indeterminacy to
-transform 
+Inputs to an agent's fuzzy system are associated to grades of membership---as
+is usual in fuzzy inference systems---and this grade of membership can either
+belong or not to an interval $\Lambda$, which is defined by
+Equation~\ref{equation:activation-interval}, as seen in
+Figure~\ref{figure:activation-threshold}. If the grade of membership can be
+found in the interval $\Lambda$, then the agent will consider that input to be
+used to fire a consequent in its agent rules. It is noteworthy that different
+activation thresholds and non-membership functions can be associated to each of
+the membership functions present in the antecedents of an agent's fuzzy system.
 
-As seen in Figure~\ref{figure:activation-threshold}, an
-input is associated to a grade of membership---as is usual in a fuzzy
-inference system---and this grade of membership can either belong or
-not to an interval $\Lambda$ defined by
-Equation~\ref{equation:activation-interval}. If the grade of
-membership can be found in the interval
-
-%% Fuzzy rules -> MF height -> Indeterminacy -> Activations
-%% Fuzzy rules -> MF height -> 
+An agent's actions can be greatly limited by its activation functions, as
+having a single input associated to a grade of membership which does not belong
+to the activation interval $\Lambda$ is sufficient for an agent to take no
+action. This behavior allows to finely control the magnitude of specialization
+of each agent in a predictive model, as the designer of the model---such as a
+meta-heuristic---can assign activation thresholds and non-membership functions
+that restrict an agent to be activated to only a handful of inputs from a
+training data set. Furthermore, activation functions work as a coordination
+mechanism for the agents in a predictive model, as they prevent certain agents
+from taking action in situations where they would perform sub-optimally and
+others would perform optimally.
 
 \begin{equation}
-  \label{equation:ant-con-domain}
+  \label{equation:activation-interval}
   A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
     i\mu_{A}(x)}
 \end{equation}
+
+\begin{figure}
+  \caption{Depiction of an activation threshold in a membership function}
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/antecedents.png}
+  \label{figure:activation-threshold}
+\end{figure}
+
+\subsection{Multi-agent system}
+\label{subsection:mult-agent-system}
+
+Activation functions are used for restricting the actions of the agents in a
+predictive model. 
+
+%% As mentioned before, agents are assigned subsets of training data set.
+%% But in testing, they can collide. Their output is averaged.
+
+
+
 
 %% figure:activation-threshold - Figure depicting how an input is
 %% going to be associated to a membership and how this membership can
@@ -888,6 +927,8 @@ simulated market should start approaching the real market, as shown in Figures
 
 \section{Future Work}
 \label{section:future-work}
+
+%% Test agents in big data. Activations can be used to handle well big datasets.
 
 \paragraph{Installation}
 
