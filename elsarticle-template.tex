@@ -680,7 +680,7 @@ environment. Finally, Subsection~\ref{subsection:meta-heuristic} describes a
 meta-heuristic that finds a combination of agents that is suitable to be used
 as a predictive model for particular data sets.
 
-\subsection{Agent Rules}
+\subsection{Agent Architecture}
 \label{subsection:agent-rules}
 
 Agent rules are defined by Mamdani intuitionistic fuzzy inference systems. Fuzzy systems
@@ -823,11 +823,29 @@ others would perform optimally.
   \label{figure:activation-threshold}
 \end{figure}
 
-\subsection{Multi-agent system}
+\subsection{Multi-agent System}
 \label{subsection:mult-agent-system}
 
+Predictive models that follow the proposed method are formed by a set
+of one or more agents constructed using the architecture described in
+Subsection~\ref{subsection:agent-rules}, resulting in a multi-agent
+system.
+
+Agents must work together in order to simulate a financial market. One
+way of achieving this is to obtain the output of every agent in the
+predictive model and to use an aggregation process to unify them into
+one single output. Instead, the proposed method uses activation
+functions to restrict what agent outputs are used to respond to a set
+of inputs.
+
+%% Multiple agents can be activated.
+
+%% Mention that there will be "holes" in predictions; i.e. not all
+%% prices are simulated.
+
 Activation functions are used for restricting the actions of the agents in a
-predictive model. 
+predictive model. This restriction works as a coordination mechanism
+that ensures 
 
 %% As mentioned before, agents are assigned subsets of training data set.
 %% But in testing, they can collide. Their output is averaged.
