@@ -11,6 +11,11 @@
 \usepackage{url}
 
 \usepackage{lineno,hyperref}
+
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+
 \modulolinenumbers[5]
 
 \journal{Decision Support Systems}
@@ -838,18 +843,62 @@ one single output. Instead, the proposed method uses activation
 functions to restrict what agent outputs are used to respond to a set
 of inputs.
 
-%% Multiple agents can be activated.
+The restriction imposed by the activation functions ensures that every
+agent is specialized at different subsets of the training data
+set. During the creation of the agent, the agent can be tested with
+each of the input data points from the training data set to compile a
+list of activation levels---i.e., the grades of membership associated
+to each of the inputs, considering the membership functions in the
+antecedents of the agent's rules. Once the list of activation levels
+is compiled, the list can be sorted by using the sum of the activation
+levels. After compiling the sorted list of activation levels, the proposed
+method chooses one of them, from highest to lowest activation,
+according to a \textit{depth} parameter. This proces is depicted in
+Algorithm~\ref{algorithm:selection-of-activation-threshold}.
 
-%% Mention that there will be "holes" in predictions; i.e. not all
-%% prices are simulated.
+\begin{algorithm}
+\caption{Selection of activation threshold}
+    \label{algorithm:selection-of-activation-threshold}
+\begin{algorithmic}[1]
+    \Procedure{selection-of-activation-threshold}{$A, B$};
+    \State $bel_A\gets extract\_beliefs(A)$
+    \State $bel_B\gets extract\_beliefs(B)$
+
+    \State \textbf{return} $agent(bel_{A1} + bel_{B2}, rul_{A1} + rul_{B2}),
+    agent(bel_{B1} + bel_{A2}, rul_{B1} + rul_{A2})$
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+The chosen activation level serves as an activation threshold, as any
+set of inputs that do not activate all the membership functions
+according to the activation level will fail to activate the agent to
+take an action. As a consequent---during the training stage of the
+method--- any agent will be activated to a number of inputs equal to
+the value of the \textit{depth} parameter shown in
+Algorithm~\ref{algorithm:selection-of-activation-threshold}.
+
+The aforementioned process
+%% Describe how agents will react only to inputs that it has seen, to
+%% certain degree. This creates the HOLD actions.
+
+%% We need an example of this (the above).
+
+%% Talk about how thes specialization in the training process occurs.
+
+%% Then talk about how we can use the activations to always choose the
+%% most relevant agent.
+
 
 Activation functions are used for restricting the actions of the agents in a
 predictive model. This restriction works as a coordination mechanism
-that ensures 
+that ensures that not all the agents participate at a given time
+during the prediction process. %% 
 
-%% As mentioned before, agents are assigned subsets of training data set.
-%% But in testing, they can collide. Their output is averaged.
+%% Multiple agents can be activated. Their output is averaged.
 
+%% Mention that there will be "holes" in predictions; i.e. not all
+%% prices are simulated.
 
 
 
