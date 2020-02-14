@@ -870,53 +870,51 @@ Algorithm~\ref{algorithm:selection-of-activation-threshold}.
 \end{algorithmic}
 \end{algorithm}
 
-The chosen activation level serves as an activation threshold, as any
-set of inputs that do not activate all the membership functions
-according to the activation level will fail to activate the agent to
-take an action. As a consequent---during the training stage of the
-method--- any agent will be activated to a number of inputs equal to
-the value of the \textit{depth} parameter shown in
-Algorithm~\ref{algorithm:selection-of-activation-threshold}.
+%% Amaury: Make sure that a formal definition of activation level is present.
+%% It is a set of real numbers that represent grades of membership that act as
+%% thresholds.
 
-The aforementioned process
-%% Describe how agents will react only to inputs that it has seen, to
-%% certain degree. This creates the HOLD actions.
+The chosen activation level serves as an activation threshold, as any set of
+inputs that do not activate all the membership functions according to the
+activation level will fail to activate the agent to take an action. As a
+consequent---during the training stage of the method---any agent will be
+activated to a number of inputs equal to the value of the \textit{depth}
+parameter shown in Algorithm~\ref{algorithm:selection-of-activation-threshold}.
 
-%% We need an example of this (the above).
+An implication of the aforementioned process is that activation functions also
+create a restriction for the actions of the agents in a predictive model. This
+restriction works as a coordination mechanism that ensures that not all the
+agents participate at a given time during the prediction process, as certain
+inputs will not trigger a response from any of the agents. In other words, the
+predictive model only outputs a response if and only if the agents have learned
+a pattern with a strong resemblance to certain inputs.
 
-%% Talk about how thes specialization in the training process occurs.
+Although the activation functions cause the agents to be specialized at
+responding to a number of inputs, an activation of multiple agents is
+possible. In this case, the outputs of the agents is averaged. %% Amaury: Maybe
+%% add an equation? The process is so simple, but it could help a bit for the
+%% reader to find key points in the paper.
 
-%% Then talk about how we can use the activations to always choose the
-%% most relevant agent.
+The process of agent specialization using activation functions is well suited
+for the creation of predictive models where it is not desired to obtain a
+response for any arbitrary set of inputs. In the case of financial market
+forecasting, this is translated to a recommandation to the trade to not trade a
+particular market, i.e. an unkown pattern is arising and the trader following
+the recommendations from the predictive model should be wary.
 
-
-Activation functions are used for restricting the actions of the agents in a
-predictive model. This restriction works as a coordination mechanism
-that ensures that not all the agents participate at a given time
-during the prediction process. %% 
-
-%% Multiple agents can be activated. Their output is averaged.
-
-%% Mention that there will be "holes" in predictions; i.e. not all
-%% prices are simulated.
-
-
+However, it must be noted that the proposed method can be extended to the
+creation of predictive models that always yield a response. This can be
+achieved by selecting the agent that is closer to being activated.
 
 %% figure:activation-threshold - Figure depicting how an input is
 %% going to be associated to a membership and how this membership can
 %% be considered or not, depending on the activation threshold.
 
-%% Amaury: Role of indeterminacy.
-
-%% The parts that are determined heuristically (what inputs and
-%% outputs to use as MF means, greatest grade of membership in a
-%% membership function) can be used to add a layer of interpretation.
-
 \subsection{Meta-heuristic}
 \label{subsection:meta-heuristic}
 
-%%
-
+%% Mention that there will be "holes" in predictions; i.e. not all
+%% prices are simulated.
 
 The proposed method is based on the fact that any financial market is
 constructed by the buy and sell orders from different traders. Agents can be
