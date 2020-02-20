@@ -685,7 +685,7 @@ adopts the idea of designing agents as a set of beliefs and rules that dictate
 how agents perceive and interact with their environment.
 
 The following Subsections describe the proposed method in
-detail. Subsection~\ref{subsection:agent-rules} describes the structure
+detail. Subsection~\ref{subsection:agent-architecture} describes the structure
 followed by each of the agents that shape a predictive model, while
 Subsection~\ref{subsection:multi-agent-system} describes how the agents in the
 predictive model are coordinated and how they interact with their
@@ -694,7 +694,7 @@ meta-heuristic that finds a combination of agents that is suitable to be used
 as a predictive model for particular data sets.
 
 \subsection{Agent Architecture}
-\label{subsection:agent-rules}
+\label{subsection:agent-architecture}
 
 Agent rules are defined by Mamdani intuitionistic fuzzy inference systems. Fuzzy systems
 are convenient, as they can be interpreted, as opposed to, for example, neural
@@ -841,7 +841,7 @@ others would perform optimally.
 
 Predictive models that follow the proposed method are formed by a set
 of one or more agents constructed using the architecture described in
-Subsection~\ref{subsection:agent-rules}, resulting in a multi-agent
+Subsection~\ref{subsection:agent-architecture}, resulting in a multi-agent
 system.
 
 Agents must work together in order to simulate a financial market. One
@@ -921,12 +921,31 @@ achieved by selecting the agent that is closer to being activated.
 \subsection{Meta-heuristic}
 \label{subsection:meta-heuristic}
 
-A predictive model is obtained by executing a meta-heuristic that
-searches for agent
+The sets of inputs and outputs that are used as the means of the
+membership functions in the agent rules are determined randomly---as
+is explained in Subsection~\ref{subsection:agent-architecture}. In
+order to obtain a predictive model, a meta-heuristic is used to find
+combinations of agents that generate a suitable simulation of a
+financial market.
 
-Agents' rules in the predictive model are created by selecting random
-data points from a training data set, as is explained in
-Subsection~\ref{subsection:agent-rules}.
+The proposed method uses a basic search algorithm that adds and/or
+removes agents from a list of agents, which work together to create a
+simulation of the market. The list of agents begins at iteration 0
+with a single, random agent
+
+\begin{algorithm}
+\caption{Meta-heuristic used to find a solution in the proposed method}
+    \label{algorithm:selection-of-activation-threshold}
+\begin{algorithmic}[1]
+    \Procedure{selection-of-activation-threshold}{$A, B$};
+    \State $bel_A\gets extract\_beliefs(A)$
+    \State $bel_B\gets extract\_beliefs(B)$
+
+    \State \textbf{return} $agent(bel_{A1} + bel_{B2}, rul_{A1} + rul_{B2}),
+    agent(bel_{B1} + bel_{A2}, rul_{B1} + rul_{A2})$
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 %% Mention that there will be "holes" in predictions; i.e. not all
 %% prices are simulated.
