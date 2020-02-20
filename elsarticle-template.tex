@@ -918,6 +918,11 @@ achieved by selecting the agent that is closer to being activated.
 %% going to be associated to a membership and how this membership can
 %% be considered or not, depending on the activation threshold.
 
+\subsection{Data Preprocessing}
+\label{subsection:data-preprocessing}
+
+
+
 \subsection{Meta-heuristic}
 \label{subsection:meta-heuristic}
 
@@ -928,14 +933,18 @@ order to obtain a predictive model, a meta-heuristic is used to find
 combinations of agents that generate a suitable simulation of a
 financial market.
 
-The proposed method uses a basic search algorithm that adds and/or
-removes agents from a list of agents, which work together to create a
-simulation of the market. The list of agents begins at iteration 0
-with a single, random agent
+The proposed method uses a basic search algorithm that adds and/or removes
+agents from a list of agents, where these agents work together to create a
+simulation of the market. The list of agents begins at iteration 0 with a
+single, random agent, and the following iterations randomly decide to either
+add new agents or remove agents from the list. The modifications are committed
+only if the addition or removal operation improves the performance of the
+predictive model. This algorithm is depicted in detail in
+Algorithm~\ref{algorithm:meta-heuristic}.
 
 \begin{algorithm}
 \caption{Meta-heuristic used to find a solution in the proposed method}
-    \label{algorithm:selection-of-activation-threshold}
+    \label{algorithm:meta-heuristic}
 \begin{algorithmic}[1]
     \Procedure{selection-of-activation-threshold}{$A, B$};
     \State $bel_A\gets extract\_beliefs(A)$
@@ -947,70 +956,85 @@ with a single, random agent
 \end{algorithmic}
 \end{algorithm}
 
-%% Mention that there will be "holes" in predictions; i.e. not all
-%% prices are simulated.
+A loss function is used to determine if a predictive model is better than
+its predecessor. Although any measure of accuracy should suffice in order to provide a
+comparison between models, measures that provide results that can be compared
+regardless of the nature of the time series are preferred---such as mean
+absolute scaled error or mean absolute percentage error---, the reason being that
+users of the system can use the method to perform a portfolio selection.
 
-The proposed method is based on the fact that any financial market is
-constructed by the buy and sell orders from different traders. Agents can be
-used to represent the traders in the markets, as seen in Figure
-\ref{figure:agent-based-model}. These agents have three basic actions: buy, sell
-and hold. A market can then be constructed by using the aggregation of the
-orders from all the agents that are part of the system: if an agent buys 10
-units, the market will then go up 10 units; if an agent sells 10 units, the
-market will then go down 10 units; if an agent does not buy or sell any amount
-of units (holds), then the market will not move either up or down. After
-aggregating all the orders, a final price at a given point in time is reached,
-and the process is repeated for the next prices.
+As is mentioned in Subsection~\ref{subsection:multi-agent-system}, the
+resulting predictive model does not necessarily respond to every set of
+inputs. This behavior is accentuated when the model is tested against a data
+set that is different than the one used for the training stage of the
+method---i.e., a testing data set---, as inputs from this data set could not
+resemble at all any of those present in the training data set.
 
-\begin{figure}
-\caption{Agent-based model}
-\centering
-\includegraphics[width=0.8\textwidth]{img/agent-model.pdf}
-\label{figure:agent-based-model}
-\end{figure}
+It is noteworthy that the meta-heuristic described in this section can be
+changed to any other algorithm that can search for suitable combination of
+agents.
 
-As described in Subsection
-\ref{subsection:multi-agent-systems-and-agent-based-models}, agents have beliefs
-and rules. Beliefs are used to pre-process the environment data, which in this
-case is represented by a market's price movements. For example, beliefs can
-represent the parameters used in technical indicators such as the commodity
-selection index. This means that although every agent is going to be sensing the
-same data, beliefs can be used to interpret that data differently and agents can
-act differently even if two agents are defined to have the same set of
-rules. Moreover, this approach allows the resulting agent-based model to be
-examined to infer how traders are perceiving a market and what actions take
-according to their perceptions.
+% The proposed method is based on the fact that any financial market is
+% constructed by the buy and sell orders from different traders. Agents can be
+% used to represent the traders in the markets, as seen in Figure
+% \ref{figure:agent-based-model}. These agents have three basic actions: buy, sell
+% and hold. A market can then be constructed by using the aggregation of the
+% orders from all the agents that are part of the system: if an agent buys 10
+% units, the market will then go up 10 units; if an agent sells 10 units, the
+% market will then go down 10 units; if an agent does not buy or sell any amount
+% of units (holds), then the market will not move either up or down. After
+% aggregating all the orders, a final price at a given point in time is reached,
+% and the process is repeated for the next prices.
 
-The objective of the agent system is to create a simulated market that resembles
-a real market. If this is achieved, a hypothesis arises: the beliefs and rules
-of the agents resemble those of the real traders that created the real
-market. From a multi-agent system perspective, if the agents closely simulate a
-real market, one can use the agents's actions to extrapolate the simulated
-market and to make predictions about the real market. From an agent-based model
-perspective, the agents can be examined to understand why the real market
-behaved in some way.
+% \begin{figure}
+% \caption{Agent-based model}
+% \centering
+% \includegraphics[width=0.8\textwidth]{img/agent-model.pdf}
+% \label{figure:agent-based-model}
+% \end{figure}
 
-The agents can be constructed manually by changing the beliefs and rules of each
-of the agents until their simulation resembles a real market. However, this
-optimization can be achieved more conveniently by using optimization
-algorithms. A genetic algorithm should be sufficient to find a combination of
-beliefs and rules for the agents. As the optimization process progresses, the
-simulated market should start approaching the real market, as shown in Figures
-\ref{figure:fitting1} and \ref{figure:fitting2}.
+% As described in Subsection
+% \ref{subsection:multi-agent-systems-and-agent-based-models}, agents have beliefs
+% and rules. Beliefs are used to pre-process the environment data, which in this
+% case is represented by a market's price movements. For example, beliefs can
+% represent the parameters used in technical indicators such as the commodity
+% selection index. This means that although every agent is going to be sensing the
+% same data, beliefs can be used to interpret that data differently and agents can
+% act differently even if two agents are defined to have the same set of
+% rules. Moreover, this approach allows the resulting agent-based model to be
+% examined to infer how traders are perceiving a market and what actions take
+% according to their perceptions.
 
-\begin{figure}
-\caption{Fitting1}
-\centering
-\includegraphics[width=0.8\textwidth]{img/fitting1.png}
-\label{figure:fitting1}
-\end{figure}
+% The objective of the agent system is to create a simulated market that resembles
+% a real market. If this is achieved, a hypothesis arises: the beliefs and rules
+% of the agents resemble those of the real traders that created the real
+% market. From a multi-agent system perspective, if the agents closely simulate a
+% real market, one can use the agents's actions to extrapolate the simulated
+% market and to make predictions about the real market. From an agent-based model
+% perspective, the agents can be examined to understand why the real market
+% behaved in some way.
 
-\begin{figure}
-\caption{Fitting2}
-\centering
-\includegraphics[width=0.8\textwidth]{img/fitting2.png}
-\label{figure:fitting2}
-\end{figure}
+% The agents can be constructed manually by changing the beliefs and rules of each
+% of the agents until their simulation resembles a real market. However, this
+% optimization can be achieved more conveniently by using optimization
+% algorithms. A genetic algorithm should be sufficient to find a combination of
+% beliefs and rules for the agents. As the optimization process progresses, the
+% simulated market should start approaching the real market, as shown in Figures
+% \ref{figure:fitting1} and \ref{figure:fitting2}.
+
+% \begin{figure}
+% \caption{Fitting1}
+% \centering
+% \includegraphics[width=0.8\textwidth]{img/fitting1.png}
+% \label{figure:fitting1}
+% \end{figure}
+
+% \begin{figure}
+% \caption{Fitting2}
+% \centering
+% \includegraphics[width=0.8\textwidth]{img/fitting2.png}
+% \label{figure:fitting2}
+% \end{figure}
 
 \section{Implementation}
 \label{section:implementation}
@@ -1028,6 +1052,7 @@ simulated market should start approaching the real market, as shown in Figures
 \label{section:future-work}
 
 %% Test agents in big data. Activations can be used to handle well big datasets.
+%% Use bio-inspired meta-heuristics.
 
 \paragraph{Installation}
 
