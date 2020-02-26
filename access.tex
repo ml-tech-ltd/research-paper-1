@@ -1,83 +1,42 @@
-\listfiles
-\documentclass[review]{elsarticle}
-
-\usepackage[utf8]{inputenc}
-\usepackage{amssymb}
-\setcounter{tocdepth}{3}
-\usepackage{graphicx}
-
-\usepackage{amsmath}
-
-\usepackage{url}
-
-\usepackage{lineno,hyperref}
-
+\documentclass{ieeeaccess}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithm}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
-
-\modulolinenumbers[5]
-
-\journal{Decision Support Systems}
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%% Elsevier bibliography styles
-%%%%%%%%%%%%%%%%%%%%%%%
-%% To change the style, put a % in front of the second line of the current style and
-%% remove the % from the second line of the style you would like to use.
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%% Numbered
-%\bibliographystyle{model1-num-names}
-
-%% Numbered without titles
-%\bibliographystyle{model1a-num-names}
-
-%% Harvard
-%\bibliographystyle{model2-names.bst}\biboptions{authoryear}
-
-%% Vancouver numbered
-%\usepackage{numcompress}\bibliographystyle{model3-num-names}
-
-%% Vancouver name/year
-%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
-
-%% APA style
-%\bibliographystyle{model5-names}\biboptions{authoryear}
-
-%% AMA style
-%\usepackage{numcompress}\bibliographystyle{model6-num-names}
-
-%% `Elsevier LaTeX' style
-\bibliographystyle{elsarticle-num}
-%%%%%%%%%%%%%%%%%%%%%%%
-
+%% \usepackage{caption}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
+\history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
+\doi{10.1109/ACCESS.2017.DOI}
 
-\begin{frontmatter}
+\title{Using Intuitionistic Fuzzy Inference Systems For the Creation
+of an Agent-based Financial Market Model}
+\author{
+  \uppercase{Amaury Hernandez-Aguila\authorrefmark{1}
+    and
+    \uppercase{Mario Garcia-Valdez\authorrefmark{2}}}}
+%% TODO: Check correct address. Can we use a single authorrefmark for
+%% both authors?
+\address[1]{National Institute of Standards and 
+Technology, Boulder, CO 80305 USA (e-mail: author@boulder.nist.gov)}
+\address[2]{Department of Physics, Colorado State University, Fort Collins, 
+  CO 80523 USA (e-mail: author@lamar.colostate.edu)}
+%% TODO: Grant information.
+\tfootnote{This paragraph of the first footnote will contain support 
+information, including sponsor and financial support acknowledgment. For 
+example, ``This work was supported in part by the U.S. Department of 
+Commerce under Grant BS123456.''}
 
-\title{Using intuitionistic fuzzy inference systems for the creation of an agent-based financial market model}
-\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on \href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
+%% TODO: What is this?
+\markboth
+{Author \headeretal: Preparation of Papers for IEEE TRANSACTIONS and JOURNALS}
+{Author \headeretal: Preparation of Papers for IEEE TRANSACTIONS and JOURNALS}
 
-%% Group authors per affiliation:
-\author{Amaury Hernandez-Aguila\corref{mycorrespondingauthor}}
-\address{Radarweg 29, Amsterdam}
-\fntext[myfootnote]{Since 1880.}
-
-\author{Mario Garcia-Valdez}
-\address{Radarweg 29, Amsterdam}
-\fntext[myfootnote]{Since 1880.}
-
-%% or include affiliations in footnotes:
-\author[mymainaddress,mysecondaryaddress]{Elsevier Inc}
-\ead[url]{www.elsevier.com}
-
-\author[mysecondaryaddress]{Global Customer Service}
-\cortext[mycorrespondingauthor]{Corresponding author}
-\ead{support@elsevier.com}
-
-\address[mymainaddress]{1600 John F Kennedy Boulevard, Philadelphia}
-\address[mysecondaryaddress]{360 Park Avenue South, New York}
+\corresp{Corresponding author: Amaury Hernandez-Aguila (e-mail: amherag@tectijuana.edu.mx).}
 
 \begin{abstract}
 %% Highlights:
@@ -106,15 +65,17 @@ the proposed method demonstrates its efficacy for the creation of competent
 predictive models.
 \end{abstract}
 
-\begin{keyword}
-%% TODO: Review keywords.
-intuitionistic fuzzy system\sep agent-based model \sep decision support systems
-\MSC[2010] 00-01\sep  99-00
-\end{keyword}
+\begin{keywords}
+  %% TODO: Review keywords.
+  %% I'm already using kewords from
+  %% http://www.ieee.org/organizations/pubs/ani_prod/keywrd98.txt
+decision support systems, economic forecasting, fuzzy systems,
+multi-agent system
+\end{keywords}
 
-\end{frontmatter}
+\titlepgskip=-15pt
 
-\linenumbers
+\maketitle
 
 \section{Introduction}
 \label{section:introduction}
@@ -143,7 +104,7 @@ market. Several approaches have been taken in the past to create such models
 with varying success. One of the simplest methods to forecast the prices in a
 financial market is linear % % Amaury: Maybe use a more recent example. It
 %% doesn't matter if we change the technique.
-regression \cite{kutner2004applied}, where one is trying to find a function of
+regression~\cite{kutner2004applied}, where one is trying to find a function of
 the form $f(x) = a + bx$ --- or simply a linear function --- that minimizes the
 distance between the points in the line and the points that represent the
 prices. Even though linear regression can provide valuable insight, such as
@@ -152,7 +113,7 @@ is not suitable to be taken as a complete solution to forecasting.
 
 A better approach to using mathematical formulas to forecast a financial market
 is to use technical indicators such as the relative strength index or the
-commodity selection index \cite{Wilder1978}. These technical indicators are used
+commodity selection index~\cite{Wilder1978}. These technical indicators are used
 to perform a technique called technical analysis, where one tries to identify
 what are going to be the future price movements of a market relying solely on
 the historical prices of the market being analyzed. For example, if a market's
@@ -160,7 +121,7 @@ prices have been increasing relatively too much in a relatively short period of
 time, according to technical analysis this market is now considered
 \textit{overbought}, and the prices could start to violently fall at any
 moment. It is worth noting that these analyses are often subject to
-interpretation, i.e. they are subjective analyses. Additionally, these analyses
+interpretation, i.e.\ they are subjective analyses. Additionally, these analyses
 are heuristic, as the trader's experience is heavily involved in the
 interpretation of the results obtained by the technical indicators.
 
@@ -203,9 +164,8 @@ represented by fuzzy rules.
 
 The preceding paragraphs serve as a description of the motivation behind the
 proposed method in this work: using fuzzy inference systems for the creation of
-agent-based models. However, the reader will find in Section
-\ref{section:proposed-method} that the proposed method does not use traditional
-fuzzy systems, but intuitionistic fuzzy systems \cite{Atanassov1986}, which have
+agent-based models. However, the reader will find in Section~\ref{section:proposed-method} that the proposed method does not use traditional
+fuzzy systems, but intuitionistic fuzzy systems~\cite{Atanassov1986}, which have
 the objective of better representing the knowledge and decisions of a human
 trader. Before better examining the method for constructing such agent-based
 models, a series of related works is presented in Section
@@ -305,19 +265,17 @@ for example, the antecedents would be represented by arbitrary mathematical
 functions, instead of membership functions representing shapes such as the
 triangles in the example presented above.
 
-\begin{figure}
-\caption{Antecedents}
-\centering
-\includegraphics[width=0.6\textwidth]{img/antecedents.png}
-\label{figure:antecedents}
-\end{figure}
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.6\linewidth]
+{img/antecedents.png}
+{Example of antecedents in a Mamdani fuzzy system.
+  \label{figure:antecedents}}
 
-\begin{figure}
-\caption{Consequents}
-\centering
-\includegraphics[width=0.6\textwidth]{img/consequents.png}
-\label{figure:consequents}
-\end{figure}
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.6\linewidth]
+{img/consequents.png}
+{Example of consequents in a Mamdani fuzzy system.
+  \label{figure:consequents}}
 
 \subsection{Intuitionistic Fuzzy Sets}
 \label{subsection:intuitionistic-fuzzy-sets}
@@ -374,19 +332,17 @@ fuzzy sets, indeterminacy helps to model doubt. For example, if traditional
 fuzzy sets can model the following sentence: ``the object is very hot'',
 indeterminacy can model ``it is unsure that the object is very hot''.
 
-\begin{figure}
-\caption{Intuitionistic fuzzy set}
-\centering
-\includegraphics[width=0.6\textwidth]{img/fs-as-ifs.pdf}
-\label{figure:agent-based-model}
-\end{figure}
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.6\linewidth]
+{img/fs-as-ifs.pdf}
+{Traditional fuzzy set represented as an intuitionistic fuzzy set.
+  \label{figure:fs-as-ifs}}
 
-\begin{figure}
-\caption{Intuitionistic fuzzy set; non-membership with a different mean}
-\centering
-\includegraphics[width=0.6\textwidth]{img/ifs-diff-mu-sd.pdf}
-\label{figure:agent-based-model}
-\end{figure}
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.6\linewidth]
+{img/ifs-diff-mu-sd.pdf}
+{Intuitionistic fuzzy set with membership and non-membership functions with different means and standard deviations.
+  \label{figure:ifs-diff-mu-sd}}
 
 \subsection{Intuitionistic Fuzzy Systems}
 \label{subsection:intuitionistic-fuzzy-systems}
@@ -483,19 +439,17 @@ $i\mu(x)$, giving as a result (\ref{if-coa}), and its simplification form
     i\mu_{A}(x)}
 \end{equation}
 
-\begin{figure}
-\caption{Output surface for the tipping problem using a traditional fuzzy system}
-\centering
-\includegraphics[width=0.6\textwidth]{img/fis-surface.png}
-\label{figure:agent-based-model}
-\end{figure}
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.6\linewidth]
+{img/fis-surface.png}
+{Output surface for the tipping problem using a traditional fuzzy system.
+  \label{figure:tipping-output-surface}}
 
-\begin{figure}
-\caption{Output surface for the tipping problem using an intuitionistic fuzzy system}
-\centering
-\includegraphics[width=0.6\textwidth]{img/ifis-surface.png}
-\label{figure:agent-based-model}
-\end{figure}
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.6\linewidth]
+{img/ifis-surface.png}
+{Output surface for the tipping problem using an intuitionistic fuzzy system.
+  \label{figure:ifis-tipping-output-surface}}
 
 \subsection{Multi-agent Systems and Agent-based Models}
 \label{subsection:multi-agent-systems-and-agent-based-models}
@@ -735,7 +689,7 @@ chosen data points. In the case of the antecedents, the means are equal to data
 points from the training data set that represent inputs, while outputs in the
 training data set are used as the means for the membership functions that form
 the consequents. This is expressed by
-Equation~\ref{equation:membership-function-spread} and depicted in
+\ref{equation:membership-function-spread} and depicted in
 Figure~\ref{figure:fuzzy-system-architecture}.
 
 % TODO: Express standard deviation of randomly chosen data points.
@@ -745,12 +699,11 @@ Figure~\ref{figure:fuzzy-system-architecture}.
     i\mu_{A}(x)}
 \end{equation}
 
-\begin{figure}
-  \caption{Antecedents}
-  \centering
-  \includegraphics[width=0.6\textwidth]{img/antecedents.png}
-  \label{figure:fuzzy-system-architecture}
-\end{figure}
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.6\linewidth]
+{img/antecedents.png}
+{Depiction of the fuzzy system architecture.
+  \label{figure:fuzzy-system-architecture}}
 
 Data points are used as the means of the membership functions as this guarantees
 an agent to be able to react to at least those input values. On the other hand,
@@ -763,11 +716,10 @@ system to represent the agent rules would be meaningless.
 
 The domain of each membership function is not fixed as it is determined by the
 chosen data points and their standard deviation. The calculation that determines
-the domain of a membership function is expressed by
-Equation~\ref{equation:mf-domain}, and---as a consequent of this
+the domain of a membership function is expressed by~\ref{equation:mf-domain}, and---as a consequent of this
 calculation---the domain of either the antecedents or the consequents in a fuzzy
-system is expressed by Equation~\ref{equation:ant-con-domain}. %% As can be seen in
-%% the latter Equation, the domain of both the antecedents and consequents is
+system is expressed by~\ref{equation:ant-con-domain}. %% As can be seen in
+%% the latter, the domain of both the antecedents and consequents is
 %% determined by the minimum and the maximum values contained by the union of
 
 %% Amaury: Talk about the range of the membership functions. As we're using
@@ -805,19 +757,18 @@ agent's beliefs.
 
 Inputs to an agent's fuzzy system are associated to grades of membership---as
 is usual in fuzzy inference systems---and this grade of membership can either
-belong or not to an interval $\Lambda$, which is defined by
-Equation~\ref{equation:activation-interval}, as seen in
+belong or not to an interval $\Lambda$, which is defined by~\ref{equation:activation-interval}, as seen in
 Figure~\ref{figure:activation-threshold}. If the grade of membership can be
 found in the interval $\Lambda$, then the agent will consider that input to be
 used to fire a consequent in its agent rules. It is noteworthy that different
 activation thresholds and non-membership functions can be associated to each of
 the membership functions present in the antecedents of an agent's fuzzy system.
 
-An agent's actions can be greatly limited by its activation functions, as
-having a single input associated to a grade of membership which does not belong
-to the activation interval $\Lambda$ is sufficient for an agent to take no
-action. This behavior allows to finely control the magnitude of specialization
-of each agent in a predictive model, as the designer of the model---such as a
+An agent's actions can be greatly limited by its activation functions, as having
+a single input associated to a grade of membership which does not belong to the
+activation interval $\Lambda$ is sufficient for an agent to take no action. This
+behavior allows to finely control the magnitude of specialization of each agent
+in a predictive model, as the designer of the model---such as a
 meta-heuristic---can assign activation thresholds and non-membership functions
 that restrict an agent to be activated to only a handful of inputs from a
 training data set. Furthermore, activation functions work as a coordination
@@ -831,12 +782,11 @@ others would perform optimally.
     i\mu_{A}(x)}
 \end{equation}
 
-\begin{figure}
-  \caption{Depiction of an activation threshold in a membership function}
-  \centering
-  \includegraphics[width=0.6\textwidth]{img/antecedents.png}
-  \label{figure:activation-threshold}
-\end{figure}
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.6\linewidth]
+{img/antecedents.png}
+{Depiction of an activation threshold in a membership function.
+  \label{figure:activation-threshold}}
 
 \subsection{Multi-agent System}
 \label{subsection:mult-agent-system}
@@ -988,12 +938,11 @@ agents.
 % aggregating all the orders, a final price at a given point in time is reached,
 % and the process is repeated for the next prices.
 
-% \begin{figure}
-% \caption{Agent-based model}
-% \centering
-% \includegraphics[width=0.8\textwidth]{img/agent-model.pdf}
-% \label{figure:agent-based-model}
-% \end{figure}
+% \Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+% [width=0.6\linewidth]
+% {img/agent-model.pdf}
+% {Agent-based model.
+%   \label{figure:agent-based-model}}
 
 % As described in Subsection
 % \ref{subsection:multi-agent-systems-and-agent-based-models}, agents have beliefs
@@ -1047,36 +996,20 @@ agents.
 \section{Results}
 \label{section:results}
 
-\section{Conclusions}
-\label{section:conclusions}
+\section{Conclusion}
+\label{section:conclusion}
 
 \section{Future Work}
 \label{section:future-work}
 
-%% Test agents in big data. Activations can be used to handle well big datasets.
-%% Use bio-inspired meta-heuristics.
+\section*{Acknowledgment}
 
-\paragraph{Installation}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{img/amaury-1by1half-in.png}}]{Amaury
+  Hernandez-Aguila} 
+\end{IEEEbiography}
 
-\begin{itemize}
-\item document style
-\item baselineskip
-\item front matter
-\item keywords and MSC codes
-\item theorems, definitions and proofs
-\item lables of enumerations
-\item citation style and labeling.
-\end{itemize}
+\bibliography{bibliography}
 
-\begin{enumerate}[(1)]
-\item Group the authors per affiliation.
-\item Use footnotes to indicate the affiliations.
-\end{enumerate}
-
-Here are two sample references: \cite{Feynman1963118,Dirac1953888}.
-
-\section*{References}
-
-\bibliography{mybibfile}
+\EOD
 
 \end{document}
