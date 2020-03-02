@@ -271,3 +271,6 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+# Files for this particular project
+access.pdf
