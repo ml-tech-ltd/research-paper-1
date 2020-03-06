@@ -86,6 +86,18 @@ multi-agent system
 \section{Introduction}
 \label{section:introduction}
 
+% * I describe what a market is.
+
+% * Knowing the mechanics behind a market is hard.
+% * But we can create models.
+% * Examples of prediction techniques (cite).
+
+% * Better approach is technical indicators, but needs interpretation.
+% * Better is ANN, but can't be interpreted.
+% * Agent-based models are interpretable and perform well.
+% * Also, agent-based models can be fed technical indicators (as beliefs).
+% * Explains that agents' beliefs and rules can use fuzzy logic.
+
 %% Amaury: Tweak introduction following highlights.
 
 The interaction of many traders constructs a financial market.
@@ -117,13 +129,15 @@ prices. Even though linear regression can provide valuable insight, such as
 determining the general direction of a market in a determined period, it
 is not suitable to be taken as a complete solution to forecasting.
 
+%% I talk too much about technical analysis. I can jump directly to talking
+%% to other works.
 A better approach to using mathematical formulas to forecast a financial market
 is to use technical indicators such as the relative strength index or the
-commodity selection index~\cite{Wilder1978}. We use these technical indicators
+commodity selection index~\cite{Wilder1978}. We use these technical indicators %% We don't use these anymore. Check past version.
 to perform a technique called technical analysis, where we try to identify
 what are going to be the future price movements of a market relying solely on
 the historical prices of the market we are analyzing. For example, if a market's
-prices have been increasing relatively too much in a relatively short time,
+;prices have been increasing relatively too much in a relatively short time,
 according to technical analysis, this market is now considered
 \textit{overbought}, and the prices could start to fall violently at any
 moment. It is worth noting that these analyses are often subject to
@@ -131,12 +145,14 @@ interpretation, i.e., they are subjective analyses. Additionally, these analyses
 are heuristic, as the trader's experience is heavily involved in the
 interpretation of the results obtained by the technical indicators.
 
+%% I'm focusing this and the last paragraph to introduce interpretation.
+%% It's too much content for that one feature.
 One method that does not need interpretation, unlike technical analysis, and
 that creates a model that tries to simulate a financial market, like linear
 regression, is artificial neural networks (ANN). We can create ANN-based models by
 using a series of data points---in the case of financial markets these data
 points are historical prices---as a training set, which we can use to adjust
-weights of the connections between neurons in the ANN. In the end, an ANN is just a % There was a \@ ? %% Amaury: My latex syntax checker recommended that, although I'm not even sure what it is for. It's calling it an "intersentence spacing."
+weights of the connections between neurons in the ANN. In the end, an ANN is just a
 very complex mathematical formula that, given an input, one obtains an output,
 which in the case of a financial market, that output is a price at a given
 time. Although ANNs can generate models that successfully simulate financial
@@ -144,6 +160,8 @@ markets, interpreting the model is sometimes desired, as one can obtain insight
 that can help to understand a market's behavior better, and ANNs are not 
 designed to accomplish this goal.
 
+%% "Two criteria" and I never mention the second criterion. Or, rather, I do but in
+%% a separate sentence.
 Agent-based models satisfy two criteria: they are interpretable, as one can
 examine which are the rules and beliefs that conveyed an agent to a particular
 decision. Moreover, they can simulate a financial market, which helps to provide a
@@ -156,7 +174,7 @@ instead of using the raw historical prices. This change already implies that
 agent-based models can act at a higher order of complexity than technical
 indicators. For example, we can pre-process the historical prices of a financial
 market using technical indicators, and these will serve as the basis for
-the agents' beliefs, such as believing if a market is overbought or oversold, or
+the agents' beliefs, such as believing if a market is overbought or oversold, or %%
 if the volatility is too high or too low.
 
 The representation of an agents' beliefs and rules can be achieved through
@@ -189,6 +207,8 @@ method, the reader can find an implementation of the method in Section
 \ref{section:implementation}.
 %
 % Amaury: Explain structure of the paper.
+
+% Amaury: Explain that we get good results too (competent results is one of the highlights).
 
 \section{Preliminaries}
 \label{section:preliminaries}
