@@ -910,6 +910,7 @@ regardless of the nature of the time series are preferred---such as mean
 absolute scaled error or mean absolute percentage error---, the reason being that
 users of the system can use the method to perform a portfolio selection.
 
+%% TODO: Agents now respond to every input.
 As is mentioned in Subsection~\ref{subsection:multi-agent-system}, the
 resulting predictive model does not necessarily respond to every set of
 inputs. This behavior is accentuated when the model is tested against a data
@@ -985,20 +986,216 @@ agents.
 \section{Implementation}
 \label{section:implementation}
 
+The agents in the prediction models are represented as objects with
+the following properties: agent's rules, which stores an
+intuitionistic fuzzy system; activations, which stores the antecedents
+of the fuzzy system; and activation thresholds, which stores the
+levels that need to be surpassed by a set of inputs in order to
+activate the agent.
+
+Indeterminacy in an agent's fuzzy system is determined randomly and
+optimal values are found with the metaheuristic described in
+Subsection \ref{subsection:meta-heuristic}. In order to obtain
+intuitionistic fuzzy sets where \ref{eq:intuitionistic-interval} holds
+true, our implementation generates membership functions where the
+greatest possible grade of membership is $M$ and non-membership
+functions where the greatest possible grade of non-membership is $1 -
+M$. The mean and spread of the Gaussian membership functions are
+equal to the mean and spread of the Gaussian non-membership functions
+in all cases.
+
+The agents that are randomly generated for the meta-heuristic need to
+pass a test before they can be considered a candidate to be part of a
+predictive model. Considering a training data set, an agent's
+activation functions are evaluated against the inputs set obtained
+from that training data set in order to generate a set of activations,
+where each activation is the equivalent of calculating the grade of
+membership associated to a set of input. After performing this step,
+all the activations are summed to obtain a score that represents the
+intensity to which that agent reacts to that a set of inputs. This
+score is defined by \ref{equation:activation-score}. The scores
+associated to each set of inputs are ordered in a descending manner,
+so the first elements are the scores that represent those sets of
+inputs that would fire an agent's consequents the most. The ordered
+scores list is also used to obtain the outputs that are associated to
+these ordered scores, so we can know what are the outputs that the
+agent \textit{should} evaluate to given those particular sets of
+inputs. The resulting set of outputs are used to determine if the
+agent is a suitable candidate; if most of the outputs associated to
+the highest scores have the same direction (negative or positive),
+then it is a suitable candidate. This mechanism ensures that the
+chosen agents are specialized in similar inputs that yield similar
+outputs. For our implementation, the highest scores have to be
+associated to outputs that share the same direction at least 66\% of
+the time.
+
+\begin{equation}
+  \label{equation:activation-score}
+  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
+    i\mu_{A}(x)}
+\end{equation}
+
+The optimization process for the predictive models loads configuration
+files as its first step, depending on the market that we want to use
+to obtain training and testing data sets. These configuration files
+set parameters for the proposed method, such as the train-test ratio
+and number of inputs, outputs and number of rules for the agents'
+fuzzy systems.
+
+For our implementation of the proposed method we chose Common Lisp as
+our language, so we could use a software library for the creation of
+intuitionistic fuzzy systems that we implemented in the past
+\cite{Hernandez-Aguila2016} \cite{Hernandez-Aguila2017-2}. All the
+populations are compressed and stored in a PostgreSQL database, which
+enables us to resume the optimizations of the models at any
+time. Storing the populations in a database also enables us to use
+populations of agents to be tested in other data sets, as well as to
+extract agents from certain populations to be used in other prediction
+models.
+
+% We're using Common Lisp, an implementation of an intuitionistic fuzzy system
+% We're saving our populations into a database, we can create branches, we can resume experiments.
+% We're compressing our populations
+% We're storing different metrics: MAPE, MASE, MAE, MSE, RMSE, Recall, Precision, F1-score, Accuracy, Revenue.
+% MASE is not good if using activations because it depends on the next forecast.
+% Storing popluations on a PostgreSQL database.
+% Each individual agent can be evaluated to know what would be its trades given a data set.
+% Agents are cached to improve computation performance.
+
+% Activations are precomputed using if-membership. Indeterminacy is taken into account.
+% Activations are reduced (summed) and we choose the greatest one (the one it is more fit to react to).
+% We obtain what's the "wanted direction" (buy or sell) of that trade (the one with the greatest activation).
+% Then I check the activations, ordered by how well they performed for this agent.
+% The next N activations must be of the same direction than the first one. Discard agent otherwise.
+% If all of them pass, then the activation threshold is the one at Nth position. So in theory each agent will trade N times, most of the time.
+
+% Inderminacy is randomly determined from 0 to 1.
+% The meta-heuristic will find heuristically if indeterminacy helps or not to activate or not.
+% Already mentioned in proposed method I think: We take prices to be used as the means.
+
+% An agent won't trade unless its inputs reach certain activation threshold.
+% We check every trade to see if the agent trades or not.
+% In case it passes: We use each input (price) to the fuzzy system, it fires a consequent, we do union, then if-coa, we obtain the mean of all these rules.
+% Required activations (consecutive winning streak or we don't accept the agent).
+
+% In draw optimization we're either removing an agent and checking if it's better or adding a new one and check if it's better.
+
+% For each market we load configuration files that we determined heuristically, at random.
+% We have a general file which indicates the percentage to use as test set, required activations, delta-gap, how many cores to use, what provider to use.
+% Begin and end of datasets, extracts rates into global variable,
+% We also have per-market config files that indicate how many data points to use as training data set, number of inputs, number of rules, inputs function.
+% In experiments we provide the list of configurations per market.
+% If no specific configuration file is found we use a predetermined configuration.
+
+% We represent an agent as class that has the following slots: rules, activations, activation-threshold, consecutive-activations.
+
+% We can use a population to be tested on any market, regardless of for what market that agent was trained for.
+% List preprocessing functions:
+
+% io-closes
+% io-volumes
+% io-highs
+% io-lows
+% io-high-heights
+% io-low-heights
+% io-candle-heights
+% io-deltas
+% io-full-heights
+% io-fibos
+% io-stochastic-oscillator
+% io-sma
+% io-awma
+% io-ema
+% io-macd
+% io-macd-signal
+
 \section{Experiments}
 \label{section:experiments}
 
-\subsection{Data Preprocessing}
-\label{subsection:data-preprocessing}
+In order to determine the efficacy of the proposed method, we designed
+experiments that involved data sets and performance metrics used in
+the work by Munkhdalai et al. \cite{Munkhdalai2019}. In
+\cite{Munkhdalai2019}, daily prices for the following Forex markets
+are used: EUR/USD, USD/JPY, USD/CHF, GBP/USD, USD/CAD and AUD/USD. The last
+year of prices are used as their data set, although they do not
+provide the exact starting and ending dates. Their datasets are
+partitioned into three parts: training, validation and test sets,
+where the training set corresponds to 80\% of the data set, the
+validation set corresponds to 10\% of the data set, and the test set
+correspond to 10\% of the data set. The authors used a 5-fold time
+series cross-validation method to obtain their performance metrics,
+which were root-mean-squared error (RMSE) and mean-absolute error (MAE).
 
-Although the 
+For our experiments, we decided to use random samples of 63 trading
+days---which corresponds to a quarter of the trading days in a
+year---for our data sets, which can be extracted from the last 5000
+natural days. These data sets are split into two parts, a
+training data set which corresponds to 70\% of the data set, and a
+test data set which corresponds to 30\% of the data set. As a
+consequence, a validation step was not involved in our
+experiments. Regarding the performance metrics, we provide results
+using RMSE and MAE, in order to compare against the results presented
+in \cite{Munkhdalai2019}, and we also provide results using mean
+absolute percentage error (MAPE) and mean squared error (MSE). A total
+of 30 experiments were performed for each forex market, and we provide
+the means and standard deviations for each of our performance metrics
+in Section \ref{section:results}.
 
-%% Talk about outputs using deltas. Inputs are prices (high, low, close).
+In \cite{Munkhdalai2019}, the results of several predictive models are
+provided. In order to obtain the hyper-parameters of the different
+algorithms, random searching was used, with the exception of deep
+learning neural networks (recurrent neural networks (RNN), long
+short-term memory (LSTM) neural networks, and gated recurrent unit
+(GRU) neural networks), where the learning rate was set at 0.001 using
+the Adam optimizer \cite{kingma2014adam}, batch size at 64 instances
+for each iteration, MSE as the loss function,and maximum number of
+epochs at 3000 for the first fold, and then they used 300 epochs with
+the first pre-trained model for the remaining folds. Regarding
+multi-layer perceptrons, the authors used an input layer of 5 neurons
+(for the prices of the last 5 days), a hidden layer of 16 neurons and
+an output layer of 1 neuron (for the prediction of the next day's
+price). In addition to neural network-based algorithms,
+\cite{kingma2014adam} also provides results for models obtained by
+random forest, AdaBoost, XGBoost and support-vector machines
+architectures.
+
+Our multi-agent systems were optimized for 100 iterations and the loss
+function was set to be RMSE. The agents in the multi-agent systems
+have to trade at least 6 out of 9 (66\%; see Section
+\ref{section:implementation}) trades in the same direction, regarding
+their activations. We obtained the parameters shown in Table
+\ref{agents-parameters} by trial and error. In Table
+\ref{agents-parameters}, $HH$ means ``high height'', and represents
+the price difference between the high and the greater price between
+close or open prices of a trading day; $LH$ means ``low height'', and
+represents the price difference between the low and the lesser price
+between close or open prices of a trading day; $CH$ means ``candle
+height'' and represents the absolute price difference between the open
+and close prices of a trading day; and the subscript following each of
+the aforementioned abbreviations represents the number of past trading
+days that were considered.
+
+\begin{table}[]
+  \caption{Multi-agent systems parameters}
+  \small
+  \centering
+  \begin{tabular}{cccc}
+    \textbf{Market} & \textbf{\# of Inputs} & \textbf{\# of Rules} & \textbf{Inputs} \\
+    EUR/USD & 9 & 3 & $HH_3$, $LH_3$, $CH_3$ \\
+    USD/JPY & 9 & 6 & $HH_3$, $LH_3$, $CH_3$ \\
+    USD/CHF & 12 & 2 & $HH_4$, $LH_4$, $CH_4$ \\
+    GBP/USD & 9 & 3 & $HH_3$, $LH_3$, $CH_3$ \\
+    USD/CAD & 12 & 2 & $HH_4$, $LH_4$, $CH_4$ \\
+    AUD/USD & 9 & 3 & $HH_3$, $LH_3$, $CH_3$ \\
+  \end{tabular}
+  \label{agents-parameters}
+\end{table}
 
 \section{Results}
 \label{section:results}
 
 \begin{table*}[t]
+  \caption{Comparison MAE}
   \small
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
@@ -1009,25 +1206,20 @@ Although the
           & Sigmoid & 0.0060 & 5.4000 & 0.0081 & 0.0126 & 0.0060 & 0.0079 \\
     RNN   & Swish & 0.0044 & 0.4925 & 0.0042 & 0.0074 & 0.0068 & 0.0043 \\
           & \cite{Munkhdalai2019} & 0.0043 & 0.4479 & 0.0037 & 0.0083 & 0.0047 & 0.0034 \\
-          & Ours & 0.0064 & 0.5688 & 0.0046 & 0.0076 & 0.0062 & 0.0059 \\
     \hline
-
           & Cosine & 0.0098 & 2.0191 & 0.0130 & 0.0396 & 0.0106 & 0.0162 \\
     GRU   & Linear & 0.0044 & 0.4475 & 0.0041 & 0.0083 & 0.0052 & 0.0041 \\
           & \cite{Munkhdalai2019} & 0.0044 & 0.5327 & 0.0039 & 0.0062 & 0.0046 & 0.0071 \\
-          & Ours & 0.0064 & 0.5688 & 0.0046 & 0.0076 & 0.0062 & 0.0059 \\
     \hline
-
           & ReLU & 0.0053 & 1.4920 & 0.0054 & 0.0101 & 0.0058 & 0.0046 \\
     LSTM  & Swish & 0.0045 & 0.5243 & 0.0049 & 0.0065 & 0.0063 & 0.0054 \\
           & \cite{Munkhdalai2019} & 0.0046 & 0.5200 & 0.0060 & 0.0069 & 0.0061 & 0.0044 \\
-          & Ours & 0.0064 & 0.5688 & 0.0046 & 0.0076 & 0.0062 & 0.0059 \\
     \hline
 
           & ReLU & 0.0049 & 0.7499 & 0.0058 & 0.0150 & 0.0052 & 0.0038 \\
     MLP   & Swish & 0.0043 & 0.7351 & 0.0039 & 0.0073 & 0.0055 & 0.0042 \\
           & \cite{Munkhdalai2019} & 0.0047 & 0.6114 & 0.0059 & 0.0066 & 0.0049 & 0.0041 \\
-          & Ours & 0.0064 & 0.5688 & 0.0046 & 0.0076 & 0.0062 & 0.0059 \\
+          
 
     \hline
 
@@ -1035,6 +1227,10 @@ Although the
     \multicolumn{2}{l}{AdaBoost} & 0.0059 & 0.6440 & 0.0103 & 0.0158 & 0.0063 & 0.0066 \\
     \multicolumn{2}{l}{XGBoost} & 0.0059 & 0.4958 & 0.0048 & 0.0156 & 0.0064 & 0.0045 \\
     \multicolumn{2}{l}{SVM} & 0.0304 & 0.4718 & 0.0376 & 0.0294 & 0.0099 & 0.0176 \\
+    
+    \multicolumn{2}{l}{Ours without AF}        & 0.0050 & 0.4903 & 0.0041 & 0.0073 & 0.0050 & 0.0048 \\
+    \multicolumn{2}{l}{Ours with AF}           & 0.0033 & 0.1810 & 0.0019 & 0.0038 & 0.0033 & 0.0027 \\
+    \multicolumn{2}{l}{Ours with AF as weight} & 0.0044 & 0.4122 & 0.0036 & 0.0069 & 0.0042 & 0.0044 \\
 
     \hline
 
@@ -1042,6 +1238,7 @@ Although the
 \end{table*}
 
 \begin{table*}[t]
+  \caption{Comparison RMSE}
   \small
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
@@ -1052,28 +1249,24 @@ Although the
            & Sigmoid & 0.0079 & 6.0677 & 0.0097 & 0.0188 & 0.0075 & 0.0090 \\
     RNN    & Swish & 0.0059 & 0.6435 & 0.0062 & 0.0099 & 0.0085 & 0.0054 \\
            & \cite{Munkhdalai2019} & 0.0057 & 0.5993 & 0.0059 & 0.0098 & 0.0062 & 0.0045 \\
-           & Ours & 0.0058 & 0.4919 & 0.0039 & 0.0063 & 0.0057 & 0.0054 \\
 
     \hline
 
            & Cosine & 0.0129 & 2.6072 & 0.0168 & 0.0548 & 0.0133 & 0.0187 \\
     GRU    & Linear & 0.0058 & 0.6054 & 0.0061 & 0.0104 & 0.0066 & 0.0052 \\
            & \cite{Munkhdalai2019} & 0.0059 & 0.6871 & 0.0060 & 0.0083 & 0.0060 & 0.0082 \\
-           & Ours & 0.0058 & 0.4919 & 0.0039 & 0.0063 & 0.0057 & 0.0054 \\
 
     \hline
 
            & ReLU & 0.0069 & 1.6890 & 0.0079 & 0.0155 & 0.0074 & 0.0058 \\
     LSTM   & Swish & 0.0061 & 0.6890 & 0.0072 & 0.0088 & 0.0081 & 0.0069 \\
            & \cite{Munkhdalai2019} & 0.0062 & 0.6757 & 0.0087 & 0.0092 & 0.0078 & 0.0055 \\
-           & Ours & 0.0058 & 0.4919 & 0.0039 & 0.0063 & 0.0057 & 0.0054 \\
     
     \hline
 
            & ReLU & 0.0064 & 0.9711 & 0.0081 & 0.0217 & 0.0066 & 0.0048 \\
     MLP    & Swish & 0.0058 & 0.9360 & 0.0061 & 0.0097 & 0.0070 & 0.0054 \\
            & \cite{Munkhdalai2019} & 0.0061 & 0.7722 & 0.0082 & 0.0088 & 0.0064 & 0.0053 \\
-           & Ours & 0.0058 & 0.4919 & 0.0039 & 0.0063 & 0.0057 & 0.0054 \\
 
     \hline
 
@@ -1082,46 +1275,41 @@ Although the
     \multicolumn{2}{l}{XGBoost} & 0.0076 & 0.6554 & 0.0071 & 0.0241 & 0.0085 & 0.0058 \\
     \multicolumn{2}{l}{SVM} & 0.0332 & 0.6387 & 0.0394 & 0.0329 & 0.0125 & 0.0200 \\
 
+    \multicolumn{2}{l}{Ours without AF}        & 0.0057 & 0.5391 & 0.0047 & 0.0079 & 0.0057 & 0.0052 \\
+    \multicolumn{2}{l}{Ours with AF}           & 0.0071 & 0.5630 & 0.0051 & 0.0078 & 0.0057 & 0.0058 \\
+    \multicolumn{2}{l}{Ours with AF as weight} & 0.0052 & 0.4625 & 0.0042 & 0.0084 & 0.0047 & 0.0050 \\
+
     \hline
 
   \end{tabular*}
 \end{table*}
 
 \begin{table*}[t]
-  \caption{Without restrictions}
+  \caption{Multi-agent system without activation functions}
   \small
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
     \hline
     \multicolumn{2}{c}{\textbf{Metric}} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
     \hline
-    \multirow{2}{*}{MAE} & Mean & 6.42\e{-03} & 5.69\e{-01} & 4.65\e{-03} & 7.58\e{-03} & 6.19\e{-03} & 5.97\e{-03} \\
-                      & Std dev & 4.04\e{-03} & 3.21\e{-01} & 2.23\e{-03} & 4.42\e{-03} & 3.34\e{-03} & 3.40\e{-03} \\
+    \multirow{2}{*}{MAE} & Mean & 5.03\e{-03} & 4.90\e{-01} & 4.13\e{-03} & 7.34\e{-03} & \e{-03} & \e{-03} \\
+                      & Std dev & 2.79\e{-03} & 2.20\e{-01} & 1.94\e{-03} & 4.01\e{-03} & \e{-03} & \e{-03} \\
     \hline
-    \multirow{2}{*}{MAPE} & Mean & 4.78\e{-03} & 2.85\e{-01} & 3.47\e{-03} & 5.63\e{-03} & 4.61\e{-03} & 4.45\e{-03} \\
-                       & Std dev & 2.99\e{-03} & 1.28\e{-01} & 1.65\e{-03} & 3.25\e{-03} & 2.47\e{-03} & 2.51\e{-03} \\
+    \multirow{2}{*}{MAPE} & Mean & 4.49\e{-03} & 2.89\e{-01} & 3.70\e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+                       & Std dev & 2.47\e{-03} & 1.01\e{-01} & 1.73\e{-03} & \e{-03} & \e{-03} & \e{-03} \\
     \hline
-    \multirow{2}{*}{MASE} & Mean & 9.91\e{-01} & 9.84\e{-01} & 8.57\e{-01} & 8.61\e{-01} & 9.74\e{-01} & 1.06\e{-00} \\
-                       & Std dev & 6.93\e{-01} & 6.62\e{-01} & 5.13\e{-01} & 5.75\e{-01} & 9.84\e{-01} & 1.52\e{-00} \\
+    \multirow{2}{*}{MSE} & Mean & 4.20\e{-05} & 3.52\e{-01} & 2.76\e{-05} & \e{-03} & \e{-03} & \e{-03} \\
+                      & Std dev & 5.01\e{-05} & 3.37\e{-01} & 2.98\e{-05} & \e{-03} & \e{-03} & \e{-03} \\
     \hline
-    \multirow{2}{*}{MSE} & Mean & 4.65\e{-05} & 3.39\e{-01} & 2.10\e{-05} & 6.01\e{-05} & 4.12\e{-05} & 3.72\e{-05} \\
-                      & Std dev & 6.48\e{-05} & 3.85\e{-01} & 1.99\e{-05} & 9.20\e{-05} & 4.12\e{-03} & 4.33\e{-05} \\
-    \hline
-    \multirow{2}{*}{RMSE} & Mean & 5.85\e{-03} & 4.92\e{-01} & 3.94\e{-03} & 6.31\e{-03} & 5.67\e{-03} & 5.36\e{-03} \\
-                       & Std dev & 4.10\e{-03} & 2.94\e{-01} & 1.98\e{-03} & 3.57\e{-03} & 3.21\e{-03} & 3.27\e{-03} \\
-
-    \hline
-    \multirow{2}{*}{Revenue} & Mean & 3.12\e{-04} & 4.49\e{-02} & 1.11\e{-04} & 8.44\e{-04} & 2.84\e{-04} & -5.55\e{-04} \\
-                          & Std dev & 3.99\e{-03} & 2.95\e{-01} & 2.43\e{-03} & 4.10\e{-03} & 3.37\e{-03} & 2.79\e{-03} \\
-    \hline
-    \multirow{2}{*}{Accuracy} & Mean & 53.89\% & 54.44\% & 48.33\% & 52.78\% & 52.78\% & 43.89\% \\
-                           & Std dev & 28.85\% & 28.10\% & 29.06\% & 29.62\% & 30.87\% & 28.45\% \\
+    \multirow{2}{*}{RMSE} & Mean & 5.69\e{-03} & 5.39\e{-01} & 4.69\e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+                       & Std dev & 3.18\e{-03} & 2.51\e{-01} & 2.09\e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+    
     \hline
   \end{tabular*}
 \end{table*}
 
 \begin{table*}[t]
-  \caption{With restrictions}
+  \caption{Multi-agent system with binary activation functions}
   \small
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
@@ -1134,23 +1322,39 @@ Although the
     \multirow{2}{*}{MAPE} & Mean & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
                        & Std dev & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
     \hline
-    \multirow{2}{*}{MASE} & Mean & \e{-01} & \e{-01} & \e{-01} & \e{-01} & \e{-01} & \e{-00} \\
-                       & Std dev & \e{-01} & \e{-01} & \e{-01} & \e{-01} & \e{-01} & \e{-00} \\
-    \hline
-    \multirow{2}{*}{MSE} & Mean & \e{-05} & \e{-01} & \e{-05} & \e{-05} & \e{-05} & \e{-05} \\
-                      & Std dev & \e{-05} & \e{-01} & \e{-05} & \e{-05} & \e{-03} & \e{-05} \\
+    \multirow{2}{*}{MSE} & Mean & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+                      & Std dev & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
     \hline
     \multirow{2}{*}{RMSE} & Mean & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
                        & Std dev & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
 
     \hline
-    \multirow{2}{*}{Revenue} & Mean & \e{-04} & \e{-02} & \e{-04} & \e{-04} & \e{-04} & -\e{-04} \\
-                          & Std dev & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+  \end{tabular*}
+\end{table*}
+
+\begin{table*}[t]
+  \caption{Multi-agent system with activation functions as weights}
+  \small
+  \centering
+  \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
     \hline
-    \multirow{2}{*}{Accuracy} & Mean & \% & \% & \% & \% & \% & \% \\
-                           & Std dev & \% & \% & \% & \% & \% & \% \\
+    \multicolumn{2}{c}{\textbf{Metric}} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
+    \hline
+    \multirow{2}{*}{MAE} & Mean & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+                      & Std dev & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+    \hline
+    \multirow{2}{*}{MAPE} & Mean & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+                       & Std dev & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+    \hline
+    \multirow{2}{*}{MSE} & Mean & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+                      & Std dev & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+    \hline
+    \multirow{2}{*}{RMSE} & Mean & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+                       & Std dev & \e{-03} & \e{-01} & \e{-03} & \e{-03} & \e{-03} & \e{-03} \\
+
     \hline
   \end{tabular*}
+  \label{table:full-results-weights}
 \end{table*}
 
 \section{Conclusion}
@@ -1158,6 +1362,8 @@ Although the
 
 \section{Future Work}
 \label{section:future-work}
+
+% We could implement a distributed algorithm
 
 \section*{Acknowledgment}
 
