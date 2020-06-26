@@ -86,42 +86,92 @@ multi-agent system
 \section{Introduction}
 \label{section:introduction}
 
-One can create models that closely simulate a financial market, and
-one can assume that these simulations are generalizations of the real
-financial market. Furthermore, these models can
-be used to extrapolate the prices of a market as a forecasting  
-% I think the first two sentences are not connected 
-% with the rest. For me is better to start with The prices of a ...  - M   
-method. The prices of a financial market can be forecasted using
-different techniques, such as the analysis of raw data or news
-involving the financial markets of interest \cite{Liu2019}, raw
-data can be preprocessed using technical indicators
-\cite{Alsubaie2019} or news can be analyzed using sentiment analysis
-\cite{LienMinh2018} \cite{Cabrera2018}.
-% Something challenging  these methods? but a draw back .. or  what they have in common?
-% Try to add more context, and connectors: On the other hand..,  can be applied ..  
-% These supervised learning techniques create models by  
-% using training data, but they create black-box models 
-% let's prepare the terrain for your proposal - M
-Predictive models can be created using statistical tools such as ARIMA \cite{Idrees2019} or
-Hidden Markov Models \cite{Cao2019}. Machine learning techniques can      
-be applied to perform the forecasting process, such as support-vector    
-machines (SVM) \cite{Guo2018}, neural networks \cite{Chen2019a} or fuzzy 
-logic \cite{Jiang2018}. Instead of performing a simple forecasting of
-% is it really "simple" forecasting ?  -M
-a financial market, there are works that focus on the recommendation    
-of a portfolio of financial markets to invest in                         
-\cite{Chen2019b}.
-% Is it more difficult? What is the difference? Explain a bit more 
-% if it is important  - M
-However, the work presented in this paper focuses on   
-forecasting the prices of financial markets, and we selected a set of
-machine learning techniques to create predictive models.
+% One can create models that closely simulate a financial market, and
+% one can assume that these simulations are generalizations of the real
+% financial market. Furthermore, these models can
+% be used to extrapolate the prices of a market as a forecasting  
+% % I think the first two sentences are not connected 
+% % with the rest. For me is better to start with The prices of a ...  - M   
+% method.
+%% Amaury: I agree.
+
+% The prices of a financial market can be forecasted using
+% different techniques, such as the analysis of raw data or news
+% involving the financial markets of interest \cite{Liu2019}, raw
+% data can be preprocessed using technical indicators
+% \cite{Alsubaie2019} or news can be analyzed using sentiment analysis
+% \cite{LienMinh2018} \cite{Cabrera2018}.
+% % Something challenging these methods? but a draw back .. or  what they have in common?
+% % Try to add more context, and connectors: On the other hand..,  can be applied ..  
+% % These supervised learning techniques create models by  
+% % using training data, but they create black-box models 
+% % let's prepare the terrain for your proposal - M
+% Amaury: Rewritten in the next paragraph..
+
+The prices of a financial market can be forecasted using different
+techniques, such as the analysis of raw price data or news involving
+the financial markets of interest \cite{Liu2019}. This approach has
+the disadvantage of generating predictions for a market which are
+entirely dependant on the trader's skills and knowledge about the
+market being predicted. A more robust approach when handling raw price
+data is the use of technical indicators \cite{Alsubaie2019}, which
+preprocess a market's raw data to distill different aspects of it,
+such as a market's volatility or general direction. In the case of
+using news to draw predictions for a market, a more robust approach
+would be the use of sentiment analysis \cite{LienMinh2018}
+\cite{Cabrera2018}, which can draw conclusions about the general
+sentiment about a financial market in order to know if prices will go
+down or up. An important drawback about these approaches is that we
+are not obtaining explanations about why certain behavior occurred; we
+are not generating a model about a market, we are simply distilling
+the data. Predictive models can be created using a variety of
+techniques, such as ARIMA \cite{Idrees2019} or hidden Markov models
+\cite{Cao2019}, or machine learning techniques such as support-vector
+machines (SVM) \cite{Guo2018}, neural networks \cite{Chen2019a} or
+fuzzy logic \cite{Jiang2018}.
+
+% Predictive models can be created using statistical tools such as ARIMA \cite{Idrees2019} or
+% hidden Markov models \cite{Cao2019}. Machine learning techniques can      
+% be applied to perform the forecasting process, such as support-vector    
+% machines (SVM) \cite{Guo2018}, neural networks \cite{Chen2019a} or fuzzy 
+% logic \cite{Jiang2018}. Instead of performing a forecasting of
+% % is it really "simple" forecasting ?  -M
+% % Amaury: I used "simple" thinking about an "individual" or "single" market. Corrected.
+% a single financial market, there are works that focus on the recommendation    
+% of a portfolio of financial markets to invest in                         
+% \cite{Chen2019b}.
+% % Is it more difficult? What is the difference? Explain a bit more 
+% % if it is important  - M
+% % Amaury: I'm removing the portfolio thing.
+
+% However, the work presented in this paper focuses on   
+% forecasting the prices of financial markets, and we selected a set of
+% machine learning techniques to create predictive models.
 % This is not good, is weak. Why ? is it just a selection? 
 % Explain why. Put here a list of why yours is a better solution:
 % 1. It can be interprteted, 2. Is knowledge-based, 3. Is a simulation and not data-based ?, etc.
 % You must first identify weak points in the methods above so we can see
 % the benfits of our approach - M
+% Amaury: I'm removing this part and justifying the method in the
+% following paragraph.
+
+The method presented in this paper uses a hybridization of fuzzy logic
+and multi-agent systems (MAS). The use of fuzzy logic enables
+the method to present results to the user that are easily
+interpretable, especially if we use Mamdani fuzzy sets \cite{Mamdani1975} 
+to create the membership functions of a fuzzy system, as in the
+work of Abdulgader and Kaur \cite{Abdulgader2019}. In contrast, other
+approaches do not provide
+
+In particular, we
+propose the use of intuitionistic fuzzy logic (IFL)
+\cite{Atanassov1986} \cite{Atanassov2003}, as IFL adds another layer
+of interpretability for the fuzzy systems through the concept of
+indeterminacy. Although there are alternatives to IFL, such as type-2
+fuzzy systems, the defuzzification of IFL systems can be faster than
+the aforementioned systems \cite{Hernandez-Aguila2016}, while also
+providing comparable interpretability. 
+
 The work presented in this paper focuses on fuzzy logic and its
 implementation through fuzzy systems. The use of fuzzy logic enables
 the method to present results to the user that are easily
@@ -154,7 +204,7 @@ The present work uses fuzzy systems in combination with multi-agent
 systems to create a market model, where the agents in the
 multi-agent system represent traders, and the trades performed by
 these traders are used to simulate the real prices of a market.
-Multi-agent systems (MAS) have been demonstrated to be an effective
+Multi-agent systems have been demonstrated to be an effective
 approach to simulate very complex systems, such as those represented
 by financial markets \cite{Lebaron2001,Grothmann2002,Li2014,Chen2004,Kim2018}.
 Additionally, the agents in the MAS can be examined to understand how individual traders are
