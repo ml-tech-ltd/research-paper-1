@@ -213,9 +213,14 @@ by financial markets \cite{Lebaron2001,Grothmann2002,Li2014,Chen2004,Kim2018}.
 Additionally, the agents in the MAS can be examined to understand how individual traders are
 interacting in a financial market \cite{Wei2014} \cite{Rajab2019}.
 Furthermore, MAS architectures can be executed in a distributed manner
-\cite{Gao2019} \cite{Yu2015} \cite{Yu2015}.
+\cite{Gao2019} \cite{Yu2015} \cite{Yu2015}, which perform faster, as the rules
+of the different agents can be evaluated in parallel. The current
+implementation of our method does not follow such architecture, but
+adapting our method for a distributed evaluation of the agents' rules
+is considered as a future work, as is discussed in Section
+\ref{section:future-work}.
 % Say something about distributed MAS, they are faster? better? are we using distributed or concurrent implementation?
-% TODO 11
+% TODO 11: COMPLETE.
 For this work, fuzzy
 systems are used to construct the agents' rules, which represent the
 trading strategies used by each agent.
@@ -1474,6 +1479,7 @@ provide texts that describe the conditions of a market, as perceived
 by the agents in the multi-agent system.
 
 % We could implement a distributed algorithm
+% I must add it now because I mention it in the introduction.
 % TODO 42: Consider this and other things to be added to this Section.
 
 
