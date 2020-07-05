@@ -304,9 +304,9 @@ systems (see Subsection \ref{subsection:fuzzy-systems}).
 %% It was not a note.
 
 In traditional logic one can generate logical inferences, such as \textit{if
-it's raining, then there are clouds in the sky}. In a similar fashion, one can
+it's raining, then there are clouds in the sky}. In a similar fashion, we can
 use fuzzy sets to represent the antecedents and consequents in a logical
-inference process. For example, one can extend the previous example to:
+inference process \cite{kruse1994foundations}. For example, one can extend the previous example to:
 \textit{if it's raining a lot, then there are many clouds in the sky}.
 
 There is a number of ways in which one can construct a fuzzy inference system,
@@ -332,7 +332,7 @@ relationship between ``food quality'' and ``tip'' could determine a ``tip'' of
 0.8 too, depending on what membership function and what parameters are decided
 to be used to represent each.
 
-It has been explained how a relationship between antecedents and consequents can
+We have explained how a relationship between antecedents and consequents can
 be constructed in a fuzzy inference system. Nevertheless, the most interesting
 problem arises when a problem involves several fuzzy sets to represent different
 adjectives for single antecedents or consequents. In these cases, depending on
@@ -340,7 +340,7 @@ the fuzzy rules, a number of consequents can be fired according to the inputs to
 the system. As seen in Figure \ref{figure:antecedents}, the input---represented
 by the dotted vertical black line---is associated with three fuzzy
 triangular sets or antecedents, where it ``activates'' two of them. According to
-a set of fuzzy rules, it then fires a set of triangular fuzzy sets that
+a set of fuzzy rules, the inputs then fire a set of triangular fuzzy sets that
 represent the consequents, as seen in Figure \ref{figure:consequents}.
 
 The fuzzy sets that represent the consequents are cut, and new shapes are
@@ -371,7 +371,7 @@ triangles in the example presented above.
 In contrast to the traditional fuzzy sets discussed in Subsection
 \ref{subsection:fuzzy-sets}, intuitionistic fuzzy sets consider a grade of
 non-membership in addition to a grade of membership associated to an element in
-the fuzzy set, as expressed by \ref{eq:ifs-definition}.
+the fuzzy set \cite{Atanassov1986}, as expressed by \ref{eq:ifs-definition}.
 
 % intuitionistic fuzzy set
 \begin{equation}
@@ -401,7 +401,7 @@ fuzzy set, as in \ref{eq:ifs-form}.
 \end{equation}
 
 If the sum of the membership $\mu_{A}(x)$ and non-membership $\nu_{A}(x)$ of an
-element is less than $1$, the concept of indeterminacy or hesitancy arises,
+element is less than $1$, the concept of indeterminacy or hesitancy arises \cite{Atanassov1986},
 which is described by \ref{eq:indeterminacy}. Indeterminacy is used to represent
 doubt in the grade of membership of an element in an intuitionistic fuzzy set
 and is described by \ref{eq:indeterminacy}.
@@ -414,7 +414,7 @@ and is described by \ref{eq:indeterminacy}.
 
 Traditional fuzzy sets can be extended to increase their capabilities of
 representing uncertainty by introducing the concept of footprint of
-uncertainty. A footprint of uncertainty is achieved by extending the membership
+uncertainty \cite{Mendel2002} \cite{Mendel2006}. A footprint of uncertainty is achieved by extending the membership
 function, where each of its values are now fuzzy sets themselves, instead of
 crisp values. Indeterminacy serves a different purpose than the one of footprint
 of uncertainty. Instead of extending the uncertainty provided by traditional
@@ -571,11 +571,12 @@ simulation of a problem.
 
 As mentioned before, agents can also be used to create agent-based models. These
 models are used to represent a problem so a human being can analyze it and infer
-new knowledge from it, or it can be used to better understand a problem.
+new knowledge from it \cite{Grothmann2002}.
 % analize and infer new knowledge is very similar to better understand 
 % this please explain the difference - M  
 % Also please add references to the appropiate papers in all this section - M
-% TODO 17
+% TODO 17: COMPLETE. I agree about the similarity.
+% I removed the "better understand a problem" part. I also re-read the whole section and added some references.
 The proposed method in this paper is both a multi-agent system and an
 agent-based model. It is a multi-agent system in the sense that it can be used
 to create a trading strategy, and it is an agent-based model because the agents
@@ -1519,6 +1520,9 @@ by the agents in the multi-agent system.
 
 % Check when are abbreviations created and then use only the abbreviation (e.g. MAS)
 % TODO 44: 
+
+% Check passive voice.
+% TODO 45:
 
 \section*{Acknowledgment}
 
