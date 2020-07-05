@@ -663,10 +663,20 @@ describe each agents' rule antecedents and consequents. The mean of each Gaussia
 membership function is equal to a random data point from the training data set,
 while the spread of the Guassian membership functions that represent a fuzzy
 rule will be equal to the standard deviation of the aforementioned randomly
-chosen data points. 
+chosen data points.
+
+In the proposed method, the mean of each Gaussian
+membership function is equal to a random data point from the training data set,
+while the spread of the Guassian membership functions that represent a fuzzy
+rule will be equal to the standard deviation of the aforementioned
+randomly chosen data points. At least two Gaussian membership
+functions are used to describe each agents' rule antecedents and
+consequents for, as obtaining the standard deviation of only one data
+point would be equal to 0, which would generate Gaussian membership
+functions with spreads equal to 0.
 % Why - Mario I remember that this is also a novel idea. 
 % It is ok to say that this gives better results and try to say why - M
-% TODO 23
+% TODO 23: COMPLETE.
 In the case of the antecedents, the means are equal to data
 points from the training data set that represent inputs, while outputs in the
 training data set are used as the means for the membership functions that form
