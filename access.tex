@@ -653,7 +653,21 @@ functions can be better suited for certain situations, the proposed method is
 currently designed for the creation of predictive models for arbitrary data sets,
 where solutions are found using a meta-heuristic.
 % Mention that they are more costly - Mario
-% TODO 21: I searched for references that mentioned that Gaussians are more costly, but I only found one that compared Gaussian vs trapezoidal, and Gaussians were found to be "faster" (evaluation) than trapezoidals. It also depends heavily on our implementation: in our current implementation we iterate over each of the grades of membership of the membership function. This means that whatever function we use, we'd obtain the same performance. This process applies to: calculation of grade of membership, union/intersection of fuzzy sets, deffuzzification. Once I complete my analytical version of the fuzzy set, we could compare the cost of using different membership functions, but my gut tells me we'd get similar costs, as we are just solving a bunch of equations, regardless of the shape of the fuzzy set. Nevertheless, I added a note about why we'd use different membership functions in later versions of our method.
+% TODO 21: COMPLETE.
+% I searched for references that mentioned that Gaussians are more
+% costly, but I only found one that compared Gaussian vs trapezoidal,
+% and Gaussians were found to be "faster" (evaluation) than
+% trapezoidals. It also depends heavily on our implementation: in our
+% current implementation we iterate over each of the grades of
+% membership of the membership function. This means that whatever
+% function we use, we'd obtain the same performance. This process
+% applies to: calculation of grade of membership, union/intersection of
+% fuzzy sets, deffuzzification. Once I complete my analytical version of
+% the fuzzy set, we could compare the cost of using different membership
+% functions, but my gut tells me we'd get similar costs, as we are just
+% solving a bunch of equations, regardless of the shape of the fuzzy
+% set. Nevertheless, I added a note about why we'd use different
+% membership functions in later versions of our method.
 
 %% Amaury: Mention inputs and outputs in training data set.
 % TODO 22: COMPLETE. It was just a note I added when I was in the process of writing this Section.
