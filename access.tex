@@ -720,7 +720,7 @@ Data points are used as the mean of each membership function as this
 guarantees that an agent is able to react to at least those input
 values, and thus every agent will respond to at least one data point,
 which is a common practice in certain methods, such as rule-based
-classifiers \ref{zhao2009building} \ref{zhao2009building}. On the
+classifiers \cite{zhao2009building} \cite{almutairi2018rule}. On the
 other hand, using the standard deviation of those chosen data points
 as the spread of the Gaussian membership functions guarantees that
 uncertainties associated to each membership function will affect---in
@@ -1120,7 +1120,7 @@ task, as the system needs to evaluate hundreds of fuzzy systems per
 iteration in the optimization process. For this reason, we implemented
 a caching system where the output of an agent is stored in memory
 using a technique called \textit{memoization}
-\ref{johnson1995memoization} in a functional programming
+\cite{johnson1995memoization} in a functional programming
 context. After \textit{memoizing} an agent, if that agent is required
 to be evaluated given exactly the same inputs as the ones used during
 the \textit{memoization} process, then we can assume that the output
@@ -1371,20 +1371,20 @@ competent, relative to the other methods presented in the Tables.
 
           & Sigmoid & 0.0060 & 5.4000 & 0.0081 & 0.0126 & 0.0060 & 0.0079 \\
     RNN   & Swish & 0.0044 & 0.4925 & 0.0042 & 0.0074 & 0.0068 & 0.0043 \\
-          & \cite{Munkhdalai2019} & 0.0043 & 0.4479 & 0.0037 & 0.0083 & 0.0047 & 0.0034 \\
+          & Munkhdalai et al. & 0.0043 & 0.4479 & 0.0037 & 0.0083 & 0.0047 & 0.0034 \\
     \hline
           & Cosine & 0.0098 & 2.0191 & 0.0130 & 0.0396 & 0.0106 & 0.0162 \\
     GRU   & Linear & 0.0044 & 0.4475 & 0.0041 & 0.0083 & 0.0052 & 0.0041 \\
-          & \cite{Munkhdalai2019} & 0.0044 & 0.5327 & 0.0039 & 0.0062 & 0.0046 & 0.0071 \\
+          & Munkhdalai et al. & 0.0044 & 0.5327 & 0.0039 & 0.0062 & 0.0046 & 0.0071 \\
     \hline
           & ReLU & 0.0053 & 1.4920 & 0.0054 & 0.0101 & 0.0058 & 0.0046 \\
     LSTM  & Swish & 0.0045 & 0.5243 & 0.0049 & 0.0065 & 0.0063 & 0.0054 \\
-          & \cite{Munkhdalai2019} & 0.0046 & 0.5200 & 0.0060 & 0.0069 & 0.0061 & 0.0044 \\
+          & Munkhdalai et al. & 0.0046 & 0.5200 & 0.0060 & 0.0069 & 0.0061 & 0.0044 \\
     \hline
 
           & ReLU & 0.0049 & 0.7499 & 0.0058 & 0.0150 & 0.0052 & 0.0038 \\
     MLP   & Swish & 0.0043 & 0.7351 & 0.0039 & 0.0073 & 0.0055 & 0.0042 \\
-          & \cite{Munkhdalai2019} & 0.0047 & 0.6114 & 0.0059 & 0.0066 & 0.0049 & 0.0041 \\
+          & Munkhdalai et al. & 0.0047 & 0.6114 & 0.0059 & 0.0066 & 0.0049 & 0.0041 \\
           
 
     \hline
