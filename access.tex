@@ -712,18 +712,22 @@ Figure~\ref{figure:fuzzy-system-architecture}.
 {Depiction of the fuzzy system architecture.
   \label{figure:fuzzy-system-architecture}}
 
-Data points are used as the mean of each membership function as this guarantees
-that an agent is able to react to at least those input values. On the other hand,
-using the standard deviation of those chosen data points as the spread of the
-Gaussian membership functions guarantees that uncertainties associated to each
-membership function will affect---in terms of fuzzy inferences---at least one of
-the other membership functions. If none of the membership functions were
-affecting in any way the rest of the membership functions, the use of a fuzzy
-system to represent the agent rules would be meaningless. 
+Data points are used as the mean of each membership function as this
+guarantees that an agent is able to react to at least those input
+values, and thus every agent will respond to at least one data point,
+which is a common practice in certain methods, such as rule-based
+classifiers \ref{zhao2009building} \ref{zhao2009building}. On the
+other hand, using the standard deviation of those chosen data points
+as the spread of the Gaussian membership functions guarantees that
+uncertainties associated to each membership function will affect---in
+terms of fuzzy inferences---at least one of the other membership
+functions. If none of the membership functions were affecting in any
+way the rest of the membership functions, the use of a fuzzy system to
+represent the agent rules would be meaningless.
 
 % Say that this is common practice in other rule-based systems
 % For instance rule-based classifiers, add a reference - M
-% TODO 25
+% TODO 25: COMPLETE. 
 
 The domain of each membership function is not fixed as it is determined by the
 chosen data points and their standard deviation. The calculation that determines
