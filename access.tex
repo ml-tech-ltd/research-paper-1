@@ -879,15 +879,22 @@ a pattern with a strong resemblance to certain inputs.
 
 Although the activation functions cause the agents to be specialized at
 responding to a number of inputs, an activation of multiple agents is
-possible. In this case, the outputs of the agents is averaged. %% Amaury: Maybe
+possible. In this case, the outputs of the agents is averaged, as
+described by \ref{equation:outputs-averaged}. %% Amaury: Maybe
 %% add an equation? The process is so simple, but it could help a bit for the
 %% reader to find key points in the paper.
-% TODO 31
+% TODO 31: COMPLETED. I will add an equation when I reach TODO #46. Adding placeholder for now.
+
+\begin{equation}
+  \label{equation:outputs-averaged}
+  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
+    i\mu_{A}(x)}
+\end{equation}
 
 The process of agent specialization using activation functions is well suited
 for the creation of predictive models where it is not desired to obtain a
 response for any arbitrary set of inputs. In the case of financial market
-forecasting, this is translated to a recommandation to the trade to not trade a
+forecasting, this is translated to a recommandation of not trading a
 particular market, i.e.\ an unkown pattern is arising and the trader following
 the recommendations from the predictive model should be wary.
 
@@ -895,13 +902,19 @@ However, it must be noted that the proposed method can be extended to the
 creation of predictive models that always yield a response. This can be
 achieved by selecting the agent that is closer to being activated.
 
+Finally, we believe that the activation functions found with the
+proposed method could be used for other methods, particularly neural
+network-based architectures.
+
 % Also we could use other models, like neural networks ?? Mario
-% TODO 32
+% TODO 32: COMPLETE. Maybe we could use neural networks, but I only have a vague
+% idea of how we could do it. I'm adding a short paragraph, stating that we "could" use them for that.
 
 %% figure:activation-threshold - Figure depicting how an input is
 %% going to be associated to a membership and how this membership can
 %% be considered or not, depending on the activation threshold.
-% TODO 33
+% TODO 33: COMPLETE. A placeholder for this has already been added. I'll create the
+% figure for TODO #48.
 
 \subsection{Meta-heuristic} % Parameter tunning using a MH ?? - Mario
 %% Say something more specific
@@ -1569,6 +1582,9 @@ by the agents in the multi-agent system.
 
 % Check algorithms.
 % TODO 49:
+
+% Add using our activation functions for neural networks in future work.
+% TODO 50:
 
 \section*{Acknowledgment}
 
