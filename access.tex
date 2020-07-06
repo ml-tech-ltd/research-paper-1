@@ -8,6 +8,8 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 
+\usepackage{bm}
+
 \usepackage{multirow}
 
 \usepackage{array}
@@ -695,26 +697,27 @@ functions with spreads equal to 0.
 % Why - Mario I remember that this is also a novel idea. 
 % It is ok to say that this gives better results and try to say why - M
 % TODO 23: COMPLETE.
-In the case of the antecedents, the means are equal to data
-points from the training data set that represent inputs, while outputs in the
-training data set are used as the means for the membership functions that form
-the consequents. This is expressed by
-\ref{equation:membership-function-spread} and depicted in
-Figure~\ref{figure:fuzzy-system-architecture}.
+In the case of the antecedents, the means are equal to data points
+from the training data set that represent inputs, while outputs in the
+training data set are used as the means for the membership functions
+that form the consequents. This is expressed by
+\ref{equation:membership-function-spread}, where $\bar{x}$ represents
+the mean of sample inputs from the training data set, $s$ represents
+their standard deviation and $\mu(x)$ represents a Gaussian membership
+function.
 
 % Express standard deviation of randomly chosen data points.
 % TODO 24: COMPLETE. This will be done for TODO #46.
 \begin{equation}
   \label{equation:membership-function-spread}
-  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
-    i\mu_{A}(x)}
+  \mu(x) = e^{-\dfrac{(x - \bar{x})^{2}}{2 s}}
 \end{equation}
 
-\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
-[width=0.6\linewidth]
-{img/antecedents.png}
-{Depiction of the fuzzy system architecture.
-  \label{figure:fuzzy-system-architecture}}
+% \Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+% [width=0.6\linewidth]
+% {img/antecedents.png}
+% {Depiction of the fuzzy system architecture.
+%   \label{figure:fuzzy-system-architecture}}
 
 Data points are used as the mean of each membership function as this
 guarantees that an agent is able to react to at least those input
@@ -733,11 +736,20 @@ represent the agent rules would be meaningless.
 % For instance rule-based classifiers, add a reference - M
 % TODO 25: COMPLETE. 
 
-The domain of each membership function is not fixed as it is determined by the
-chosen data points and their standard deviation. The calculation that determines
-the domain of a membership function is expressed by~\ref{equation:mf-domain}, and---as a consequent of this
-calculation---the domain of either the antecedents or the consequents in a fuzzy
-system is expressed by~\ref{equation:ant-con-domain}. %% As can be seen in
+The domain of each membership function is not fixed as it is
+determined by the chosen data points and their standard deviation. The
+domain of a membership function is defined by the set given
+by~\ref{equation:mf-domain}, where $\bar{x}$ represents the mean of
+sample inputs from the training data set and $s$ represents their
+standard deviation. As a consequent of the previous definition, the
+domain of either the antecedents or the consequents in a fuzzy system
+is defined by the set given by~\ref{equation:ant-con-domain}, where
+$\bar{x}_{min}$ and $\bar{x}_{max}$ represent the minimum and maximum
+means---from the set of means obtained from the training data
+set--used to define the membership functions, respectively, and
+$s_{min}$ and $s_{max}$ represent the minimum and maximum standard
+deviations that are associated to $\bar{x}_{min}$ and $\bar{x}_{max}$,
+respectively. %% As can be seen in
 %% the latter, the domain of both the antecedents and consequents is
 %% determined by the minimum and the maximum values contained by the union of
 % TODO 26: COMPLETE. Not needed anymore.
@@ -748,14 +760,12 @@ system is expressed by~\ref{equation:ant-con-domain}. %% As can be seen in
 
 \begin{equation}
   \label{equation:mf-domain}
-  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
-    i\mu_{A}(x)}
+  \{\,x \mid \bar{x} - s \leq x \leq \bar{x} + s \,\}
 \end{equation}
 
 \begin{equation}
   \label{equation:ant-con-domain}
-  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
-    i\mu_{A}(x)}
+  \{\,x \mid \bar{x}_{min} - s_{min} \leq x \leq \bar{x}_{max} + s_{max} \,\}
 \end{equation}
 
 As the agents' rules are represented by intuitionistic fuzzy systems, the core of
@@ -778,14 +788,30 @@ Shoham~\cite{Shoham1993}, in the proposed method an agent's fuzzy system
 represents an agent's rules, while its activation functions represent an
 agent's beliefs.
 
-Inputs to an agent's fuzzy system are associated to grades of membership---as
-is usual in fuzzy inference systems---and this grade of membership can either
-belong or not to an interval $\Lambda$, which is defined by~\ref{equation:activation-interval}, as seen in
-Figure~\ref{figure:activation-threshold}. If the grade of membership can be
-found in the interval $\Lambda$, then the agent will consider that input to be
-used to fire a consequent in its agent rules. It is noteworthy that different
-activation thresholds and non-membership functions can be associated to each of
-the membership functions present in the antecedents of an agent's fuzzy system.
+Inputs to an agent's fuzzy system are associated to grades of
+membership---as is usual in fuzzy inference systems---and this grade
+of membership can either belong or not to a set $\Lambda$, which is
+defined by~\ref{equation:activation-interval}, where $\mu(x)$
+represents the grade of membership associated to an input $x$ and
+$\lambda$ represents an activation threshold. An example of a set
+$\Lambda$ can be seen in Figure~\ref{figure:activation-threshold}. If
+a grade of membership can be found in a set $\Lambda$, then the agent
+will consider that input to be used to fire a consequent in its agent
+rules. It is noteworthy that different activation thresholds $\lambda$
+and non-membership functions can be associated to each of the
+membership functions present in the antecedents of an agent's fuzzy
+system.
+
+\begin{equation}
+  \label{equation:activation-interval}
+  \bm{\Lambda} = \{\,\mu(x) \mid \mu(x) \geq \lambda \,\}
+\end{equation}
+
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.6\linewidth]
+{img/antecedents.png}
+{Depiction of an activation threshold in a membership function.
+  \label{figure:activation-threshold}}
 
 An agent's actions can be greatly limited by its activation functions, as having
 a single input associated to a grade of membership which does not belong to the
@@ -801,18 +827,6 @@ training data set. Furthermore, activation functions work as a coordination
 mechanism for the agents in a predictive model, as they prevent certain agents
 from taking action in situations where they would perform sub-optimally and
 others would perform optimally.
-
-\begin{equation}
-  \label{equation:activation-interval}
-  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
-    i\mu_{A}(x)}
-\end{equation}
-
-\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
-[width=0.6\linewidth]
-{img/antecedents.png}
-{Depiction of an activation threshold in a membership function.
-  \label{figure:activation-threshold}}
 
 \subsection{Multi-agent System}
 \label{subsection:mult-agent-system}
@@ -887,17 +901,18 @@ a pattern with a strong resemblance to certain inputs.
 
 Although the activation functions cause the agents to be specialized at
 responding to a number of inputs, an activation of multiple agents is
-possible. In this case, the outputs of the agents is averaged, as
-described by \ref{equation:outputs-averaged}. %% Amaury: Maybe
+possible. In this case, the outputs of the agents are averaged.% , as
+% described by \ref{equation:outputs-averaged}. %% Amaury: Maybe
 %% add an equation? The process is so simple, but it could help a bit for the
 %% reader to find key points in the paper.
 % TODO 31: COMPLETE. I will add an equation when I reach TODO #46. Adding placeholder for now.
+% Amaury: I decided to remove this equation. It would be TOO simple (just an average operation).
 
-\begin{equation}
-  \label{equation:outputs-averaged}
-  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
-    i\mu_{A}(x)}
-\end{equation}
+% \begin{equation}
+%   \label{equation:outputs-averaged}
+%   A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
+%     i\mu_{A}(x)}
+% \end{equation}
 
 The process of agent specialization using activation functions is well suited
 for the creation of predictive models where it is not desired to obtain a
@@ -1074,10 +1089,12 @@ predictive model. Considering a training data set, an agent's
 activation functions are evaluated against the inputs set obtained
 from that training data set in order to generate a set of activations,
 where each activation is the equivalent of calculating the grade of
-membership associated to a set of input. After performing this step,
-all the activations are summed to obtain a score that represents the
-intensity to which that agent reacts to that a set of inputs. This
-score is defined by \ref{equation:activation-score}. The scores
+membership associated to a set of inputs. After performing this step,
+all the activations are summed to obtain a score $S$ that represents
+the intensity to which that agent reacts to that set of inputs. This
+score is defined by \ref{equation:activation-score}, where $N$
+represents the number of inputs, and $\mu(x_{i})$ represents each of
+the grades of membership associated to each input. The scores
 associated to each set of inputs are ordered in a descending manner,
 so the first elements are the scores that represent those sets of
 inputs that would fire an agent's consequents the most. The ordered
@@ -1095,8 +1112,7 @@ the time.
 
 \begin{equation}
   \label{equation:activation-score}
-  A_{iCoA} = \dfrac{\sum_{i=1}^{N} i\mu_{A}(x) x_{i}}{\sum_{i=1}^{N}
-    i\mu_{A}(x)}
+  S =\sum_{i=1}^{N}{\mu(x_{i})}
 \end{equation}
 
 The optimization process for the predictive models loads configuration
@@ -1626,7 +1642,7 @@ search space.
 % TODO 45: COMPLETE. I think, at least.
 
 % Check formulas.
-% TODO 46:
+% TODO 46: COMPLETE.
 
 % Check captions.
 % TODO 47:
