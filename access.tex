@@ -1105,11 +1105,29 @@ time. Storing the populations in a database also enables us to use
 populations of agents to be tested in other data sets, as well as to
 extract agents from certain populations to be used in other prediction
 models.
+
+The evaluation of the agents proved to be a computationally expensive
+task, as the system needs to evaluate hundreds of fuzzy systems per
+iteration in the optimization process. For this reason, we implemented
+a caching system where the output of an agent is stored in memory
+using a technique called \textit{memoization}
+\ref{johnson1995memoization} in a functional programming
+context. After \textit{memoizing} an agent, if that agent is required
+to be evaluated given exactly the same inputs as the ones used during
+the \textit{memoization} process, then we can assume that the output
+will be the same, and thus we can simply query for the output stored
+in memory. The caching system prevents our implementation from
+re-evaluating hundreds of fuzzy systems in the optimization process.
+
 % I think this is a highlight, maybe going to intro  and abstract if this was
 % tested - Mario
 % TODO 37: COMPLETE. This was not tested, unfortunately. That's why I considered this
 % only to be a technical peculiarity. Add a note if you still consider this to be
 % a highlight worthy of being mentioned in the abstract and intro.
+
+% The cahed of agents sounds interesting, maybe you should mentioned it
+% if it reduced the training time - M
+% TODO 38: COMPLETE. Added a paragraph explaining the caching system.
 
 % We're using Common Lisp, an implementation of an intuitionistic fuzzy system
 % We're saving our populations into a database, we can create branches, we can resume experiments.
@@ -1167,10 +1185,6 @@ models.
 % io-macd
 % io-macd-signal
 
-
-% The cahed of agents sounds interesting, maybe you should mentioned it
-% if it reduced the training time - M
-% TODO 38
 \section{Experiments}
 \label{section:experiments}
 
