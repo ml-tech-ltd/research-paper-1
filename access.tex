@@ -126,7 +126,7 @@ help to obtain better predictive models.
 
 \maketitle
 
-\section{Introduction}
+\section{Introduction} % maybe add "and state of the art"? - JJ
 \label{section:introduction}
 
 The prices of a financial market can be forecasted using different
@@ -991,7 +991,9 @@ a pattern with a strong resemblance to certain inputs.
 
 Although the activation functions cause the agents to be specialized at
 responding to a number of inputs, an activation of multiple agents is
-possible. In this case, the outputs of the agents are averaged.% , as
+possible. % Formulate an hypothesis of why this is going to be a good thing. Since this is one of the results of the paper, you need to prove that you were right in the end - JJ
+In this case, the outputs of the agents are averaged. % But if outputs are "buy" or "sell" how are they averaged? - JJ
+% , as
 % described by \ref{equation:outputs-averaged}. %% Amaury: Maybe
 %% add an equation? The process is so simple, but it could help a bit for the
 %% reader to find key points in the paper.
@@ -1198,7 +1200,7 @@ then it is a suitable candidate. This mechanism ensures that the
 chosen agents are specialized in similar inputs that yield similar
 outputs. For our implementation, the highest scores have to be
 associated to outputs that share the same direction at least 66\% of
-the time.
+the time. % Why this arbitrary value? Is this a sensible/sensitive parameter?   - jj
 
 \begin{equation}
   \label{equation:activation-score}
@@ -1221,7 +1223,7 @@ enables us to resume the optimization of a model at any
 time. Storing the populations in a database also enables us to use
 populations of agents to be tested in other data sets, as well as to
 extract agents from certain populations to be used in other prediction
-models.
+models. % Is it open source? Can it be accessed somehow? - JJ
 
 The evaluation of the agents proved to be a computationally expensive
 task, as the system needs to evaluate hundreds of fuzzy systems per
@@ -1230,7 +1232,7 @@ a caching system where the output of an agent is stored in memory
 using a technique called \textit{memoization}
 \cite{johnson1995memoization} in a functional programming
 context. After \textit{memoizing} an agent, if that agent is required
-to be evaluated given exactly the same inputs as the ones used during
+to be evaluated with exactly the same inputs as the ones used during
 the \textit{memoization} process, then we can assume that the output
 will be the same, and thus we can simply query for the output stored
 in memory. The caching system prevents our implementation from
