@@ -1,4 +1,4 @@
-\documentclass{ieeeaccess}
+﻿\documentclass{ieeeaccess}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithm}
@@ -70,18 +70,25 @@ about a market. % Different from what? You mean diverse? - JJ
 This paper presents a method for creating forex market predictive models 
 using multi-agent systems and fuzzy systems. Agents in the                 
 multi-agent system represent traders that are issuing buy and sell
-orders in a market. We use fuzzy systems to model the rules followed by
+orders in a market.]
+% "Agents in -- a market."You already said you are using multi-agent systems in the previous sentance, consider using "Agents in our(or "this") system" - Mac
+% "that are issuing" changed to "issuing" or "performing" since you use that throught the paper - Mac
+We use fuzzy systems to model the rules followed by
 traders when they perform trades that would simulate the real
-prices of a market. % Model against what? Where do you ground the model? - JJ
+prices of a market. 
+% Model against what? Where do you ground the model? - JJ
+% "when they -- a market." is very confusing. Consider "performing trades in a live market." - Mac
 Activation functions are used to restrict the
 agents' behavior to simulate the hesitancy of a trader to  
 % Talk a bit about the type of activation functions 
 % I think this is an important aspect of the paper - Mario
 % TODO 4: COMPLETE.
+% Consider "behavior, simulating the hesitancy of a trader when performing trades." - Mac
 perform a trade. Activation functions use the grades of membership
 obtained from an agent's fuzzy system, along with thresholds obtained
 from training data sets, to determine if that agent is specialized
-enough to handle a market's current conditions. %
+enough to handle a market's current conditions.
+% "specialized enough" into "correctly optimized" - Mac
 We have performed experiments to demonstrate how capable our method is for
 predicting future market prices. % Checked against what? - JJ
 Results demonstrate that our method is
@@ -95,6 +102,7 @@ functions show
 % TODO 5: COMPLETE.
 that the use of activation functions to restrict the agents' behavior
 help to obtain better predictive models.
+% "help to obvain" into "helps to obtain" or "results in" - Mac
 \end{abstract}
 
 \begin{keywords}
@@ -113,28 +121,30 @@ help to obtain better predictive models.
 
 The prices of a financial market can be forecasted using different
 techniques, such as the analysis of raw price data or news involving
-the financial markets of interest \cite{Liu2019}. These approaches have
+the financial market of interest \cite{Liu2019}. These approaches have
 % These approaches ?<
 % Amaury: Yeah. Corrected.
 the disadvantage of generating predictions for a market which are
 entirely dependant on the trader's skills and knowledge about the
-market being predicted. A more robust approach when handling raw price
+market being predicted. 
+% remove "for a market which are" - Mac
+A more robust approach when handling raw price
 data is the use of technical indicators \cite{Alsubaie2019}, which
 preprocess a market's raw data to distill different aspects of it,
 such as a market's volatility or general direction. In the case of
 using news to draw predictions for a market, a more robust approach
 would be the use of sentiment analysis \cite{LienMinh2018}
 \cite{Cabrera2018}, which can draw conclusions about the general
-sentiment about a financial market in order to know if prices will go
+sentiment of a financial market in order to know if prices will go
 down or up. An important drawback of these methods is that we 
 % Just removed the "approach" word to not sound repetitive (was used a few
 % lines above) - M
 % Amaury: Okie dokie.
-are not obtaining explanations about why certain behavior occurred; we
+are not obtaining explanations about why certain behaviors occurred; we
 are not generating a model about a market, we are simply distilling
 the data. Predictive models can be created using a variety of
-techniques, such as ARIMA \cite{Idrees2019} or hidden Markov models
-\cite{Cao2019}, or machine learning techniques such as support-vector
+techniques, such as ARIMA \cite{Idrees2019} and hidden Markov models
+\cite{Cao2019}, or machine learning techniques, such as support-vector
 machines (SVM) \cite{Guo2018} and neural networks \cite{Chen2019a}. A
 drawback of some of these methods is that they generate \textit{black
 box} models, i.e. it is difficult for a user to understand how the
@@ -162,7 +172,9 @@ and multi-agent systems (MAS). The use of fuzzy logic enables
 the method to present results to the user that are easily
 interpretable, especially if we use Mamdani fuzzy sets \cite{Mamdani1975} 
 to create the membership functions of a fuzzy system, as in the
-work of Abdulgader and Kaur \cite{Abdulgader2019}. %
+work of Abdulgader and Kaur \cite{Abdulgader2019}. 
+% "the method to present" should that be "model"? - Mac
+% restructure sentacne to "to present easily interpretable results to the user." - Mac
 % In contrast the approaches mentioned earlier do not provide ..
 % TODO 8: COMPLETE. I just removed this incomplete sentence. I'm
 % already explaining the drawback of black box models in the previous paragraph.
@@ -191,8 +203,10 @@ the aforementioned systems \cite{Hernandez-Aguila2016}, while also
 providing comparable interpretability. To our knowledge, IFL has not been
 used for representing knowledge in financial predictive models. We
 believe that IFL could be used to model a trader's uncertainty and
-hesitancy when performing trades, and thus help us to better understand
+hesitancy when performing trades, thus helping us to better understand
 the behavior of a market.
+% The above two paragraphs are repeats. One starts "The method presented"
+% the other "The work presented" - Mac
 % Say something like.. to our knowledge IFL 
 % has not been applied for representing knowledge for ... - M 
 % We must do this in all applicable places. - M
@@ -222,12 +236,16 @@ Additionally, the agents in the MAS can be examined to understand how individual
 interacting in a financial market \cite{Wei2014} \cite{Rajab2019},
 which is a feature that we leverage in our method, as we use fuzzy
 systems to construct the agents' rules and this type of inference
-systems have the characteristic of being interpretable. %
+systems have the characteristic of being interpretable. 
+% ", as we use -- interpretable." to "by using fuzzy systems to construct the agents' rules, 
+% resulting in interpretable inference systems." - Mac
 Furthermore, MAS architectures can be executed in a distributed manner
 \cite{Gao2019} \cite{Yu2015} \cite{Yu2015}, which perform faster, as the rules
-of the different agents can be evaluated in parallel. The current
-implementation of our method does not follow such architecture, but
-adapting our method for a distributed evaluation of the agents' rules
+of the different agents can be evaluated in parallel. 
+% " which perform -- parallel" to "enabling faster performance due to 
+% the rules of different agents being evaluated in parallel." - Mac
+The current implementation of our method does not follow such architecture, but
+adapting our method to a distributed evaluation of the agents' rules
 is considered as a future work, as is discussed in Section
 \ref{section:future-work}.
 % Say something about distributed MAS, they are faster? better? are we using distributed or concurrent implementation?
@@ -422,13 +440,20 @@ and is described by \ref{eq:indeterminacy}.
 
 Traditional fuzzy sets can be extended to increase their capabilities of
 representing uncertainty by introducing the concept of footprint of
-uncertainty \cite{Mendel2002} \cite{Mendel2006}. A footprint of uncertainty is achieved by extending the membership
+uncertainty \cite{Mendel2002} \cite{Mendel2006}. 
+% "capabilities -- uncertainty." to "uncertainty capabilities by introducing the concept 
+% of footprint(s) of uncertainty." If "footprint of uncertainty" is coined put first instance in quotes - Mac   
+A footprint of uncertainty is achieved by extending the membership
 function, where each of its values are now fuzzy sets themselves, instead of
 crisp values. Indeterminacy serves a different purpose than the one of footprint
-of uncertainty. Instead of extending the uncertainty provided by traditional
+of uncertainty. 
+% "where each -- uncertainty." to "where each value transforms from a crip value into a fuzzy set.
+%  Indeterminacy serves a different purpose than that of a footprint of uncertainty." - Mac
+Instead of extending the uncertainty provided by traditional
 fuzzy sets, indeterminacy helps to model doubt. For example, if traditional
 fuzzy sets can model the following sentence: ``the object is very hot'',
 indeterminacy can model ``it is unsure that the object is very hot''.
+% "it is -- very hot." to "Agent is unsure if the object is very hot"? - Mac
 
 \Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
 [width=0.6\linewidth]
@@ -450,12 +475,16 @@ inference systems. Antecedents and consequents in the system can be handled by
 intuitionistic fuzzy sets, as in a Mamdani system~\cite{Mamdani1975}; alternatively, they can be used only for
 the antecedents, with mathematical functions used for the consequents as in a
 Sugeno system~\cite{Takagi1985}.
+% replace "only" with "solely"? - Mac
 
 Different approaches have been taken in the past by different authors on how to
-build intuitionistic fuzzy systems. The authors of the present paper have worked
-in a particular way of achieving this type of systems, and the method is
-described in~\cite{Hernandez-Aguila2016} and~\cite{Hernandez-Aguila2017-2}. The
-method described in the aforementioned works is presented in this Subsection for
+build intuitionistic fuzzy systems. 
+% replace first "Different" with "Various" - Mac
+The authors of the present paper have worked in a particular way of achieving this type of systems, 
+and the method is described in~\cite{Hernandez-Aguila2016} and~\cite{Hernandez-Aguila2017-2}. 
+% "particular -- described in" to "certain way to achieve this type of system, (or "these types of systems")
+%  this method(ology?) is described in" - Mac
+The method described in the aforementioned works is presented in this Subsection for
 the reader as a reference implementation.
 
 % handle inputs
@@ -468,6 +497,7 @@ grade of membership of an element has to be expressed in terms of its grade of
 membership and its grade of non-membership. The resulting grade of membership of
 an element of $A$ is represented by $i\mu_{A}(x)$, and is defined in
 (\ref{imembership}).
+% "resuting grade -- $A$" try to reduce the use of "of" if you can - Mac
 
 % i-membership
 \begin{equation}
@@ -510,11 +540,10 @@ The aggregation of the fired consequents is performed by applying
 \end{equation}
 
 The final modification to the traditional inference process in a FIS is made to
-the center of area procedure. The equation to calculate the center of area of a
-traditional fuzzy set is (\ref{center-of-area}). In order to implement a center
-of area for an intuitionistic fuzzy set, one has to incorporate the concept of
-$i\mu(x)$, giving as a result (\ref{if-coa}), and its simplification form
-(\ref{if-coa-simplified}).
+the center of area procedure. The equation to calculate the center of area of a traditional fuzzy set is 
+(\ref{center-of-area}). In order to implement a center of area for an intuitionistic fuzzy set, 
+one has to incorporate the concept of $i\mu(x)$, giving as a result (\ref{if-coa}), 
+and its simplification form (\ref{if-coa-simplified}).
 
 % CoA
 \begin{equation}
@@ -561,10 +590,12 @@ $i\mu(x)$, giving as a result (\ref{if-coa}), and its simplification form
 The previous Subsections describe how to construct fuzzy systems,
 which can be used to model knowledge. % Are they going to be used now? If so, reformulate as an introduction - JJ
 In our method, fuzzy systems are
-used to model a trader's knowledge and how they take decisions
+used to model a trader's knowledge and how they take decisions % "make decisions" or "take trades" - Mac
 according to a market's current conditions, and MAS are used to model
 a collection of traders that are working in a market and thus creating
 price fluctuations in it.
+% "and MAS -- in it." to ". MAS are used to model the collective traders of a market and their respective
+%  influence on the price of it." - Mac
 
 A MAS is software % it's a model. It can be implemented in software - JJ
 that solves a problem using agents. Agents can
@@ -575,14 +606,15 @@ beliefs and rules. % You should have simplified this to "MAS are composed of dif
 Beliefs are used by agents to arrive to an interpretation of
 their environment, and rules are used to arrive to actions to be performed by
 the agent towards their environment. Agents in the system are constantly
-sensing their environment to determine what actions to take according to their
+sensing their environment to determine what actions to take according to their % "sensing" to "assessing"? - Mac
 beliefs and rules. MAS have the objective of solving a practical
 problem, unlike agent-based models which are more focused on simulating it. Both use the same tools, and only intent is different. 
 
 As mentioned before, agents can also be used to create agent-based models. % You should say this before the previous paragraph - JJ
 These
-models are used to represent a problem so a human being can analyze it and infer
+models are used to represent a problem so a human being can analyze it and infer 
 new knowledge from it \cite{Grothmann2002}.
+% "a human being" are aliens going to be reading this? heh. to "humans" or "people" - Mac
 % analize and infer new knowledge is very similar to better understand 
 % this please explain the difference - M  
 % Also please add references to the appropiate papers in all this section - M
@@ -622,7 +654,7 @@ related to decentralized MAS. % Again, too many words to fit the system in a cla
 The architecture followed by the MAS is based on the one proposed
 by Shoham~\cite{Shoham1993}.  %Repeated above - JJ
 Particularly, the method presented in this paper
-adopts the idea of designing agents as a set of beliefs and rules that dictate
+adopts the idea of designing agents as a set of beliefs and rules that dictate % "defining agents with a set..."? - Mac
 how agents perceive and interact with their environment. % Repeated too - JJ
 
 \section{Proposed Method}
@@ -650,7 +682,7 @@ themselves become obscure to interpretation. Furthermore, the use of
 intuitionistic fuzzy systems provides an additional layer for interpretation:
 indeterminacy.
 
-Indeterminacy surges as a consequent of the inclusion of non-membership to a
+Indeterminacy surges as a consequent of the inclusion of non-membership to a % "surges" = serves? - Mac
 fuzzy system (see Subsection~\ref{subsection:intuitionistic-fuzzy-sets}). This
 concept allows the designer of a fuzzy system to model doubt or hesitancy in a
 data set. In the proposed method, indeterminacy is obtained in a heuristical
@@ -663,10 +695,10 @@ change, as other types of membership functions could provide benefits
 over Gaussian membership functions, such as better interpretability
 for particular problems being modelled, and improvements in
 computational cost. Gaussian membership functions were chosen because
-of their capability of
-modelling knowledge in a smoother way than their alternatives, such as
-triangular or trapezoidal membership functions. Although other membership
-functions can be better suited for certain situations, the proposed method is
+of their capability of modelling knowledge in a smoother way than their alternatives, 
+such as triangular or trapezoidal membership functions.
+% "capability of -- alternatives" to "ability to model knowlege(data?) more effectively than alternatives," 
+Although other membership functions can be better suited for certain situations, the proposed method is
 currently designed for the creation of predictive models for arbitrary data sets,
 where solutions are found using a meta-heuristic.
 % Mention that they are more costly - Mario
@@ -695,6 +727,7 @@ membership function is equal to a random data point from the training data set,
 while the spread of the Guassian membership functions that represent a fuzzy
 rule will be equal to the standard deviation of the aforementioned randomly
 chosen data points.
+% this is a duplicate of the below - Mac
 
 In the proposed method, the mean of each Gaussian
 membership function is equal to a random data point from the training data set,
@@ -730,8 +763,9 @@ function.
 % {Depiction of the fuzzy system architecture.
 %   \label{figure:fuzzy-system-architecture}}
 
-Data points are used as the mean of each membership function as this
+Data points are used as the mean of each membership function as this 
 guarantees that an agent is able to react to at least those input
+% "as this -- is able" to "to guarantee an agents ability" - Mac
 values, and thus every agent will respond to at least one data point,
 which is a common practice in certain methods, such as rule-based
 classifiers \cite{zhao2009building} \cite{almutairi2018rule}. On the
@@ -739,9 +773,9 @@ other hand, using the standard deviation of those chosen data points
 as the spread of the Gaussian membership functions guarantees that
 uncertainties associated to each membership function will affect---in
 terms of fuzzy inferences---at least one of the other membership
-functions. If none of the membership functions were affecting in any
-way the rest of the membership functions, the use of a fuzzy system to
-represent the agent rules would be meaningless.
+functions. If none of the membership functions were affecting, in any
+way, the rest of the membership functions, the use of a fuzzy system to
+represent the agent rules would be meaningless. 
 
 % Say that this is common practice in other rule-based systems
 % For instance rule-based classifiers, add a reference - M
@@ -858,6 +892,7 @@ in a market. Furthermore, although traders could decide how to trade a
 market at any given point, traders sometimes restrict themselves from
 trading because they consider a market's current condition to not be
 ideal.
+% "trades from -- in a market" to "trades, from every trader, result in the current price of that market." - Mac
 %  Can you relate this with how the market works? 
 % I do not know if this is the case, but if it is, its important 
 % that you highlight this - M
@@ -904,10 +939,12 @@ parameter shown in Algorithm~\ref{algorithm:selection-of-activation-threshold}.
 
 An implication of the aforementioned process is that activation functions also
 create a restriction for the actions of the agents in a predictive model. This
-restriction works as a coordination mechanism that ensures that not all the
-agents participate at a given time during the prediction process, as certain
+restriction works as a coordination mechanism to ensure that not all the
+agents participate at a given time during the prediction process, as certain 
+% "that not -- as certain" to "agent participation in the prediction process 
+%  never reaches 100 percent at any given time, as this causes..." - Mac
 inputs will not trigger a response from any of the agents. In other words, the
-predictive model only outputs a response if and only if the agents have learned
+predictive model only outputs a response if, and only if, the agents have learned
 a pattern with a strong resemblance to certain inputs.
 
 Although the activation functions cause the agents to be specialized at
@@ -1613,7 +1650,7 @@ that the use of activation functions in the agents' fuzzy systems is
 beneficial for the creation of predictive models. Additionally, we can
 test our activation functions in other methods, such as neural
 networks. Furthermore, we could design experiments that demonstrate
-which version of our method helps real traders take better decisions.
+which version of our method helps real traders make better decisions.
 
 The proposed method was tested using a subset of all the forex markets
 currently available. More experiments could be performed where
