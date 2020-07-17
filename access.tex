@@ -128,7 +128,7 @@ help to obtain better predictive models.
 
 \maketitle
 
-\section{Introduction}
+\section{Introduction} % maybe add "and state of the art"? - JJ
 \label{section:introduction}
 
 The prices of a financial market can be forecasted using different
@@ -721,6 +721,7 @@ intuitionistic fuzzy systems provides an additional layer for interpretation:
 indeterminacy.
 
 Indeterminacy surges as a consequent of the inclusion of non-membership to a % "surges" = serves? - Mac
+% or "arises" - JJ
 % TODO 86:
 fuzzy system (see Subsection~\ref{subsection:intuitionistic-fuzzy-sets}). This
 concept allows the designer of a fuzzy system to model doubt or hesitancy in a
@@ -993,7 +994,9 @@ a pattern with a strong resemblance to certain inputs.
 
 Although the activation functions cause the agents to be specialized at
 responding to a number of inputs, an activation of multiple agents is
-possible. In this case, the outputs of the agents are averaged.% , as
+possible. % Formulate an hypothesis of why this is going to be a good thing. Since this is one of the results of the paper, you need to prove that you were right in the end - JJ
+In this case, the outputs of the agents are averaged. % But if outputs are "buy" or "sell" how are they averaged? - JJ
+% , as
 % described by \ref{equation:outputs-averaged}. %% Amaury: Maybe
 %% add an equation? The process is so simple, but it could help a bit for the
 %% reader to find key points in the paper.
@@ -1039,6 +1042,8 @@ network-based architectures.
 % of agents", but, in the end, it's just a bunch of parameters.
 \label{subsection:meta-heuristic}
 
+% I would say this is a type of iterated local search. You add a new agent (or remove) only if it improves solutions - JJ
+
 The sets of inputs and outputs that are used as the means of the
 membership functions in the agent rules are determined randomly---as
 we explained in Subsection~\ref{subsection:agent-architecture}. In
@@ -1049,10 +1054,11 @@ financial market.
 The proposed method uses a basic search algorithm that adds and/or removes
 agents from a list of agents, where these agents work together to create a
 simulation of the market. The list of agents begins at iteration 0 with a
-single, random agent, and the following iterations randomly decide to either
-add new agents or remove agents from the list. The modifications are committed
+single, random agent, and in the following iterations it is randomly decided to either
+add new agents or remove them from the list. The modifications are committed
 only if the addition or removal operation improves the performance of the
-predictive model. This algorithm is depicted in detail in
+predictive model. % Not clear when this ends. After a number of iterations? - JJ
+This algorithm is depicted in detail in
 Algorithm~\ref{algorithm:meta-heuristic}.
 
 \begin{algorithm}
@@ -1069,6 +1075,7 @@ Algorithm~\ref{algorithm:meta-heuristic}.
 \end{algorithmic}
 \end{algorithm}
 
+% hook it to the last paragraph. "This performance improvement is measured with a loss function, which is used to determine..." - JJ
 A loss function is used to determine if a predictive model is better than
 its predecessor. Although any measure of error should suffice in order to provide a
 comparison between models, measures that provide results that can be compared
@@ -1085,7 +1092,7 @@ resulting predictive model does not necessarily respond to every set of
 inputs. This behavior is accentuated when the model is tested against a data
 set that is different than the one used for the training stage of the
 method---i.e., a testing data set---, as inputs from this data set could not
-resemble at all any of those present in the training data set.
+resemble at all any of those present in the training data set. % And this is fixed how? - JJ
 
 % It is noteworthy that the meta-heuristic described in this section can be
 % changed to any other algorithm that can search for suitable combination of
@@ -1200,7 +1207,7 @@ then it is a suitable candidate. This mechanism ensures that the
 chosen agents are specialized in similar inputs that yield similar
 outputs. For our implementation, the highest scores have to be
 associated to outputs that share the same direction at least 66\% of
-the time.
+the time. % Why this arbitrary value? Is this a sensible/sensitive parameter?   - jj
 
 \begin{equation}
   \label{equation:activation-score}
@@ -1223,7 +1230,7 @@ enables us to resume the optimization of a model at any
 time. Storing the populations in a database also enables us to use
 populations of agents to be tested in other data sets, as well as to
 extract agents from certain populations to be used in other prediction
-models.
+models. % Is it open source? Can it be accessed somehow? - JJ
 
 The evaluation of the agents proved to be a computationally expensive
 task, as the system needs to evaluate hundreds of fuzzy systems per
@@ -1232,7 +1239,7 @@ a caching system where the output of an agent is stored in memory
 using a technique called \textit{memoization}
 \cite{johnson1995memoization} in a functional programming
 context. After \textit{memoizing} an agent, if that agent is required
-to be evaluated given exactly the same inputs as the ones used during
+to be evaluated with exactly the same inputs as the ones used during
 the \textit{memoization} process, then we can assume that the output
 will be the same, and thus we can simply query for the output stored
 in memory. The caching system prevents our implementation from
@@ -1324,7 +1331,8 @@ which were root-mean-squared error (RMSE) and mean-absolute error (MAE).
 For our experiments, we decided to use random samples of 63 trading
 days---which corresponds to a quarter of the trading days in a
 year---for our data sets, which can be extracted from the last 5000
-trading days (from August 28th 2004 to May 18th 2020). These data sets
+trading days (from August 28th 2004 to May 18th 2020). % why did you do this instead of the same thing as Munkhdalai - JJ
+These data sets
 are split into two parts, a training data set which corresponds to
 70\% of the data set, and a test data set which corresponds to 30\% of
 the data set. As a consequence, a validation step was not involved in
@@ -1401,26 +1409,28 @@ al., as well as the worst and best results that are not obtained by
 using the activation function proposed by Munkhdalai et al. In
 addition to the neural network-based results, results for the
 predictive models based on random forest, AdaBoost, XGBoost and
-SVM are also provided. The purpose of these Tables
+SVM are also provided. The purpose of these tables
 is to provide a comparison between the predictive models generated by
 our proposed method and the predictive models generated by other
 methods.
 
-Our results can be found at the bottom of the Tables, and the best
-result for each market is shown in bold. Two results are presented for
+Our results can be found in the last rows of the tables, and the best
+result for each market is shown in bold. % Please clarify if it's significant or not - JJ
+Two results are presented for
 our method: one where activation functions (AF) are used to restrict agents
 from certain trades, and another for agents not using activation
 functions to restrict their decisions. It is noteworthy that these
 results cannot provide conclusive proof that one method is better than
 another, as the testing datasets and methods are not the
 same. Nevertheless, the reader can notice that our method is
-competent, relative to the other methods presented in the Tables.
+competitive, relative to the other methods presented in the tables. % in the sense that... 
 
 % Explain what's AF.
 % TODO 40: COMPLETE.
 
 \begin{table*}[t]
   \caption{Comparison between our results and the ones obtained by Munkhdalai et al. using RMSE as the loss function}
+  % Indicate also when that difference is significant. It *looks* significant, but it might not really be as in some cases it's very small - JJ
   \small
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
@@ -1472,6 +1482,7 @@ competent, relative to the other methods presented in the Tables.
 
 \begin{table*}[t]
   \caption{Comparison between our results and the ones obtained by Munkhdalai et al. using MAE as the loss function}
+  % Also highlight only when differences with the second best is significant - JJ
   \small
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
@@ -1544,7 +1555,7 @@ MAS where agents have activation functions, exactly as
 described in Section \ref{section:proposed-method}.
 
 \begin{table*}[t]
-  \caption{Results of our method where multi-agent systems do not use activation functions to restrict their actions}
+  \caption{Results of our method where multi-agent systems do not use activation functions to restrict their actions} % Highlight the best results - JJ
   \small
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
@@ -1637,7 +1648,7 @@ fuzzy systems for the creation of predictive models. The generated
 predictive models are optimized by a simple but effective
 meta-heuristic, which is able to find satisfactory solutions in a
 relatively low number of iterations (100, in the case of the
-experiments presented in this work).
+experiments presented in this work). % however, total computational effort should be compared. Iterations, by themselves, are meaningles. Can you provide that comparison? - JJ
 
 After examining Tables \ref{table:comparison-rmse} and
 \ref{table:comparison-mae}, we can conclude that our method proves to
@@ -1649,16 +1660,20 @@ XGBoost and SVM.
 In the case of Table \ref{table:comparison-rmse}---which
 considers RMSE as the loss function---, we can see that our method
 performed the best without using activation functions in the agents'
-fuzzy systems, with the exception of GBP/USD. For EUR/USD, the method
+fuzzy systems, with the exception of GBP/USD. % Conclusions shouldn't just enunciate results (that should be done above), it should try and explain why they happen. Is there something in that specific dataset that makes it work better without AF? - JJ
+
+For EUR/USD, the method
 presented in \cite{Munkhdalai2019} performed as well as our method,
-and outperformed ours for AUD/USD. On the other hand, Table
+and outperformed ours for AUD/USD. On the other hand,
+% Again, you need to explain why or make an hypothesis of why that happens - JJ
+Table
 \ref{table:comparison-mae}---which considers MAE as the loss
 function---shows that our method performed the best for every forex
-market.
+market. % You need to say why, what is in your method that makes it better. Amount of computation? - JJ
 
-RMSE has been critized before \cite{willmott2005advantages}
-\cite{willmott2009ambiguities} as being an ambiguous measure of
-average error, where MAE is not, but it has also been reported to be
+RMSE has been critized before \cite{willmott2005advantages,willmott2009ambiguities} as being an ambiguous measure of
+average error, where MAE is not, % rephrase, not clear what you mean - JJ
+but it has also been reported to be
 more suitable than MAE when the error distribution is expected to be
 Gaussian \cite{chai2014root}, which is the case for the presented
 work. If we consider RMSE to be a more suitable metric to measure the
@@ -1670,20 +1685,20 @@ which would yield a non-Gaussian error distribution. Considering this
 restriction, it may be more prudent to consider MAE as a better metric
 to measure the performance of our method with activation functions
 against our method without activation functions, and we could conclude
-that the use of activation functions dramatically improves our
-method's performance.
+that the use of activation functinos dramatically improves our
+method's performance. % The conclusion is not the result, the conclusion is why. You formulated a hypothesis when you added the activation function. Has this hypothesis been proved? - JJ
 
 % Say this in the abstract - Mario
 % TODO 42: COMPLETE. I'm not adding it because the abstract word limit is almost reached.
 
-Finally, it must be noted that the results depicted in
-\ref{table:comparison-rmse} and \ref{table:comparison-mae} have the
+Finally, it must be noted that the results shown in
+Tables \ref{table:comparison-rmse} and \ref{table:comparison-mae} have the
 purpose of demonstrating the competitiveness of our method for the
 creation of predictive models. Concluding that our method is better
 than the others shown in those tables would be naive, as the datasets
 used in our experiments and the methods used for testing the
-performance of the models differ to those used in
-\cite{Munkhdalai2019}.
+performance of the models differ to those used by Munkhdalai in
+\cite{Munkhdalai2019}. % Describe what advantages might this method have over Munkhdalai. Explainability? - JJ
 
 \section{Future Work}
 \label{section:future-work}
