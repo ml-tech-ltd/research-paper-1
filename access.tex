@@ -1322,7 +1322,8 @@ which were root-mean-squared error (RMSE) and mean-absolute error (MAE).
 For our experiments, we decided to use random samples of 63 trading
 days---which corresponds to a quarter of the trading days in a
 year---for our data sets, which can be extracted from the last 5000
-trading days (from August 28th 2004 to May 18th 2020). These data sets
+trading days (from August 28th 2004 to May 18th 2020). % why did you do this instead of the same thing as Munkhdalai - JJ
+These data sets
 are split into two parts, a training data set which corresponds to
 70\% of the data set, and a test data set which corresponds to 30\% of
 the data set. As a consequence, a validation step was not involved in
@@ -1638,7 +1639,7 @@ fuzzy systems for the creation of predictive models. The generated
 predictive models are optimized by a simple but effective
 meta-heuristic, which is able to find satisfactory solutions in a
 relatively low number of iterations (100, in the case of the
-experiments presented in this work).
+experiments presented in this work). % however, total computational effort should be compared. Iterations, by themselves, are meaningles. Can you provide that comparison? - JJ
 
 After examining Tables \ref{table:comparison-rmse} and
 \ref{table:comparison-mae}, we can conclude that our method proves to
@@ -1650,16 +1651,20 @@ XGBoost and SVM.
 In the case of Table \ref{table:comparison-rmse}---which
 considers RMSE as the loss function---, we can see that our method
 performed the best without using activation functions in the agents'
-fuzzy systems, with the exception of GBP/USD. For EUR/USD, the method
+fuzzy systems, with the exception of GBP/USD. % Conclusions shouldn't just enunciate results (that should be done above), it should try and explain why they happen. Is there something in that specific dataset that makes it work better without AF? - JJ
+
+For EUR/USD, the method
 presented in \cite{Munkhdalai2019} performed as well as our method,
-and outperformed ours for AUD/USD. On the other hand, Table
+and outperformed ours for AUD/USD. On the other hand,
+% Again, you need to explain why or make an hypothesis of why that happens - JJ
+Table
 \ref{table:comparison-mae}---which considers MAE as the loss
 function---shows that our method performed the best for every forex
-market.
+market. % You need to say why, what is in your method that makes it better. Amount of computation? - JJ
 
-RMSE has been critized before \cite{willmott2005advantages}
-\cite{willmott2009ambiguities} as being an ambiguous measure of
-average error, where MAE is not, but it has also been reported to be
+RMSE has been critized before \cite{willmott2005advantages,willmott2009ambiguities} as being an ambiguous measure of
+average error, where MAE is not, % rephrase, not clear what you mean - JJ
+but it has also been reported to be
 more suitable than MAE when the error distribution is expected to be
 Gaussian \cite{chai2014root}, which is the case for the presented
 work. If we consider RMSE to be a more suitable metric to measure the
@@ -1671,8 +1676,8 @@ which would yield a non-Gaussian error distribution. Considering this
 restriction, it may be more prudent to consider MAE as a better metric
 to measure the performance of our method with activation functions
 against our method without activation functions, and we could conclude
-that the use of activation functions dramatically improves our
-method's performance.
+that the use of activation functinos dramatically improves our
+method's performance. % The conclusion is not the result, the conclusion is why. You formulated a hypothesis when you added the activation function. Has this hypothesis been proved? - JJ
 
 % Say this in the abstract - Mario
 % TODO 42: COMPLETE. I'm not adding it because the abstract word limit is almost reached.
