@@ -1055,7 +1055,8 @@ simulation of the market. The list of agents begins at iteration 0 with a
 single, random agent, and in the following iterations it is randomly decided to either
 add new agents or remove them from the list. The modifications are committed
 only if the addition or removal operation improves the performance of the
-predictive model. This algorithm is depicted in detail in
+predictive model. % Not clear when this ends. After a number of iterations? - JJ
+This algorithm is depicted in detail in
 Algorithm~\ref{algorithm:meta-heuristic}.
 
 \begin{algorithm}
@@ -1072,6 +1073,7 @@ Algorithm~\ref{algorithm:meta-heuristic}.
 \end{algorithmic}
 \end{algorithm}
 
+% hook it to the last paragraph. "This performance improvement is measured with a loss function, which is used to determine..." - JJ
 A loss function is used to determine if a predictive model is better than
 its predecessor. Although any measure of error should suffice in order to provide a
 comparison between models, measures that provide results that can be compared
@@ -1088,7 +1090,7 @@ resulting predictive model does not necessarily respond to every set of
 inputs. This behavior is accentuated when the model is tested against a data
 set that is different than the one used for the training stage of the
 method---i.e., a testing data set---, as inputs from this data set could not
-resemble at all any of those present in the training data set.
+resemble at all any of those present in the training data set. % And this is fixed how? - JJ
 
 % It is noteworthy that the meta-heuristic described in this section can be
 % changed to any other algorithm that can search for suitable combination of
