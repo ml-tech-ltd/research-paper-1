@@ -129,6 +129,7 @@ help to obtain better predictive models.
 \maketitle
 
 \section{Introduction} % maybe add "and state of the art"? - JJ
+% TODO 92:
 \label{section:introduction}
 
 The prices of a financial market can be forecasted using different
@@ -995,7 +996,9 @@ a pattern with a strong resemblance to certain inputs.
 Although the activation functions cause the agents to be specialized at
 responding to a number of inputs, an activation of multiple agents is
 possible. % Formulate an hypothesis of why this is going to be a good thing. Since this is one of the results of the paper, you need to prove that you were right in the end - JJ
+% TODO 93:
 In this case, the outputs of the agents are averaged. % But if outputs are "buy" or "sell" how are they averaged? - JJ
+% TODO 94:
 % , as
 % described by \ref{equation:outputs-averaged}. %% Amaury: Maybe
 %% add an equation? The process is so simple, but it could help a bit for the
@@ -1043,6 +1046,7 @@ network-based architectures.
 \label{subsection:meta-heuristic}
 
 % I would say this is a type of iterated local search. You add a new agent (or remove) only if it improves solutions - JJ
+% TODO 94:
 
 The sets of inputs and outputs that are used as the means of the
 membership functions in the agent rules are determined randomly---as
@@ -1058,6 +1062,7 @@ single, random agent, and in the following iterations it is randomly decided to 
 add new agents or remove them from the list. The modifications are committed
 only if the addition or removal operation improves the performance of the
 predictive model. % Not clear when this ends. After a number of iterations? - JJ
+% TODO 95:
 This algorithm is depicted in detail in
 Algorithm~\ref{algorithm:meta-heuristic}.
 
@@ -1076,6 +1081,7 @@ Algorithm~\ref{algorithm:meta-heuristic}.
 \end{algorithm}
 
 % hook it to the last paragraph. "This performance improvement is measured with a loss function, which is used to determine..." - JJ
+% TODO 96:
 A loss function is used to determine if a predictive model is better than
 its predecessor. Although any measure of error should suffice in order to provide a
 comparison between models, measures that provide results that can be compared
@@ -1093,6 +1099,7 @@ inputs. This behavior is accentuated when the model is tested against a data
 set that is different than the one used for the training stage of the
 method---i.e., a testing data set---, as inputs from this data set could not
 resemble at all any of those present in the training data set. % And this is fixed how? - JJ
+% TODO 97:
 
 % It is noteworthy that the meta-heuristic described in this section can be
 % changed to any other algorithm that can search for suitable combination of
@@ -1208,6 +1215,7 @@ chosen agents are specialized in similar inputs that yield similar
 outputs. For our implementation, the highest scores have to be
 associated to outputs that share the same direction at least 66\% of
 the time. % Why this arbitrary value? Is this a sensible/sensitive parameter?   - jj
+% TODO 98:
 
 \begin{equation}
   \label{equation:activation-score}
@@ -1231,6 +1239,7 @@ time. Storing the populations in a database also enables us to use
 populations of agents to be tested in other data sets, as well as to
 extract agents from certain populations to be used in other prediction
 models. % Is it open source? Can it be accessed somehow? - JJ
+% TODO 99:
 
 The evaluation of the agents proved to be a computationally expensive
 task, as the system needs to evaluate hundreds of fuzzy systems per
@@ -1332,6 +1341,7 @@ For our experiments, we decided to use random samples of 63 trading
 days---which corresponds to a quarter of the trading days in a
 year---for our data sets, which can be extracted from the last 5000
 trading days (from August 28th 2004 to May 18th 2020). % why did you do this instead of the same thing as Munkhdalai - JJ
+% TODO 100:
 These data sets
 are split into two parts, a training data set which corresponds to
 70\% of the data set, and a test data set which corresponds to 30\% of
@@ -1416,6 +1426,7 @@ methods.
 
 Our results can be found in the last rows of the tables, and the best
 result for each market is shown in bold. % Please clarify if it's significant or not - JJ
+% TODO 101:
 Two results are presented for
 our method: one where activation functions (AF) are used to restrict agents
 from certain trades, and another for agents not using activation
@@ -1423,7 +1434,8 @@ functions to restrict their decisions. It is noteworthy that these
 results cannot provide conclusive proof that one method is better than
 another, as the testing datasets and methods are not the
 same. Nevertheless, the reader can notice that our method is
-competitive, relative to the other methods presented in the tables. % in the sense that... 
+competitive, relative to the other methods presented in the tables. % in the sense that...
+% TODO 102:
 
 % Explain what's AF.
 % TODO 40: COMPLETE.
@@ -1431,6 +1443,7 @@ competitive, relative to the other methods presented in the tables. % in the sen
 \begin{table*}[t]
   \caption{Comparison between our results and the ones obtained by Munkhdalai et al. using RMSE as the loss function}
   % Indicate also when that difference is significant. It *looks* significant, but it might not really be as in some cases it's very small - JJ
+  % TODO 103:
   \small
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
@@ -1483,6 +1496,7 @@ competitive, relative to the other methods presented in the tables. % in the sen
 \begin{table*}[t]
   \caption{Comparison between our results and the ones obtained by Munkhdalai et al. using MAE as the loss function}
   % Also highlight only when differences with the second best is significant - JJ
+  % TODO 104:
   \small
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
@@ -1556,6 +1570,7 @@ described in Section \ref{section:proposed-method}.
 
 \begin{table*}[t]
   \caption{Results of our method where multi-agent systems do not use activation functions to restrict their actions} % Highlight the best results - JJ
+  % TODO 105:
   \small
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
@@ -1649,6 +1664,7 @@ predictive models are optimized by a simple but effective
 meta-heuristic, which is able to find satisfactory solutions in a
 relatively low number of iterations (100, in the case of the
 experiments presented in this work). % however, total computational effort should be compared. Iterations, by themselves, are meaningles. Can you provide that comparison? - JJ
+% TODO 106:
 
 After examining Tables \ref{table:comparison-rmse} and
 \ref{table:comparison-mae}, we can conclude that our method proves to
@@ -1661,15 +1677,18 @@ In the case of Table \ref{table:comparison-rmse}---which
 considers RMSE as the loss function---, we can see that our method
 performed the best without using activation functions in the agents'
 fuzzy systems, with the exception of GBP/USD. % Conclusions shouldn't just enunciate results (that should be done above), it should try and explain why they happen. Is there something in that specific dataset that makes it work better without AF? - JJ
+% TODO 107:
 
 For EUR/USD, the method
 presented in \cite{Munkhdalai2019} performed as well as our method,
 and outperformed ours for AUD/USD. On the other hand,
 % Again, you need to explain why or make an hypothesis of why that happens - JJ
+% TODO 108:
 Table
 \ref{table:comparison-mae}---which considers MAE as the loss
 function---shows that our method performed the best for every forex
 market. % You need to say why, what is in your method that makes it better. Amount of computation? - JJ
+% TODO 109:
 
 RMSE has been critized before \cite{willmott2005advantages,willmott2009ambiguities} as being an ambiguous measure of
 average error, where MAE is not, % rephrase, not clear what you mean - JJ
@@ -1687,6 +1706,7 @@ to measure the performance of our method with activation functions
 against our method without activation functions, and we could conclude
 that the use of activation functinos dramatically improves our
 method's performance. % The conclusion is not the result, the conclusion is why. You formulated a hypothesis when you added the activation function. Has this hypothesis been proved? - JJ
+% TODO 110:
 
 % Say this in the abstract - Mario
 % TODO 42: COMPLETE. I'm not adding it because the abstract word limit is almost reached.
@@ -1699,6 +1719,7 @@ than the others shown in those tables would be naive, as the datasets
 used in our experiments and the methods used for testing the
 performance of the models differ to those used by Munkhdalai in
 \cite{Munkhdalai2019}. % Describe what advantages might this method have over Munkhdalai. Explainability? - JJ
+% TODO 111:
 
 \section{Future Work}
 \label{section:future-work}
