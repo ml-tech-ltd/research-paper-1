@@ -1073,8 +1073,9 @@ simulation of the market. The list of agents begins at iteration 0 with a
 single, random agent, and in the following iterations it is randomly decided to either
 add new agents or remove them from the list. The modifications are committed
 only if the addition or removal operation improves the performance of the
-predictive model. % Not clear when this ends. After a number of iterations? - JJ
-% TODO 95:
+predictive model, and the algorithm finishes after a number of iterations
+has been reached. % Not clear when this ends. After a number of iterations? - JJ
+% TODO 95: COMPLETE.
 This algorithm is depicted in detail in
 Algorithm~\ref{algorithm:meta-heuristic}.
 
