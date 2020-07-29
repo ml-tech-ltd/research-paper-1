@@ -15,6 +15,9 @@
 \usepackage{array}
 \setlength\extrarowheight{3pt}
 
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+
 \providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
@@ -955,29 +958,35 @@ ideal.
 
 The restriction imposed by the activation functions ensures that every
 agent is specialized at different subsets of the training data
-set. During the creation of the agent, the agent can be tested with
+set. During the creation of the agent, the agent is tested with
 each of the input data points from the training data set to compile a
 list of activation levels---i.e., the grades of membership associated
 to each of the inputs, considering the membership functions in the
 antecedents of the agent's rules. Once the list of activation levels
-is compiled, the list can be sorted by using the sum of the activation
+is compiled, the list is sorted by using the sum of the activation
 levels. After compiling the sorted list of activation levels, the proposed
 method chooses one of them, from highest to lowest activation,
 according to a \textit{depth} parameter. This process is depicted in
 Algorithm~\ref{algorithm:selection-of-activation-threshold}.
 
 \begin{algorithm}
-\caption{Selection of activation threshold}
-    \label{algorithm:selection-of-activation-threshold}
-\begin{algorithmic}[1]
-    \Procedure{selection-of-activation-threshold}{$A, B$};
-    \State $bel_A\gets extract\_beliefs(A)$
-    \State $bel_B\gets extract\_beliefs(B)$
+  \caption{Selection of activation threshold}
+  \label{algorithm:selection-of-activation-threshold}
+  \begin{algorithmic}[1]
+    \Procedure{activation-threshold}{$A$, $I$};
+    %% \Comment{$A$ this is a comment.}
+    \State $ant_A\gets extract\_antecedents(A)$
 
-    \State \textbf{return} $agent(bel_{A1} + bel_{B2}, rul_{A1} + rul_{B2}),
-    agent(bel_{B1} + bel_{A2}, rul_{B1} + rul_{A2})$
+    \State $c\gets 0$
+    \ForEach {$inp \in \mathcal I $}
+    \State $acts \gets activations(ant_A, inp)$
+    \State $sum[c] \gets \sum_{i = 1}^{n} acts_i$
+    \State $c \gets c + 1$
+    \EndFor
+
+    \State \textbf{return} $sum(DEPTH)$
     \EndProcedure
-\end{algorithmic}
+  \end{algorithmic}
 \end{algorithm}
 
 %% Amaury: Make sure that a formal definition of activation level is present.
@@ -1077,20 +1086,33 @@ predictive model, and the algorithm finishes after a number of iterations
 has been reached. % Not clear when this ends. After a number of iterations? - JJ
 % TODO 95: COMPLETE.
 This algorithm is depicted in detail in
-Algorithm~\ref{algorithm:meta-heuristic}.
+Algorithm~\ref{algorithm:ils}.
 
 \begin{algorithm}
-\caption{Meta-heuristic used to find a solution in the proposed method}
-    \label{algorithm:meta-heuristic}
-\begin{algorithmic}[1]
-    \Procedure{selection-of-activation-threshold}{$A, B$};
-    \State $bel_A\gets extract\_beliefs(A)$
-    \State $bel_B\gets extract\_beliefs(B)$
+  \caption{Iterated local search used to find a solution in the proposed method}
+  \label{algorithm:ils}
+  \begin{algorithmic}[1]
+    \Procedure{ILS}{$S$};
+    \State $push(make\_agent(), S)$ %% \Comment{$S$ is our solution.}
 
-    \State \textbf{return} $agent(bel_{A1} + bel_{B2}, rul_{A1} + rul_{B2}),
-    agent(bel_{B1} + bel_{A2}, rul_{B1} + rul_{A2})$
+    \State $c \gets 0$
+    \While{$c < ITERATIONS$}
+
+    \If {$random () < 0.5$}
+    \State $candidate \gets append(make\_agent(), S)$
+    \Else
+    \State $candidate \gets remove\_random\_agent(S)$
+    \EndIf
+
+    \If {$eval(candidate) < eval(S)$}
+    \State $S \gets candidate$
+    \EndIf
+    
+    \EndWhile
+
+    \State \textbf{return} $S$
     \EndProcedure
-\end{algorithmic}
+  \end{algorithmic}
 \end{algorithm}
 
 % hook it to the last paragraph. "This performance improvement is measured with a loss function, which is used to determine..." - JJ
@@ -1705,6 +1727,7 @@ market. % You need to say why, what is in your method that makes it better. Amou
 
 RMSE has been critized before \cite{willmott2005advantages,willmott2009ambiguities} as being an ambiguous measure of
 average error, where MAE is not, % rephrase, not clear what you mean - JJ
+% TODO 119:
 but it has also been reported to be
 more suitable than MAE when the error distribution is expected to be
 Gaussian \cite{chai2014root}, which is the case for the presented
@@ -1792,7 +1815,7 @@ search space.
 % TODO 48: COMPLETE.
 
 % Check algorithms.
-% TODO 49:
+% TODO 49: COMPLETE.
 
 % Add using our activation functions for neural networks in future work.
 % TODO 50: COMPLETE.
