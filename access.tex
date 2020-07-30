@@ -720,8 +720,8 @@ detail. Subsection~\ref{subsection:agent-architecture} describes the structure
 followed by each of the agents that shape a predictive model, while
 Subsection~\ref{subsection:multi-agent-system} describes how the agents in the
 predictive model are coordinated and how they interact with their
-environment. Finally, Subsection~\ref{subsection:meta-heuristic} describes a
-meta-heuristic that finds a combination of agents that is suitable to be used
+environment. Finally, Subsection~\ref{subsection:ils} describes an
+iterated local search (ILS) method that finds a combination of agents that is suitable to be used
 as a predictive model for particular data sets.
 
 \subsection{Agent Architecture}
@@ -756,7 +756,7 @@ such as triangular or trapezoidal membership functions.
 %% but they are "smoother". They will produce output surfaces that don't change abruptly.
 Although other membership functions can be better suited for certain situations, the proposed method is
 currently designed for the creation of predictive models for arbitrary data sets,
-where solutions are found using a meta-heuristic.
+where solutions are found using ILS.
 % Mention that they are more costly - Mario
 % TODO 21: COMPLETE.
 % I searched for references that mentioned that Gaussians are more
@@ -879,7 +879,7 @@ of 1---, as it is the case in traditional fuzzy systems \cite{wygralak2000axioma
 The value of the greatest
 grade of membership in a membership function is determined heuristically using
 an optimization algorithm that is explained in
-Subsection~\ref{subsection:meta-heuristic}.
+Subsection~\ref{subsection:ils}.
 
 Indeterminacy is used to ``fuzzify'' activation thresholds associated to inputs
 to the agent, which determine if the agent should respond to that input or
@@ -922,8 +922,8 @@ An agent's actions can be greatly limited by its activation functions, as having
 a single input associated to a grade of membership which does not belong to the
 activation interval $\Lambda$ is sufficient for an agent to take no action. This
 behavior allows to precisely control the magnitude of specialization of each agent
-in a predictive model, as the designer of the model---such as a
-meta-heuristic---can assign activation thresholds and non-membership functions
+in a predictive model, as the designer of the model---such as an optimization algorithm---can
+assign activation thresholds and non-membership functions
 that restrict an agent to be activated to only a handful of inputs from a
 training data set. Furthermore, activation functions work as a coordination
 mechanism for the agents in a predictive model, as they prevent certain agents
@@ -1058,12 +1058,12 @@ network-based architectures.
 % A placeholder for this has already been added. I'll create the
 % figure for TODO #48.
 
-\subsection{Parameter Tuning Using a Meta-heuristic} % Parameter tunning using a MH ?? - Mario
+\subsection{Parameter Tuning Using Iterated Local Search} % Parameter tunning using a MH ?? - Mario
 %% Say something more specific
 % TODO 34: COMPLETE.
 % I was considering something like "Searching for optimal collections
 % of agents", but, in the end, it's just a bunch of parameters.
-\label{subsection:meta-heuristic}
+\label{subsection:ils}
 
 % I would say this is a type of iterated local search. You add a new agent (or remove) only if it improves solutions - JJ
 % TODO 117:
@@ -1071,7 +1071,7 @@ network-based architectures.
 The sets of inputs and outputs that are used as the means of the
 membership functions in the agent rules are determined randomly---as
 we explained in Subsection~\ref{subsection:agent-architecture}. In
-order to obtain a predictive model, a meta-heuristic is used to find
+order to obtain a predictive model, ILS is used to find
 combinations of agents that generate a suitable simulation of a
 financial market.
 
@@ -1213,8 +1213,8 @@ levels that need to be surpassed by a set of inputs in order to
 activate the agent.
 
 Indeterminacy in an agent's fuzzy system is determined randomly and
-optimal values are found with the metaheuristic described in
-Subsection \ref{subsection:meta-heuristic}. In order to obtain
+optimal values are found with the ILS method described in
+Subsection \ref{subsection:ils}. In order to obtain
 intuitionistic fuzzy sets where \ref{eq:intuitionistic-interval} holds
 true, our implementation generates membership functions where the
 greatest possible grade of membership is $M$ and non-membership
@@ -1223,7 +1223,7 @@ M$. The mean and spread of the Gaussian membership functions are
 equal to the mean and spread of the Gaussian non-membership functions
 in all cases.
 
-The agents that are randomly generated for the meta-heuristic need to
+The agents that are randomly generated for the ILS need to
 pass a test before they can be considered a candidate to be part of a
 predictive model. Considering a training data set, an agent's
 activation functions are evaluated against the inputs set obtained
@@ -1695,7 +1695,7 @@ described in Section \ref{section:proposed-method}.
 Our method creates an architecture that successfully mixes MAS and
 fuzzy systems for the creation of predictive models. The generated
 predictive models are optimized by a simple but effective
-meta-heuristic, which is able to find satisfactory solutions in a
+ILS, which is able to find satisfactory solutions in a
 relatively low number of iterations (100, in the case of the
 experiments presented in this work). % however, total computational effort should be compared. Iterations, by themselves, are meaningles. Can you provide that comparison? - JJ
 % TODO 106:
@@ -1785,8 +1785,8 @@ or even different physical machines. A distributed architecture will
 help achieve results faster, which will allow us to test different
 approaches for the creation of predictive models using our method.
 
-Finally, the meta-heuristic used for optimization in the proposed method should be
-tested in performance against other meta-heuristics, such as genetic
+Finally, the ILS method used for optimization in the proposed method should be
+tested in performance against other optimization algorithms, such as genetic
 algorithms or particle swarm optimization. Finding better optimization
 algorithms for our method can help us achieve results faster. It is
 also probable that lower errors could be achieved, as we do not know
@@ -1820,7 +1820,7 @@ search space.
 % TODO 50: COMPLETE.
 
 % Change "meta-heuristic" to "iterated local search".
-% TODO 120: 
+% TODO 120: COMPLETE.
 
 \section*{Acknowledgment}
 This paper has been supported in part by project DeepBio (TIN2017-85727-C4-2-P).
