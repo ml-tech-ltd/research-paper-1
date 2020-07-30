@@ -888,10 +888,13 @@ an optimization algorithm that is explained in
 Subsection~\ref{subsection:ils}.
 
 Indeterminacy is used to ``fuzzify'' activation thresholds associated to inputs
-to the agent, which determine if the agent should respond to that input or
-not. This way, the system uses uncertainty---coming from membership
-functions---and indeterminacy---coming from non-membership functions---to model
-the membership of an input and an activation function,
+to the agent, which determine if the agent should respond to that
+input or not. Two agents with the same fuzzy rules, membership
+functions and activation thresholds will respond differently to the
+same inputs if they have different non-membership functions. This way,
+the system uses uncertainty---coming from membership functions---and
+indeterminacy---coming from non-membership functions---to model the
+membership of an input and an activation function,
 respectively. Considering the agent system architecture proposed by
 Shoham~\cite{Shoham1993}, in the proposed method an agent's fuzzy system
 represents an agent's rules, while its activation functions represent an
@@ -922,7 +925,13 @@ system.
 {Depiction of an activation threshold $\lambda$ and a set $\Lambda$ in a membership function.
   \label{figure:activation-threshold}}
 % what does this has to do with "hesitancy" of an agent? - JJ
-% TODO 116:
+% TODO 116: COMPLETE. Nothing directly. The non-membership functions
+%% associated to an agent will affect what are the grades of membership
+%% obtained, following Eq. 5 (\ref{imembership}). For example, if an agent
+%% has a lot of hesitancy, instead of obtaining a grade of membership of 0.7,
+%% maybe we'll get a 0.5. If the activation threshold is 0.6, then the agent
+%% won't be activated. I added a short sentence to a paragraph above to further clarify
+%% the role of indeterminacy (hesitancy) in an agent. Tell me if this is enough.
 
 An agent's actions can be greatly limited by its activation functions, as having
 a single input associated to a grade of membership which does not belong to the
