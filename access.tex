@@ -12,6 +12,8 @@
 
 \usepackage{multirow}
 
+% \usepackage{hyperref}
+
 \usepackage{array}
 \setlength\extrarowheight{3pt}
 
@@ -1299,12 +1301,14 @@ our language, so we could use a software library for the creation of
 intuitionistic fuzzy systems that we implemented in the past
 \cite{Hernandez-Aguila2016} \cite{Hernandez-Aguila2017-2}. All the
 populations are compressed and stored in a PostgreSQL database, which
-enables us to resume the optimization of a model at any
-time. Storing the populations in a database also enables us to use
-populations of agents to be tested in other data sets, as well as to
-extract agents from certain populations to be used in other prediction
-models. % Is it open source? Can it be accessed somehow? - JJ
-% TODO 99:
+enables us to resume the optimization of a model at any time. Storing
+the populations in a database also enables us to use populations of
+agents to be tested in other data sets, as well as to extract agents
+from certain populations to be used in other prediction models. The
+source code of our implementation can be found in the git repositories
+at this link:
+\underline{https://bitbucket.org/overmind-group/workspace/projects/OT}.% Is it open source? Can it be accessed somehow? - JJ
+% TODO 99: COMPLETE.
 
 The evaluation of the agents proved to be a computationally expensive
 task, as the system needs to evaluate hundreds of fuzzy systems per
