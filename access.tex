@@ -1452,6 +1452,7 @@ days that were considered.
   \centering
   \begin{tabular}{cccc}
     \textbf{Market} & \textbf{\# of Inputs} & \textbf{\# of Rules} & \textbf{Inputs} \\
+    \hline
     EUR/USD & 9 & 3 & $HH_3$, $LH_3$, $CH_3$ \\
     USD/JPY & 9 & 6 & $HH_3$, $LH_3$, $CH_3$ \\
     USD/CHF & 12 & 2 & $HH_4$, $LH_4$, $CH_4$ \\
@@ -1499,7 +1500,7 @@ competitive, relative to the other methods presented in the tables. % in the sen
   \caption{Comparison between our results and the ones obtained by Munkhdalai et al. using RMSE as the loss function}
   % Indicate also when that difference is significant. It *looks* significant, but it might not really be as in some cases it's very small - JJ
   % TODO 103:
-  \small
+  \scriptsize
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
     \hline
@@ -1552,7 +1553,7 @@ competitive, relative to the other methods presented in the tables. % in the sen
   \caption{Comparison between our results and the ones obtained by Munkhdalai et al. using MAE as the loss function}
   % Also highlight only when differences with the second best is significant - JJ
   % TODO 104:
-  \small
+  \scriptsize
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
     \hline
@@ -1613,66 +1614,150 @@ competitive, relative to the other methods presented in the tables. % in the sen
 % agent's output, instead of using the activation function as a
 % threshold, as in the proposed method.
 
-Tables \ref{table:full-results-no-activations}
-and \ref{table:full-results-activations} provide results involving
-different versions of our proposed method. Table
-\ref{table:full-results-no-activations} shows results for a
-MAS where agents have no activation functions---which
-means that agents respond to any set of inputs. Table
-\ref{table:full-results-activations} shows results for a
-MAS where agents have activation functions, exactly as
-described in Section \ref{section:proposed-method}.
+Table \ref{table:full-results} provides results involving different
+versions of our proposed method. The table shows results for a MAS
+where agents have no activation functions---which means that agents
+respond to any set of inputs, and results for a MAS where agents have
+activation functions, exactly as described in Section
+\ref{section:proposed-method}. The first row of the table shows the
+sample sizes for the first version of the method, while the second row
+shows the sample sizes for the second version of the method. After
+presenting the results for each metric, $t-value$s are presented,
+along with the conclusions of the hypothesis tests for each
+market---where we are trying to prove that the version of our method
+with activation functions presents lower errors than the version
+without activation functions. Favorable $t-value$s and conclusions are
+found in bold. The parameters used for all the hypothesis tests can be
+found in Table \ref{table:parameters-tests}.
 
 \begin{table*}[t]
-  \caption{Results of our method where multi-agent systems do not use activation functions to restrict their actions} % Highlight the best results - JJ
-  % TODO 105:
-  \small
+  \caption{Results of our method with and without activation functions to restrict their actions} % Highlight the best results - JJ
+  % TODO 105: COMPLETE.
+  \scriptsize
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
     \hline
     \multicolumn{2}{c}{\textbf{Metric}} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
     \hline
-    \multirow{2}{*}{MAE} & Mean & 5.03\e{-03} & 4.90\e{-01} & 4.13\e{-03} & 7.34\e{-03} & 5.05\e{-03} & 4.83\e{-03} \\
-                      & Std dev & 2.79\e{-03} & 2.20\e{-01} & 1.94\e{-03} & 4.01\e{-03} & 2.24\e{-03} & 2.12\e{-03} \\
+                                        & $n$ & 60 & 60 & 60 & 60 & 60 & 60 \\
+                                        & $n_{AF}$ & 50 & 51 & 56 & 51 & 50 & 44 \\
     \hline
-    \multirow{2}{*}{MAPE} & Mean & 4.49\e{-03} & 2.89\e{-01} & 3.70\e{-03} & 6.53\e{-03} & 4.51\e{-03} & 4.32\e{-03} \\
-                       & Std dev & 2.47\e{-03} & 1.01\e{-01} & 1.73\e{-03} & 3.50\e{-03} & 1.99\e{-03} & 1.88\e{-03} \\
+    \multirow{3}{*}{MAE} & Mean & 5.03\e{-03} & 4.90\e{-01} & 4.13\e{-03} & 7.34\e{-03} & 5.05\e{-03} & 4.83\e{-03} \\
+                                        & Std dev & 2.79\e{-03} & 2.20\e{-01} & 1.94\e{-03} & 4.01\e{-03} & 2.24\e{-03} & 2.12\e{-03} \\
+    \multirow{3}{*}{MAE\textsubscript{AF}} & Mean & 3.27\e{-03} & 1.81\e{-01} & 1.95\e{-03} & 3.80\e{-03} & 3.32\e{-03} & 2.74\e{-03} \\
+                                        & Std dev & 3.81\e{-03} & 1.31\e{-01} & 1.53\e{-03} & 3.12\e{-03} & 1.94\e{-03} & 2.25\e{-03} \\
+    \hline
+    \hline
+                                        & $t-value$ & \textbf{-2.71555} & \textbf{-9.13914} & \textbf{-6.74278} & \textbf{-5.2259} & \textbf{-4.3400} & \textbf{-4.7952} \\
+                                        & Conclusion & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} \\
+    \hline
+    \hline
+    \multirow{3}{*}{MAPE} & Mean & 4.49\e{-03} & 2.89\e{-01} & 3.70\e{-03} & 6.53\e{-03} & 4.51\e{-03} & 4.32\e{-03} \\
+                                        & Std dev & 2.47\e{-03} & 1.01\e{-01} & 1.73\e{-03} & 3.50\e{-03} & 1.99\e{-03} & 1.88\e{-03} \\
+    \multirow{3}{*}{MAPE\textsubscript{AF}} & Mean & 6.04\e{-03} & 2.93\e{-01} & 3.92\e{-03} & 6.10\e{-03} & 4.53\e{-03} & 5.53\e{-03} \\
+                                        & Std dev & 4.38\e{-03} & 1.50\e{-01} & 2.47\e{-03} & 3.19\e{-03} & 2.07\e{-03} & 3.20\e{-03} \\
+    \hline
+    \hline
+                                        & $t-value$ & 2.2248 & 0.1618 & 0.5520 & -0.6768 & 0.0513 & 2.2406 \\
+                                        & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ \\
+    \hline
     \hline
     \multirow{2}{*}{MSE} & Mean & 4.20\e{-05} & 3.52\e{-01} & 2.76\e{-05} & 9.21\e{-05} & 3.92\e{-05} & 3.35\e{-05} \\
-                      & Std dev & 5.01\e{-05} & 3.37\e{-01} & 2.98\e{-05} & 1.36\e{-05} & 4.06\e{-03} & 3.12\e{-05} \\
+                                        & Std dev & 5.01\e{-05} & 3.37\e{-01} & 2.98\e{-05} & 1.36\e{-05} & 4.06\e{-03} & 3.12\e{-05} \\
+    \multirow{2}{*}{MSE\textsubscript{AF}} & Mean & 6.81\e{-05} & 2.62\e{-01} & 2.95\e{-05} & 6.46\e{-05} & 3.62\e{-05} & 5.25\e{-05} \\
+                      & Std dev & 9.54\e{-05} & 2.52\e{-01} & 3.55\e{-05} & 6.77\e{-05} & 3.29\e{-05} & 5.49\e{-05} \\
+    \hline
+    \hline
+                                        & $t-value$ & 1.7444 & -1.6066 & 0.3111 & \textbf{-2.8524} & -0.0057 & 2.0642 \\
+                                        & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & \textbf{Reject $H_0$} & Fail to reject $H_0$ & Fail to reject $H_0$ \\
+    \hline
     \hline
     \multirow{2}{*}{RMSE} & Mean & 5.69\e{-03} & 5.39\e{-01} & 4.69\e{-03} & 7.93\e{-03} & 5.70\e{-03} & 5.18\e{-03} \\
-                       & Std dev & 3.18\e{-03} & 2.51\e{-01} & 2.09\e{-03} & 4.83\e{-03} & 2.64\e{-03} & 2.34\e{-03} \\
+                                        & Std dev & 3.18\e{-03} & 2.51\e{-01} & 2.09\e{-03} & 4.83\e{-03} & 2.64\e{-03} & 2.34\e{-03} \\
+    \multirow{2}{*}{RMSE\textsubscript{AF}} & Mean & 7.12\e{-03} & 5.63\e{-01} & 5.11\e{-03} & 7.79\e{-03} & 5.70\e{-03} & 5.81\e{-03} \\
+                                        & Std dev & 5.15\e{-03} & 2.98\e{-01} & 3.21\e{-03} & 4.05\e{-03} & 2.36\e{-03} & 3.72\e{-03} \\
+    \hline
+    \hline
+                                        & $t-value$ & 1.7104 & 0.4543 & 0.8288 & -0.1661 & 0.0000 & 0.9890 \\
+                                        & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ \\
+    \hline
+    \hline
     
     \hline
   \end{tabular*}
-  \label{table:full-results-no-activations}
+  \label{table:full-results}
 \end{table*}
 
-\begin{table*}[t]
-  \caption{Results of our method where multi-agent systems use activation functions to restrict their actions}
+\begin{table}[]
+  \caption{Parameters used for the hypothesis tests}
   \small
   \centering
-  \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
+  \begin{tabular}{lc}
+    \textbf{Parameter} & \textbf{Value} \\
     \hline
-    \multicolumn{2}{c}{\textbf{Metric}} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
-    \hline
-    \multirow{2}{*}{MAE} & Mean & 3.27\e{-03} & 1.81\e{-01} & 1.95\e{-03} & 3.80\e{-03} & 3.32\e{-03} & 2.74\e{-03} \\
-                      & Std dev & 3.81\e{-03} & 1.31\e{-01} & 1.53\e{-03} & 3.12\e{-03} & 1.94\e{-03} & 2.25\e{-03} \\
-    \hline
-    \multirow{2}{*}{MAPE} & Mean & 6.04\e{-03} & 2.93\e{-01} & 3.92\e{-03} & 6.10\e{-03} & 4.53\e{-03} & 5.53\e{-03} \\
-                       & Std dev & 4.38\e{-03} & 1.50\e{-01} & 2.47\e{-03} & 3.19\e{-03} & 2.07\e{-03} & 3.20\e{-03} \\
-    \hline
-    \multirow{2}{*}{MSE} & Mean & 6.81\e{-05} & 2.62\e{-01} & 2.95\e{-05} & 6.46\e{-05} & 3.62\e{-05} & 5.25\e{-05} \\
-                      & Std dev & 9.54\e{-05} & 2.52\e{-01} & 3.55\e{-05} & 6.77\e{-05} & 3.29\e{-05} & 5.49\e{-05} \\
-    \hline
-    \multirow{2}{*}{RMSE} & Mean & 7.12\e{-03} & 5.63\e{-01} & 5.11\e{-03} & 7.79\e{-03} & 5.70\e{-03} & 5.81\e{-03} \\
-                       & Std dev & 5.15\e{-03} & 2.98\e{-01} & 3.21\e{-03} & 4.05\e{-03} & 2.36\e{-03} & 3.72\e{-03} \\
+    Confidence interval & 95\% \\
+    $H_a$ & $\mu_1 < \mu_2$ \\
+    $H_0$ & $\mu_1 \geq \mu_2$ \\
+    Critical t & -1.9958 \\
+  \end{tabular}
+  \label{table:parameters-tests}
+\end{table}
 
-    \hline
-  \end{tabular*}
-  \label{table:full-results-activations}
-\end{table*}
+% \begin{table*}[t]
+%   \caption{Results of our method where multi-agent systems use activation functions to restrict their actions}
+%   \small
+%   \centering
+%   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
+%     \hline
+%     \multicolumn{2}{c}{\textbf{Metric}} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
+%     \hline
+%     \multirow{2}{*}{MAE_{AF}} & Mean & 3.27\e{-03} & 1.81\e{-01} & 1.95\e{-03} & 3.80\e{-03} & 3.32\e{-03} & 2.74\e{-03} \\
+%                       & Std dev & 3.81\e{-03} & 1.31\e{-01} & 1.53\e{-03} & 3.12\e{-03} & 1.94\e{-03} & 2.25\e{-03} \\
+%     \hline
+%     \multirow{2}{*}{MAPE_{AF}} & Mean & 6.04\e{-03} & 2.93\e{-01} & 3.92\e{-03} & 6.10\e{-03} & 4.53\e{-03} & 5.53\e{-03} \\
+%                        & Std dev & 4.38\e{-03} & 1.50\e{-01} & 2.47\e{-03} & 3.19\e{-03} & 2.07\e{-03} & 3.20\e{-03} \\
+%     \hline
+%     \multirow{2}{*}{MSE_{AF}} & Mean & 6.81\e{-05} & 2.62\e{-01} & 2.95\e{-05} & 6.46\e{-05} & 3.62\e{-05} & 5.25\e{-05} \\
+%                       & Std dev & 9.54\e{-05} & 2.52\e{-01} & 3.55\e{-05} & 6.77\e{-05} & 3.29\e{-05} & 5.49\e{-05} \\
+%     \hline
+%     \multirow{2}{*}{RMSE_{AF}} & Mean & 7.12\e{-03} & 5.63\e{-01} & 5.11\e{-03} & 7.79\e{-03} & 5.70\e{-03} & 5.81\e{-03} \\
+%                        & Std dev & 5.15\e{-03} & 2.98\e{-01} & 3.21\e{-03} & 4.05\e{-03} & 2.36\e{-03} & 3.72\e{-03} \\
+
+%     \hline
+%   \end{tabular*}
+%   \label{table:full-results-activations}
+% \end{table*}
+
+
+
+
+
+
+
+% \begin{table*}[t]
+%   \caption{Results of our method where multi-agent systems use activation functions to restrict their actions}
+%   \small
+%   \centering
+%   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
+%     \hline
+%     \multicolumn{2}{c}{\textbf{Metric}} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
+%     \hline
+%     \multirow{2}{*}{MAE} & Mean & 3.27\e{-03} & 1.81\e{-01} & 1.95\e{-03} & 3.80\e{-03} & 3.32\e{-03} & 2.74\e{-03} \\
+%                       & Std dev & 3.81\e{-03} & 1.31\e{-01} & 1.53\e{-03} & 3.12\e{-03} & 1.94\e{-03} & 2.25\e{-03} \\
+%     \hline
+%     \multirow{2}{*}{MAPE} & Mean & 6.04\e{-03} & 2.93\e{-01} & 3.92\e{-03} & 6.10\e{-03} & 4.53\e{-03} & 5.53\e{-03} \\
+%                        & Std dev & 4.38\e{-03} & 1.50\e{-01} & 2.47\e{-03} & 3.19\e{-03} & 2.07\e{-03} & 3.20\e{-03} \\
+%     \hline
+%     \multirow{2}{*}{MSE} & Mean & 6.81\e{-05} & 2.62\e{-01} & 2.95\e{-05} & 6.46\e{-05} & 3.62\e{-05} & 5.25\e{-05} \\
+%                       & Std dev & 9.54\e{-05} & 2.52\e{-01} & 3.55\e{-05} & 6.77\e{-05} & 3.29\e{-05} & 5.49\e{-05} \\
+%     \hline
+%     \multirow{2}{*}{RMSE} & Mean & 7.12\e{-03} & 5.63\e{-01} & 5.11\e{-03} & 7.79\e{-03} & 5.70\e{-03} & 5.81\e{-03} \\
+%                        & Std dev & 5.15\e{-03} & 2.98\e{-01} & 3.21\e{-03} & 4.05\e{-03} & 2.36\e{-03} & 3.72\e{-03} \\
+
+%     \hline
+%   \end{tabular*}
+%   \label{table:full-results-activations}
+% \end{table*}
 
 % \begin{table*}[t]
 %   \caption{Multi-agent system with activation functions as weights}
