@@ -1849,18 +1849,26 @@ In the case of Table \ref{table:comparison-rmse}---which
 considers RMSE as the loss function---, we can see that our method
 performed the best without using activation functions in the agents'
 fuzzy systems, with the exception of GBP/USD. % Conclusions shouldn't just enunciate results (that should be done above), it should try and explain why they happen. Is there something in that specific dataset that makes it work better without AF? - JJ
-% TODO 107:
-
+% TODO 107: COMPLETE. I'm gluing up these three paragraphs into a single paragraph.
+%% My intention with these paragraphs is to serve as an introduction for the next paragraph, which
+%% discuss why the results with MAE are more relevant than those with RMSE. I also discuss that
+%% the experiments against Munkhdalai are not statistically conclusive. Then I added some statistical tests and I mention them.
+%% Please add another comment if you still think things must change in this section. Maybe rewrite the section? If this is
+%% the case, I'd find a general outline very useful.
 For EUR/USD, the method
 presented in \cite{Munkhdalai2019} performed as well as our method,
 and outperformed ours for AUD/USD. On the other hand,
 % Again, you need to explain why or make an hypothesis of why that happens - JJ
-% TODO 108:
+% TODO 108: COMPLETE. See TODO 107.
 Table
 \ref{table:comparison-mae}---which considers MAE as the loss
 function---shows that our method performed the best for every forex
-market. % You need to say why, what is in your method that makes it better. Amount of computation? - JJ
-% TODO 109:
+market. An explanation of why our method performs better without
+activation functions when considering RMSE as the loss function is
+that errors are not normally distributed when the agents are being
+restricted by activation functions.
+% You need to say why, what is in your method that makes it better. Amount of computation? - JJ
+% TODO 109: COMPLETE. See TODO 107.
 
 RMSE has been critized in the past, particularly in the works by
 Willmott et al. \cite{willmott2005advantages}
