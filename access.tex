@@ -1274,8 +1274,13 @@ then it is a suitable candidate. This mechanism ensures that the
 chosen agents are specialized in similar inputs that yield similar
 outputs. For our implementation, the highest scores have to be
 associated to outputs that share the same direction at least 66\% of
-the time. % Why this arbitrary value? Is this a sensible/sensitive parameter?   - jj
-% TODO 98:
+the time. This value was chosen empirically after performing some
+preliminary tests, where different values greater than 50\%---as we
+want the majority of the outputs to share the same direction---were
+used. However, it is not statistically proven that this value will
+yield better results than other values.
+% Why this arbitrary value? Is this a sensible/sensitive parameter?   - jj
+% TODO 98: COMPLETE.
 
 \begin{equation}
   \label{equation:activation-score}
