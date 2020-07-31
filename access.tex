@@ -1527,7 +1527,10 @@ same. % Nevertheless, the reader can notice that our method is
 \begin{table*}[t]
   \caption{Comparison between our results and the ones obtained by Munkhdalai et al. using RMSE as the loss function}
   % Indicate also when that difference is significant. It *looks* significant, but it might not really be as in some cases it's very small - JJ
-  % TODO 103:
+  % TODO 103: COMPLETE. Being able to say that the difference is significant would require statistical testing,
+  %% which cannot be done because Munkhdalai did not provide standard devations and the experiments are performed differently.
+  %% Do you have any other ideas on how I could do this? Maybe mention those that are obviously too different (for example, 0.1 vs 0.001).
+  %% I'm marking this as complete because I can't find a way of properly indicating when the differences are significant.
   \scriptsize
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
@@ -1580,7 +1583,7 @@ same. % Nevertheless, the reader can notice that our method is
 \begin{table*}[t]
   \caption{Comparison between our results and the ones obtained by Munkhdalai et al. using MAE as the loss function}
   % Also highlight only when differences with the second best is significant - JJ
-  % TODO 104:
+  % TODO 104: COMPLETE. See TODO 103.
   \scriptsize
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
