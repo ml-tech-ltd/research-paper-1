@@ -1409,8 +1409,15 @@ which were root-mean-squared error (RMSE) and mean-absolute error (MAE).
 For our experiments, we decided to use random samples of 63 trading
 days---which corresponds to a quarter of the trading days in a
 year---for our data sets, which can be extracted from the last 5000
-trading days (from August 28th 2004 to May 18th 2020). % why did you do this instead of the same thing as Munkhdalai - JJ
-% TODO 100:
+trading days (from August 28th 2004 to May 18th 2020). We did not use
+the exactly the same data sets as Munkhdalai et al. because they do
+not provide the starting and ending dates for their data sets, and
+because a bigger data set---around 15 years of data, instead of 1 year
+of data---provides a better challenge for avoiding accidental ``cherry
+picking'' \ref{morse2010cherry} when choosing optimal hyperparameters
+for the method. %
+% why did you do this instead of the same thing as Munkhdalai - JJ
+% TODO 100: COMPLETE.
 These data sets
 are split into two parts, a training data set which corresponds to
 70\% of the data set, and a test data set which corresponds to 30\% of
