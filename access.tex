@@ -1029,10 +1029,16 @@ a pattern with a strong resemblance to certain inputs.
 Although the activation functions cause the agents to be specialized at
 responding to a number of inputs, an activation of multiple agents is
 possible. % Formulate an hypothesis of why this is going to be a good thing. Since this is one of the results of the paper, you need to prove that you were right in the end - JJ
-% TODO 93:
+% TODO 93: COMPLETE.
 In this case, the outputs of the agents---positive or negative
 numbers, which represent buy or sell orders, respectively---are
-averaged. % But if outputs are "buy" or "sell" how are they averaged? - JJ
+averaged. We have the hypothesis that activation functions improve the
+performance of the models for the forecasting of forex markets, as
+agents only respond to those inputs where grades of membership in the
+fuzzy system's antecedents are the highest or, in other words, agents
+are restricted to respond to those inputs that are similar to those used
+to create the agents' membership functions.
+% But if outputs are "buy" or "sell" how are they averaged? - JJ
 % TODO 94: COMPLETE.
 % , as
 % described by \ref{equation:outputs-averaged}. %% Amaury: Maybe
@@ -1756,7 +1762,7 @@ to measure the performance of our method with activation functions
 against our method without activation functions, and we could conclude
 that the use of activation functions dramatically improves our
 method's performance. % The conclusion is not the result, the conclusion is why. You formulated a hypothesis when you added the activation function. Has this hypothesis been proved? - JJ
-% TODO 110:
+% TODO 110: COMPLETE.
 
 % Say this in the abstract - Mario
 % TODO 42: COMPLETE. I'm not adding it because the abstract word limit is almost reached.
@@ -1839,6 +1845,9 @@ search space.
 
 % Change "meta-heuristic" to "iterated local search".
 % TODO 120: COMPLETE.
+
+% Create hypothesis tests for with vs without activation functions.
+% TODO 121: 
 
 \section*{Acknowledgment}
 This paper has been supported in part by project DeepBio (TIN2017-85727-C4-2-P).
