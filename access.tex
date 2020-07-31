@@ -1830,13 +1830,18 @@ function---shows that our method performed the best for every forex
 market. % You need to say why, what is in your method that makes it better. Amount of computation? - JJ
 % TODO 109:
 
-RMSE has been critized before \cite{willmott2005advantages,willmott2009ambiguities} as being an ambiguous measure of
-average error, where MAE is not, % rephrase, not clear what you mean - JJ
+RMSE has been critized in the past, particularly in the works by
+Willmott et al. \cite{willmott2005advantages}
+\cite{willmott2009ambiguities}, where RMSE is described as an
+``inappropriate and misinterpreted measure of average error.'' In
+these works, the authors indicate that MAE is a superior metric than
+RMSE. %
+% rephrase, not clear what you mean - JJ
 % TODO 119:
-but it has also been reported to be
-more suitable than MAE when the error distribution is expected to be
-Gaussian \cite{chai2014root}, which is the case for the presented
-work. If we consider RMSE to be a more suitable metric to measure the
+However, RMSE has also been reported to be more suitable than MAE when the
+error distribution is expected to be Gaussian \cite{chai2014root},
+which is the case for the presented work. If we consider RMSE to be a
+more suitable metric to measure the
 performance of our models, we can conclude that our method performs
 better in most of the markets without the use of activation functions
 in the agents' fuzzy systems. Nevertheless, the use of activation
@@ -1844,9 +1849,12 @@ functions restricts the predictive models to trade in some cases,
 which would yield a non-Gaussian error distribution. Considering this
 restriction, it may be more prudent to consider MAE as a better metric
 to measure the performance of our method with activation functions
-against our method without activation functions, and we could conclude
-that the use of activation functions dramatically improves our
-method's performance. % The conclusion is not the result, the conclusion is why. You formulated a hypothesis when you added the activation function. Has this hypothesis been proved? - JJ
+against our method without activation functions. After examining the
+hypothesis tests presented in Table \ref{table:full-results} we can
+conclude that the use of activation functions dramatically improves
+our method's performance, if we consider MAE. However, the use of
+activation functions detriments the performance of our method if we
+consider the other metrics. % The conclusion is not the result, the conclusion is why. You formulated a hypothesis when you added the activation function. Has this hypothesis been proved? - JJ
 % TODO 110: COMPLETE.
 
 % Say this in the abstract - Mario
