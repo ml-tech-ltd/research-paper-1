@@ -317,7 +317,7 @@ triangles in the example presented above.
 In contrast to the traditional fuzzy sets discussed in Subsection
 \ref{subsection:fuzzy-sets}, intuitionistic fuzzy sets consider a grade of
 non-membership in addition to a grade of membership associated to an element in
-the fuzzy set \cite{Atanassov1986}, as expressed by \ref{eq:ifs-definition}.
+the fuzzy set \cite{Atanassov1986}, as expressed by (\ref{eq:ifs-definition}).
 
 % intuitionistic fuzzy set
 \begin{equation}
@@ -328,7 +328,7 @@ the fuzzy set \cite{Atanassov1986}, as expressed by \ref{eq:ifs-definition}.
 For every one of the elements contained in an intuitionistic fuzzy set, 
 % You are missing a word, "item" "one"?
 % Amaury: Added "one".
-\ref{eq:intuitionistic-interval} must hold true.
+equation (\ref{eq:intuitionistic-interval}) must hold true.
 
 % intuitionistic interval
 \begin{equation}
@@ -338,7 +338,7 @@ For every one of the elements contained in an intuitionistic fuzzy set,
 
 Intuitionistic fuzzy sets are an extension to traditional fuzzy sets, as any
 traditional fuzzy set can be expressed as a particular case of an intuitionistic
-fuzzy set, as in \ref{eq:ifs-form}.
+fuzzy set, as in (\ref{eq:ifs-form}).
 
 % every ordinary fuzzy set has the form
 \begin{equation}
@@ -348,9 +348,9 @@ fuzzy set, as in \ref{eq:ifs-form}.
 
 If the sum of the membership $\mu_{A}(x)$ and non-membership $\nu_{A}(x)$ of an
 element is less than $1$, the concept of indeterminacy or hesitancy arises \cite{Atanassov1986},
-which is described by \ref{eq:indeterminacy}. Indeterminacy is used to represent
+which is described by (\ref{eq:indeterminacy}). Indeterminacy is used to represent
 doubt in the grade of membership of an element in an intuitionistic fuzzy set
-and is described by \ref{eq:indeterminacy}.
+and is described by (\ref{eq:indeterminacy}).
 
 % if
 \begin{equation}
@@ -704,7 +704,7 @@ In the case of the antecedents, the means are equal to data points
 from the training data set that represent inputs, while outputs in the
 training data set are used as the means for the membership functions
 that form the consequents. This is expressed by
-\ref{equation:membership-function-spread}, where $\bar{x}$ represents
+(\ref{equation:membership-function-spread}), where $\bar{x}$ represents
 the mean of sample inputs from the training data set, $s$ represents
 their standard deviation and $\mu(x)$ represents a Gaussian membership
 function.
@@ -744,11 +744,11 @@ represent the agent rules would be meaningless.
 The domain of each membership function is not fixed as it is
 determined by the chosen data points and their standard deviation. The
 domain of a membership function is defined by the set given
-by~\ref{equation:mf-domain}, where $\bar{x}$ represents the mean of
+by~(\ref{equation:mf-domain}), where $\bar{x}$ represents the mean of
 sample inputs from the training data set and $s$ represents their
 standard deviation. As a consequent of the previous definition, the
 domain of either the antecedents or the consequents in a fuzzy system
-is defined by the set given by~\ref{equation:ant-con-domain}, where
+is defined by the set given by~(\ref{equation:ant-con-domain}), where
 $\bar{x}_{min}$ and $\bar{x}_{max}$ represent the minimum and maximum
 means---from the set of means obtained from the training data
 set--used to define the membership functions, respectively, and
@@ -799,7 +799,7 @@ agent's beliefs.
 Inputs to an agent's fuzzy system are associated to grades of
 membership---as is usual in fuzzy inference systems---and this grade
 of membership can either belong or not to a set $\Lambda$, which is
-defined by~\ref{equation:activation-interval}, where $\mu(x)$
+defined by~(\ref{equation:activation-interval}), where $\mu(x)$
 represents the grade of membership associated to an input $x$ and
 $\lambda$ represents an activation threshold. An example of a set
 $\Lambda$ can be seen in Figure~\ref{figure:activation-threshold}. If
@@ -1137,7 +1137,7 @@ activate the agent.
 Indeterminacy in an agent's fuzzy system is determined randomly and
 optimal values are found with the ILS method described in
 Subsection \ref{subsection:ils}. In order to obtain
-intuitionistic fuzzy sets where \ref{eq:intuitionistic-interval} holds
+intuitionistic fuzzy sets where (\ref{eq:intuitionistic-interval}) holds
 true, our implementation generates membership functions where the
 greatest possible grade of membership is $M$ and non-membership
 functions where the greatest possible grade of non-membership is $1 -
@@ -1154,7 +1154,7 @@ where each activation is the equivalent of calculating the grade of
 membership associated to a set of inputs. After performing this step,
 all the activations are summed to obtain a score $S$ that represents
 the intensity to which that agent reacts to that set of inputs. This
-score is defined by \ref{equation:activation-score}, where $N$
+score is defined by (\ref{equation:activation-score}), where $N$
 represents the number of inputs, and $\mu(x_{i})$ represents each of
 the grades of membership associated to each input. The scores
 associated to each set of inputs are ordered in a descending manner,
