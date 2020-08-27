@@ -105,54 +105,26 @@ using news to draw predictions for a market, a more robust approach
 would be the use of sentiment analysis \cite{LienMinh2018}
 \cite{Cabrera2018}, which can draw conclusions about the general
 sentiment of a financial market in order to know if prices will go
-down or up. An important drawback of these methods is that we 
-% Just removed the "approach" word to not sound repetitive (was used a few
-% lines above) - M
-% Amaury: Okie dokie.
-are not obtaining explanations about why certain behaviors occurred; we
-are not generating a model about a market, we are simply distilling
-the data. Predictive models can be created using a variety of
+down or up. An inherent disadvantage of these methods is that we are not 
+obtaining explanations about why certain behaviors occurred; we
+are not generating a model that could help us do an abstract
+simulation of a market. Predictive models can be created using a variety of
 techniques, such as ARIMA \cite{Idrees2019} and hidden Markov models
 \cite{Cao2019}, or machine learning techniques, such as support-vector
-machines (SVM) \cite{Guo2018} and neural networks \cite{Chen2019a}. A
-drawback of some of these methods is that they generate \textit{black
+machines (SVM) \cite{Guo2018} and neural networks \cite{Chen2019a}. As
+we mentioned before, a drawback of some of these methods is that they generate \textit{black
 box} models, i.e. it is difficult for a user to understand how the
 model is processing its inputs. A technique that alleviates this
 problem is fuzzy logic, which can also be used to create predictive
 models \cite{Jiang2018} \cite{Sang2019} \cite{Chourmouziadis2019}.
-
-% Talk about the drawbacks of these black box approaches - M
-% Even if this is mentioned later, here is a good place - M
-% TODO 7: COMPLETE.
-
-% However, the work presented in this paper focuses on   
-% forecasting the prices of financial markets, and we selected a set of
-% machine learning techniques to create predictive models.
-% This is not good, is weak. Why ? is it just a selection? 
-% Explain why. Put here a list of why yours is a better solution:
-% 1. It can be interprteted, 2. Is knowledge-based, 3. Is a simulation and not data-based ?, etc.
-% You must first identify weak points in the methods above so we can see
-% the benfits of our approach - M
-% Amaury: I'm removing this part and justifying the method in the
-% following paragraph.
 
 The method presented in this paper uses a hybridization of fuzzy logic
 and multi-agent systems (MAS). The use of fuzzy logic enables
 the method to generate easily interpretable models to the user,
 especially if we use Mamdani fuzzy sets \cite{Mamdani1975} 
 to create the membership functions of a fuzzy system, as in the
-work of Abdulgader and Kaur \cite{Abdulgader2019}. %
-% "the method to present" should that be "model"? - Mac
-% TODO 63: COMPLETE. Yes, results (simulations) are inherently interpretable (in this case).
-% You are correct, we're talking about generated models that are interpretable.
-% restructure sentacne to "to present easily interpretable results to the user." - Mac
-% TODO 64: COMPLETE. Agreed. It sounds better.
-% In contrast the approaches mentioned earlier do not provide ..
-% TODO 8: COMPLETE. I just removed this incomplete sentence. I'm
-% already explaining the drawback of black box models in the previous paragraph.
-% I'm connecting this paragraph to the next one too.
-In particular, we
-propose the use of intuitionistic fuzzy logic (IFL)
+work of Abdulgader and Kaur \cite{Abdulgader2019}. 
+In particular, we propose the use of intuitionistic fuzzy logic (IFL)
 \cite{Atanassov1986} \cite{Atanassov2003}, as IFL adds another layer
 of interpretability for the fuzzy systems through the concept of
 indeterminacy. Although there are alternatives to IFL, such as type-2
@@ -160,30 +132,6 @@ fuzzy systems, the defuzzification of IFL systems can be faster than
 the aforementioned systems \cite{Hernandez-Aguila2016}, while also
 providing comparable interpretability.
 
-% The work presented in this paper focuses on fuzzy logic and its
-% implementation through fuzzy systems. The use of fuzzy logic enables
-% the method to present results to the user that are easily
-% interpretable, especially if we use Mamdani fuzzy sets \cite{Mamdani1975} 
-% to create the membership functions of a fuzzy system, as in the
-% work of Abdulgader and Kaur \cite{Abdulgader2019}. In particular, we
-% propose the use of IFL
-% \cite{Atanassov1986} \cite{Atanassov2003}, as IFL adds another layer
-% of interpretability for the fuzzy systems through the concept of
-% indeterminacy. Although there are alternatives to IFL, such as type-2
-% fuzzy systems, the defuzzification of IFL systems can be faster than
-% the aforementioned systems \cite{Hernandez-Aguila2016}, while also
-% providing comparable interpretability. To our knowledge, IFL has not been
-% used for representing knowledge in financial predictive models. We
-% believe that IFL could be used to model a trader's uncertainty and
-% hesitancy when performing trades, thus helping us to better understand
-% the behavior of a market.
-% The above two paragraphs are repeats. One starts "The method presented"
-% the other "The work presented" - Mac
-% TODO 112: COMPLETE. Oops. The TODO label is also repeated.
-% Say something like.. to our knowledge IFL 
-% has not been applied for representing knowledge for ... - M
-% We must do this in all applicable places. - M
-% TODO 9: COMPLETE.
 Fuzzy logic has proved to be useful in many fields, and one can find
 many works involving financial market prediction using fuzzy systems,
 such as the works by Tsai et al. \cite{Tsai2019} and Zeng et
@@ -194,9 +142,6 @@ taken; or as in the works by Yue et al. \cite{Yue2019},
 Witayakiattilerd \cite{Witayakiattilerd2019} and Mansour et
 al. \cite{Mansour2019}, where fuzzy logic is used to perform a
 portfolio selection of financial markets.
-% Maybe we can move this to SOA
-% TODO 10. COMPLETE. In IEEE Access some papers have a SOA or related work section,
-% and other papers do not.
 
 The present work uses fuzzy systems in combination with MAS
 to create a market model, where the agents in the
@@ -249,7 +194,7 @@ described in Section \ref{section:experiments}. The results of the
 experiments are presented in Section \ref{section:results}, and a
 discussion of these results can be found in Section
 \ref{section:conclusion}. As a prelude, we find that: i) our method
-describes a novel architecture that mixes MAS and fuzzy systems for
+describes a novel architecture that employs MAS and fuzzy systems for
 the creation of predictive models; ii) the activation functions found
 in the agents' fuzzy systems help to decrease the error between
 predicted and real market prices; iii) the results from the
