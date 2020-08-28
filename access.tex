@@ -1318,8 +1318,7 @@ are split into two parts, a training data set which corresponds to
 the data set. As a consequence, a validation step was not involved in
 our experiments. Regarding the performance metrics, we provide results
 using RMSE and MAE, in order to compare against the results presented
-in \cite{Munkhdalai2019}, and we also provide results using mean
-absolute percentage error (MAPE) and mean squared error (MSE). A total
+in \cite{Munkhdalai2019}. A total
 of 30 experiments were performed for each forex market, and we provide
 the means and standard deviations for each of our performance metrics
 in Section \ref{section:results}.
@@ -1550,14 +1549,13 @@ shows the sample sizes for the second version of the method. The
 method that uses activation functions shows smaller sample sizes than
 those from the other method. The reason behind this is that in some
 experiments the agents never traded during the testing phase, and
-these experiments were not considered.  After presenting the results
-for each metric, $t-value$s are presented, along with the conclusions
-of the hypothesis tests for each market---where we are trying to prove
-that the version of our method with activation functions presents
-lower errors than the version without activation functions. Favorable
-$t-value$s and conclusions are found in bold. The parameters used for
-all the hypothesis tests can be found in Table
-\ref{table:parameters-tests}.
+these experiments were not considered.  After presenting the mean and
+standard deviation for the error, $t-value$s are presented, along with
+the conclusions of the hypothesis tests for each market---where we are
+trying to prove that the version of our method with activation
+functions presents lower errors than the version without activation
+functions. The parameters used for all the hypothesis tests can be
+found in Table \ref{table:parameters-tests}.
 
 \begin{table*}[t]
   \caption{Results of our method with and without activation functions to restrict their actions} % Highlight the best results - JJ
@@ -1577,42 +1575,42 @@ all the hypothesis tests can be found in Table
                                         & Std dev & 3.81\e{-03} & 1.31\e{-01} & 1.53\e{-03} & 3.12\e{-03} & 1.94\e{-03} & 2.25\e{-03} \\
     \hline
     \hline
-                                        & $t-value$ & \textbf{-2.71555} & \textbf{-9.13914} & \textbf{-6.74278} & \textbf{-5.2259} & \textbf{-4.3400} & \textbf{-4.7952} \\
-                                        & Conclusion & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} \\
+                                        & $t-value$ & -2.71555 & -9.13914 & -6.74278 & -5.2259 & -4.3400 & -4.7952 \\
+                                        & Conclusion & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ \\
     \hline
     \hline
-    \multirow{3}{*}{MAPE} & Mean & 4.49\e{-03} & 2.89\e{-01} & 3.70\e{-03} & 6.53\e{-03} & 4.51\e{-03} & 4.32\e{-03} \\
-                                        & Std dev & 2.47\e{-03} & 1.01\e{-01} & 1.73\e{-03} & 3.50\e{-03} & 1.99\e{-03} & 1.88\e{-03} \\
-    \multirow{3}{*}{MAPE\textsubscript{AF}} & Mean & 6.04\e{-03} & 2.93\e{-01} & 3.92\e{-03} & 6.10\e{-03} & 4.53\e{-03} & 5.53\e{-03} \\
-                                        & Std dev & 4.38\e{-03} & 1.50\e{-01} & 2.47\e{-03} & 3.19\e{-03} & 2.07\e{-03} & 3.20\e{-03} \\
-    \hline
-    \hline
-                                        & $t-value$ & 2.2248 & 0.1618 & 0.5520 & -0.6768 & 0.0513 & 2.2406 \\
-                                        & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ \\
-    \hline
-    \hline
-    \multirow{2}{*}{MSE} & Mean & 4.20\e{-05} & 3.52\e{-01} & 2.76\e{-05} & 9.21\e{-05} & 3.92\e{-05} & 3.35\e{-05} \\
-                                        & Std dev & 5.01\e{-05} & 3.37\e{-01} & 2.98\e{-05} & 1.36\e{-05} & 4.06\e{-03} & 3.12\e{-05} \\
-    \multirow{2}{*}{MSE\textsubscript{AF}} & Mean & 6.81\e{-05} & 2.62\e{-01} & 2.95\e{-05} & 6.46\e{-05} & 3.62\e{-05} & 5.25\e{-05} \\
-                      & Std dev & 9.54\e{-05} & 2.52\e{-01} & 3.55\e{-05} & 6.77\e{-05} & 3.29\e{-05} & 5.49\e{-05} \\
-    \hline
-    \hline
-                                        & $t-value$ & 1.7444 & -1.6066 & 0.3111 & \textbf{-2.8524} & -0.0057 & 2.0642 \\
-                                        & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & \textbf{Reject $H_0$} & Fail to reject $H_0$ & Fail to reject $H_0$ \\
-    \hline
-    \hline
-    \multirow{2}{*}{RMSE} & Mean & 5.69\e{-03} & 5.39\e{-01} & 4.69\e{-03} & 7.93\e{-03} & 5.70\e{-03} & 5.18\e{-03} \\
-                                        & Std dev & 3.18\e{-03} & 2.51\e{-01} & 2.09\e{-03} & 4.83\e{-03} & 2.64\e{-03} & 2.34\e{-03} \\
-    \multirow{2}{*}{RMSE\textsubscript{AF}} & Mean & 7.12\e{-03} & 5.63\e{-01} & 5.11\e{-03} & 7.79\e{-03} & 5.70\e{-03} & 5.81\e{-03} \\
-                                        & Std dev & 5.15\e{-03} & 2.98\e{-01} & 3.21\e{-03} & 4.05\e{-03} & 2.36\e{-03} & 3.72\e{-03} \\
-    \hline
-    \hline
-                                        & $t-value$ & 1.7104 & 0.4543 & 0.8288 & -0.1661 & 0.0000 & 0.9890 \\
-                                        & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ \\
-    \hline
-    \hline
+    % \multirow{3}{*}{MAPE} & Mean & 4.49\e{-03} & 2.89\e{-01} & 3.70\e{-03} & 6.53\e{-03} & 4.51\e{-03} & 4.32\e{-03} \\
+    %                                     & Std dev & 2.47\e{-03} & 1.01\e{-01} & 1.73\e{-03} & 3.50\e{-03} & 1.99\e{-03} & 1.88\e{-03} \\
+    % \multirow{3}{*}{MAPE\textsubscript{AF}} & Mean & 6.04\e{-03} & 2.93\e{-01} & 3.92\e{-03} & 6.10\e{-03} & 4.53\e{-03} & 5.53\e{-03} \\
+    %                                     & Std dev & 4.38\e{-03} & 1.50\e{-01} & 2.47\e{-03} & 3.19\e{-03} & 2.07\e{-03} & 3.20\e{-03} \\
+    % \hline
+    % \hline
+    %                                     & $t-value$ & 2.2248 & 0.1618 & 0.5520 & -0.6768 & 0.0513 & 2.2406 \\
+    %                                     & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ \\
+    % \hline
+    % \hline
+    % \multirow{2}{*}{MSE} & Mean & 4.20\e{-05} & 3.52\e{-01} & 2.76\e{-05} & 9.21\e{-05} & 3.92\e{-05} & 3.35\e{-05} \\
+    %                                     & Std dev & 5.01\e{-05} & 3.37\e{-01} & 2.98\e{-05} & 1.36\e{-05} & 4.06\e{-03} & 3.12\e{-05} \\
+    % \multirow{2}{*}{MSE\textsubscript{AF}} & Mean & 6.81\e{-05} & 2.62\e{-01} & 2.95\e{-05} & 6.46\e{-05} & 3.62\e{-05} & 5.25\e{-05} \\
+    %                   & Std dev & 9.54\e{-05} & 2.52\e{-01} & 3.55\e{-05} & 6.77\e{-05} & 3.29\e{-05} & 5.49\e{-05} \\
+    % \hline
+    % \hline
+    %                                     & $t-value$ & 1.7444 & -1.6066 & 0.3111 & \textbf{-2.8524} & -0.0057 & 2.0642 \\
+    %                                     & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & \textbf{Reject $H_0$} & Fail to reject $H_0$ & Fail to reject $H_0$ \\
+    % \hline
+    % \hline
+    % \multirow{2}{*}{RMSE} & Mean & 5.69\e{-03} & 5.39\e{-01} & 4.69\e{-03} & 7.93\e{-03} & 5.70\e{-03} & 5.18\e{-03} \\
+    %                                     & Std dev & 3.18\e{-03} & 2.51\e{-01} & 2.09\e{-03} & 4.83\e{-03} & 2.64\e{-03} & 2.34\e{-03} \\
+    % \multirow{2}{*}{RMSE\textsubscript{AF}} & Mean & 7.12\e{-03} & 5.63\e{-01} & 5.11\e{-03} & 7.79\e{-03} & 5.70\e{-03} & 5.81\e{-03} \\
+    %                                     & Std dev & 5.15\e{-03} & 2.98\e{-01} & 3.21\e{-03} & 4.05\e{-03} & 2.36\e{-03} & 3.72\e{-03} \\
+    % \hline
+    % \hline
+    %                                     & $t-value$ & 1.7104 & 0.4543 & 0.8288 & -0.1661 & 0.0000 & 0.9890 \\
+    %                                     & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ \\
+    % \hline
+    % \hline
     
-    \hline
+    % \hline
   \end{tabular*}
   \label{table:full-results}
 \end{table*}
@@ -1783,12 +1781,10 @@ which would yield a non-Gaussian error distribution. Considering this
 restriction, it may be more prudent to consider MAE as a better metric
 to measure the performance of our method with activation functions
 against our method without activation functions. After examining the
-hypothesis tests %hypothesis or tests?  JJ
+hypothesis testing %hypothesis or tests?  JJ
 presented in Table \ref{table:full-results} we can
 conclude that the use of activation functions dramatically improves
-our method's performance, if we consider MAE. However, the use of
-activation functions goes in detriment of the performance of our method if we
-consider the other metrics. % Please summarize. I'm kind of lost. You seem to be drawing conclusions on how to measure performance, but there should be an objective way of doing so: ROI? You're kind of saying our method is good, but only if we measure it that way. If we do it in some other way, well, not so good. What's the deal then? Is this paper about evaluation of metrics? You need to give conclusive results in the conclusion. We think this metric is better, so our method is better and that's that. - JJ
+our method's performance. % Please summarize. I'm kind of lost. You seem to be drawing conclusions on how to measure performance, but there should be an objective way of doing so: ROI? You're kind of saying our method is good, but only if we measure it that way. If we do it in some other way, well, not so good. What's the deal then? Is this paper about evaluation of metrics? You need to give conclusive results in the conclusion. We think this metric is better, so our method is better and that's that. - JJ
 
 % Say this in the abstract - Mario
 % TODO 42: COMPLETE. I'm not adding it because the abstract word limit is almost reached.
