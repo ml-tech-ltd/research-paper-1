@@ -1202,8 +1202,8 @@ agents to be tested in other data sets, as well as to extract agents
 from certain populations to be used in other prediction models. The
 source code of our implementation can be found in the git repositories
 at this link:
-\underline{https://bitbucket.org/overmind-group/workspace/projects/OT}.% Is it open source? Can it be accessed somehow? - JJ
-% TODO 99: COMPLETE.
+\url{https://bitbucket.org/overmind-group/workspace/projects/OT}.
+% Opened an issue about the license; also, specify the concrete repository, not the general URL for all of them - JJ
 
 The evaluation of the agents proved to be a computationally expensive
 task, as the system needs to evaluate hundreds of fuzzy systems per
@@ -1343,7 +1343,7 @@ random forest, AdaBoost, XGBoost and SVM
 architectures.
 
 We optimized our MAS for 100 iterations, and we set the loss
-function to be RMSE.The agents in the MAS
+function to be RMSE. The agents in the MAS
 have to trade at least 6 out of 9 (66\%; see Section
 \ref{section:implementation}) trades in the same direction, regarding
 their activations. We obtained the parameters shown in Table
@@ -1750,11 +1750,10 @@ fuzzy systems, with the exception of GBP/USD. % Conclusions shouldn't just enunc
 %% the experiments against Munkhdalai are not statistically conclusive. Then I added some statistical tests and I mention them.
 %% Please add another comment if you still think things must change in this section. Maybe rewrite the section? If this is
 %% the case, I'd find a general outline very useful.
+% Please see the comment at the bottom - JJ
 For EUR/USD, the method
 presented in \cite{Munkhdalai2019} performed as well as our method,
 and outperformed ours for AUD/USD. On the other hand,
-% Again, you need to explain why or make an hypothesis of why that happens - JJ
-% TODO 108: COMPLETE. See TODO 107.
 Table
 \ref{table:comparison-mae}---which considers MAE as the loss
 function---shows that our method performed the best for every forex
