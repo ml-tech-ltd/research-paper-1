@@ -90,21 +90,20 @@ agents' behavior results in better predictive models.% Don't say what you use, s
 \section{Introduction} % maybe add "and state of the art"? - JJ
 % TODO 92: COMPLETE. I'm hesitant to the idea, as I couldn't find any other
 %% papers where they do this.
+% The paper needs to establish the state of the art, and this seems to be the section where you do it, including the reference to Munkhdalai; adding this to the title clarifies its role - JJ 
 \label{section:introduction}
 
+% It's probably pretty obvious why you want to forecast prices, but it would be interesting to have an idea of the economic value of the solution - JJ
 The prices of a financial market can be forecasted using different
 techniques, such as the analysis of raw price data or news involving
 the financial market of interest \cite{Liu2019}. These approaches have
-% These approaches ?<
-% Amaury: Yeah. Corrected.
 the disadvantage of generating predictions
 entirely dependant on the trader's skills and knowledge about the
-market being predicted. 
-% remove "for a market which are" - Mac
-% TODO 62: COMPLETED. Agreed, it sounds better.
+market being predicted.
 A more robust approach when handling raw price
 data is the use of technical indicators \cite{Alsubaie2019}, which
-preprocess a market's raw data to distill different aspects of it,
+preprocess % the technical indicators do not preprocess - reformulate JJ
+a market's raw data to distill different aspects of it,
 such as a market's volatility or general direction. In the case of
 using news to draw predictions for a market, a more robust approach
 would be the use of sentiment analysis \cite{LienMinh2018}
