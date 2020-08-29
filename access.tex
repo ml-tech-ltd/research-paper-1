@@ -12,10 +12,11 @@
 
 \usepackage{multirow}
 
-% \usepackage{hyperref}
+\usepackage{url}
 
 \usepackage{array}
 \setlength\extrarowheight{3pt}
+
 
 \algnewcommand\algorithmicforeach{\textbf{for each}}
 \algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
@@ -1743,13 +1744,11 @@ XGBoost and SVM. % Can this be generalized? - JJ
 In the case of Table \ref{table:comparison-rmse}---which
 considers RMSE as the loss function---, we can see that our method
 performed the best without using activation functions in the agents'
-fuzzy systems, with the exception of GBP/USD. % Conclusions shouldn't just enunciate results (that should be done above), it should try and explain why they happen. Is there something in that specific dataset that makes it work better without AF? - JJ
-% TODO 107: COMPLETE. I'm gluing up these three paragraphs into a single paragraph.
-%% My intention with these paragraphs is to serve as an introduction for the next paragraph, which
-%% discuss why the results with MAE are more relevant than those with RMSE. I also discuss that
-%% the experiments against Munkhdalai are not statistically conclusive. Then I added some statistical tests and I mention them.
-%% Please add another comment if you still think things must change in this section. Maybe rewrite the section? If this is
-%% the case, I'd find a general outline very useful.
+fuzzy systems, with the exception of GBP/USD.
+% Conclusions shouldn't just enunciate results (that should be done above), 
+% it should try and explain why they happen. Is there something in that 
+% specific dataset that makes it work better without AF? - JJ
+
 % Please see the comment at the bottom - JJ
 For EUR/USD, the method
 presented in \cite{Munkhdalai2019} performed as well as our method,
@@ -1761,7 +1760,9 @@ market. An explanation of why our method performs better without
 activation functions when considering RMSE as the loss function is
 that errors are not normally distributed when the agents are being
 restricted by activation functions.
-% You would need to generalize this, so that someone decides, on the basis of this characterization, whether your method or Munkdalai's is better - JJ
+% You would need to generalize this, so that someone decides, 
+% on the basis of this characterization, 
+% whether your method or Munkdalai's is better - JJ
 
 RMSE has been critized in the past, particularly in the works by
 Willmott et al. \cite{willmott2005advantages}
@@ -1771,8 +1772,8 @@ these works, the authors indicate that MAE is a superior metric than
 RMSE for comparing predictive models.However, RMSE has also been reported to be more suitable than MAE when the
 error distribution is expected to be Gaussian \cite{chai2014root},
 which is the case for the presented work. % You just said above it's not, at least in one case? - JJ
-If we consider RMSE to be a
-more suitable metric to measure the
+
+If we consider RMSE to be a more suitable metric to measure the
 performance of our models, we can conclude that our method performs
 better in most of the markets without the use of activation functions
 in the agents' fuzzy systems. Nevertheless, the use of activation
@@ -1782,12 +1783,18 @@ restriction, it may be more prudent to consider MAE as a better metric
 to measure the performance of our method with activation functions
 against our method without activation functions. After examining the
 hypothesis testing %hypothesis or tests?  JJ
+
 presented in Table \ref{table:full-results} we can
 conclude that the use of activation functions dramatically improves
-our method's performance. % Please summarize. I'm kind of lost. You seem to be drawing conclusions on how to measure performance, but there should be an objective way of doing so: ROI? You're kind of saying our method is good, but only if we measure it that way. If we do it in some other way, well, not so good. What's the deal then? Is this paper about evaluation of metrics? You need to give conclusive results in the conclusion. We think this metric is better, so our method is better and that's that. - JJ
+our method's performance. 
 
-% Say this in the abstract - Mario
-% TODO 42: COMPLETE. I'm not adding it because the abstract word limit is almost reached.
+% Please summarize. I'm kind of lost. You seem to be drawing 
+% conclusions on how to measure performance, but there should 
+% be an objective way of doing so: ROI? You're kind of saying our method is good,
+% but only if we measure it that way. If we do it in some other way,
+% well, not so good. What's the deal then? Is this paper about evaluation of metrics?
+% You need to give conclusive results in the conclusion. 
+% We think this metric is better, so our method is better and that's that. - JJ
 
 Finally, it must be noted that the results shown in
 Tables \ref{table:comparison-rmse} and \ref{table:comparison-mae} have the
@@ -1799,7 +1806,10 @@ performance of the models differ to those used by Munkhdalai in
 \cite{Munkhdalai2019}. However, it should be noted that our method has
 the advantage of being more interpretable than the method proposed by
 Munkhdalai.
-% This is not proved, however. You need to show the method and how to interpret it. You have evaluated your method and compared it in a number of ways, and they said that the result is not conclusive. So why did you compare it? Shouldn't you compare it in tasks that are similar? - JJ
+% This is not proved, however. You need to show the method and how to
+% interpret it. You have evaluated your method and compared it 
+% in a number of ways, and they said that the result is not conclusive.
+% So why did you compare it? Shouldn't you compare it in tasks that are similar? - JJ
 
 \section{Future Work}
 \label{section:future-work}
@@ -1837,38 +1847,6 @@ algorithms for our method can help us achieve results faster. It is
 also probable that lower errors could be achieved, as we do not know
 if our current optimization method is considering an appropriate
 search space.
-
-% We could implement a distributed algorithm
-% I must add it now because I mention it in the introduction.
-% Mention use other optimization algorithms.
-% TODO 43: COMPLETE.
-
-% Check when are abbreviations created and then use only the abbreviation (e.g. MAS)
-% TODO 44: COMPLETE.
-
-% Check passive voice.
-% TODO 45: COMPLETE. I think, at least.
-
-% Check formulas.
-% TODO 46: COMPLETE.
-
-% Check captions.
-% TODO 47: COMPLETE.
-
-% Check figures.
-% TODO 48: COMPLETE.
-
-% Check algorithms.
-% TODO 49: COMPLETE.
-
-% Add using our activation functions for neural networks in future work.
-% TODO 50: COMPLETE.
-
-% Change "meta-heuristic" to "iterated local search".
-% TODO 120: COMPLETE.
-
-% Create hypothesis tests for with vs without activation functions.
-% TODO 121: COMPLETE.
 
 \section*{Acknowledgment}
 This paper has been supported in part by project DeepBio (TIN2017-85727-C4-2-P).
