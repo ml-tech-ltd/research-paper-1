@@ -55,28 +55,31 @@
 understand a market's behavior. Distinct methods for generating these predictive
 models are needed in order to obtain diverse insights about a market. This paper
 presents a method for creating forex market predictive models using multi-agent
-systems and fuzzy systems. Agents in our method represent traders performing buy
-and sell orders in a market. We use fuzzy systems to model the rules followed by
+and fuzzy systems; agents represent traders performing buy
+and sell orders in a market, fuzzy systems are used to model the rules followed by
 traders performing trades in a live market and intuitionistic fuzzy logic to
 model their decisions' indeterminacy. The model has the objective of simulating
-the interactions that provoke changes in the price. We use activation functions
+the interactions that provoke changes in the price. % Objectives should go first. - JJ
+We use activation functions
 to restrict the agents' behavior, simulating a trader's hesitancy when
-performing trades. Activation functions use the grades of membership obtained
+performing trades. % an unknown to simulate another unknown. Challenges and objectives should go up front - JJ
+Activation functions use the grades of membership obtained
 from an agent's fuzzy system and thresholds obtained from training data sets, to
 determine if that agent is specialized enough to handle a market's current
-conditions. We have performed experiments and compared against the work by
-Munkhdalai et al. , which demonstrates how capable our method in predicting
-future market prices. Results demonstrate that our method is competitive
+conditions. % This is a  definition, and "activation" is probably not a good word to describe them. "Specialization" functions? - JJ
+We have performed experiments and compared against the work by
+Munkhdalai et al., % You have to prove that this is the state of the art. Alternatively, just say you are comparing against the state of the art - JJ
+proving how capable our method in predicting
+future market prices. % "proving how capable" is indeterminate. You need to say if it's better, or worse or in which sense it is that way - JJ
+Results demonstrate that our method is competitive % in which sense
 compared to predictive models generated using deep learning and models generated
 by random forest, AdaBoost, XGBoost, and support-vector machines. Furthermore,
-experiments, where we compare our multi-agent systems with and without
+experiments where we compare our multi-agent systems with and without
 activation functions, show that the use of activation functions to restrict the
-agents' behavior results in better predictive models. \end{abstract}
+agents' behavior results in better predictive models.% Don't say what you use, say what they are used for: identifying specialized agents yields better results - JJ
+\end{abstract}
 
 \begin{keywords}
-% TODO 6: COMPLETE. I added some of the keywords from Munkhdalai2019.
-% I'm already using kewords from
-% http://www.ieee.org/organizations/pubs/ani_prod/keywrd98.txt
   Economic forecasting, fuzzy systems, multi-agent system, activation function, forex market.
 \end{keywords}
 
