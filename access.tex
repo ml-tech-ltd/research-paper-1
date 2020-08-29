@@ -1,4 +1,4 @@
-﻿\documentclass{ieeeaccess}
+\documentclass{ieeeaccess}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithm}
@@ -24,29 +24,30 @@
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
 \begin{document}
 \history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
 \doi{10.1109/ACCESS.2017.DOI}
 
 \title{Using Fuzzy Inference Systems for the Creation of Forex Market Predictive Models}
 \author{
-    \uppercase{Amaury Hernandez-Águila\authorrefmark{1},
-    \uppercase{Mario García-Valdez\authorrefmark{1}
+    \uppercase{Amaury Hernandez-\'{A}guila\authorrefmark{1},
+    \uppercase{Mario Garc\'{i}a-Valdez\authorrefmark{1}
       and
-    Juan-Julián Merelo-Guervós\authorrefmark{2}}}}
-\address[1]{National Technological Institute of Mexico, Calzada Del Tecnológico s/n, Fraccionamiento Tomas Aquino, Tijuana, BC 22414 Mexico (e-mail: {amerhag,mario}@tectijuana.edu.mx)}
+    Juan-Julián Merelo-Guerv\'{o}s\authorrefmark{2}}}}
+\address[1]{National Technological Institute of Mexico, Calzada Del Tecnoló\'{o}ico s/n, Fraccionamiento Tomas Aquino, Tijuana, BC 22414 Mexico (e-mail: {amerhag,mario}@tectijuana.edu.mx)}
 \address[2]{University of Granada, Campus Aynadamar Daniel Saucedo Aranda s/n, Granada 18071, 80523 Spain (e-mail: jmerelo@geneura.ugr.es)}
 % Grant information.
 % TODO 1:
 \tfootnote{Space for acknowledgments.}
 
 \markboth
-{Hernández-Águila \headeretal: Preparation of Papers for IEEE TRANSACTIONS and JOURNALS}
-{Hernández-Águila \headeretal: Preparation of Papers for IEEE TRANSACTIONS and JOURNALS}
+{Hernandez-\'{A}guila \headeretal: Preparation of Papers for IEEE TRANSACTIONS and JOURNALS}
+{Hernandez-\'{A}guila \headeretal: Preparation of Papers for IEEE TRANSACTIONS and JOURNALS}
 % Do we need to change this?
 % TODO 2: 
 
-\corresp{Corresponding author: Mario García-Valdez (e-mail: mario@tectijuana.edu.mx).}
+\corresp{Corresponding author: Mario Garc\'{i}a-Valdez (e-mail: mario@tectijuana.edu.mx).}
 
 \begin{abstract}
   Financial market predictive models are tools that help us
@@ -63,7 +64,7 @@ performing trades. Activation functions use the grades of membership obtained
 from an agent's fuzzy system and thresholds obtained from training data sets, to
 determine if that agent is specialized enough to handle a market's current
 conditions. We have performed experiments and compared against the work by
-Munkhdalai et al., which demonstrates how capable our method is in predicting
+Munkhdalai et al. , which demonstrates how capable our method in predicting
 future market prices. Results demonstrate that our method is competitive
 compared to predictive models generated using deep learning and models generated
 by random forest, AdaBoost, XGBoost, and support-vector machines. Furthermore,
@@ -129,8 +130,8 @@ In particular, we propose the use of intuitionistic fuzzy logic (IFL)
 of interpretability for the fuzzy systems through the concept of
 indeterminacy. Although there are alternatives to IFL, such as type-2
 fuzzy systems, the defuzzification of IFL systems can be faster than
-the aforementioned systems \cite{Hernandez-Aguila2016}, while also
-providing comparable interpretability.
+the aforementioned systems \cite{Hernandez-Aguila2017-2}, while also
+providing comparable interpretability \cite{Hernandez-Aguila2016} \cite{castillo2019comments} .
 
 Fuzzy logic has proved to be useful in many fields, and one can find
 many works involving financial market prediction using fuzzy systems,
@@ -1201,8 +1202,8 @@ agents to be tested in other data sets, as well as to extract agents
 from certain populations to be used in other prediction models. The
 source code of our implementation can be found in the git repositories
 at this link:
-\underline{https://bitbucket.org/overmind-group/workspace/projects/OT}.% Is it open source? Can it be accessed somehow? - JJ
-% TODO 99: COMPLETE.
+\url{https://bitbucket.org/overmind-group/workspace/projects/OT}.
+% Opened an issue about the license; also, specify the concrete repository, not the general URL for all of them - JJ
 
 The evaluation of the agents proved to be a computationally expensive
 task, as the system needs to evaluate hundreds of fuzzy systems per
@@ -1318,8 +1319,7 @@ are split into two parts, a training data set which corresponds to
 the data set. As a consequence, a validation step was not involved in
 our experiments. Regarding the performance metrics, we provide results
 using RMSE and MAE, in order to compare against the results presented
-in \cite{Munkhdalai2019}, and we also provide results using mean
-absolute percentage error (MAPE) and mean squared error (MSE). A total
+in \cite{Munkhdalai2019}. A total
 of 30 experiments were performed for each forex market, and we provide
 the means and standard deviations for each of our performance metrics
 in Section \ref{section:results}.
@@ -1343,7 +1343,7 @@ random forest, AdaBoost, XGBoost and SVM
 architectures.
 
 We optimized our MAS for 100 iterations, and we set the loss
-function to be RMSE.The agents in the MAS
+function to be RMSE. The agents in the MAS
 have to trade at least 6 out of 9 (66\%; see Section
 \ref{section:implementation}) trades in the same direction, regarding
 their activations. We obtained the parameters shown in Table
@@ -1546,13 +1546,16 @@ respond to any set of inputs, and results for a MAS where agents have
 activation functions, exactly as described in Section
 \ref{section:proposed-method}. The first row of the table shows the
 sample sizes for the first version of the method, while the second row
-shows the sample sizes for the second version of the method. After
-presenting the results for each metric, $t-value$s are presented,
-along with the conclusions of the hypothesis tests for each
-market---where we are trying to prove that the version of our method
-with activation functions presents lower errors than the version
-without activation functions. Favorable $t-value$s and conclusions are
-found in bold. The parameters used for all the hypothesis tests can be
+shows the sample sizes for the second version of the method. The
+method that uses activation functions shows smaller sample sizes than
+those from the other method. The reason behind this is that in some
+experiments the agents never traded during the testing phase, and
+these experiments were not considered.  After presenting the mean and
+standard deviation for the error, $t-value$s are presented, along with
+the conclusions of the hypothesis tests for each market---where we are
+trying to prove that the version of our method with activation
+functions presents lower errors than the version without activation
+functions. The parameters used for all the hypothesis tests can be
 found in Table \ref{table:parameters-tests}.
 
 \begin{table*}[t]
@@ -1573,42 +1576,42 @@ found in Table \ref{table:parameters-tests}.
                                         & Std dev & 3.81\e{-03} & 1.31\e{-01} & 1.53\e{-03} & 3.12\e{-03} & 1.94\e{-03} & 2.25\e{-03} \\
     \hline
     \hline
-                                        & $t-value$ & \textbf{-2.71555} & \textbf{-9.13914} & \textbf{-6.74278} & \textbf{-5.2259} & \textbf{-4.3400} & \textbf{-4.7952} \\
-                                        & Conclusion & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} & \textbf{Reject $H_0$} \\
+                                        & $t-value$ & -2.71555 & -9.13914 & -6.74278 & -5.2259 & -4.3400 & -4.7952 \\
+                                        & Conclusion & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ \\
     \hline
     \hline
-    \multirow{3}{*}{MAPE} & Mean & 4.49\e{-03} & 2.89\e{-01} & 3.70\e{-03} & 6.53\e{-03} & 4.51\e{-03} & 4.32\e{-03} \\
-                                        & Std dev & 2.47\e{-03} & 1.01\e{-01} & 1.73\e{-03} & 3.50\e{-03} & 1.99\e{-03} & 1.88\e{-03} \\
-    \multirow{3}{*}{MAPE\textsubscript{AF}} & Mean & 6.04\e{-03} & 2.93\e{-01} & 3.92\e{-03} & 6.10\e{-03} & 4.53\e{-03} & 5.53\e{-03} \\
-                                        & Std dev & 4.38\e{-03} & 1.50\e{-01} & 2.47\e{-03} & 3.19\e{-03} & 2.07\e{-03} & 3.20\e{-03} \\
-    \hline
-    \hline
-                                        & $t-value$ & 2.2248 & 0.1618 & 0.5520 & -0.6768 & 0.0513 & 2.2406 \\
-                                        & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ \\
-    \hline
-    \hline
-    \multirow{2}{*}{MSE} & Mean & 4.20\e{-05} & 3.52\e{-01} & 2.76\e{-05} & 9.21\e{-05} & 3.92\e{-05} & 3.35\e{-05} \\
-                                        & Std dev & 5.01\e{-05} & 3.37\e{-01} & 2.98\e{-05} & 1.36\e{-05} & 4.06\e{-03} & 3.12\e{-05} \\
-    \multirow{2}{*}{MSE\textsubscript{AF}} & Mean & 6.81\e{-05} & 2.62\e{-01} & 2.95\e{-05} & 6.46\e{-05} & 3.62\e{-05} & 5.25\e{-05} \\
-                      & Std dev & 9.54\e{-05} & 2.52\e{-01} & 3.55\e{-05} & 6.77\e{-05} & 3.29\e{-05} & 5.49\e{-05} \\
-    \hline
-    \hline
-                                        & $t-value$ & 1.7444 & -1.6066 & 0.3111 & \textbf{-2.8524} & -0.0057 & 2.0642 \\
-                                        & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & \textbf{Reject $H_0$} & Fail to reject $H_0$ & Fail to reject $H_0$ \\
-    \hline
-    \hline
-    \multirow{2}{*}{RMSE} & Mean & 5.69\e{-03} & 5.39\e{-01} & 4.69\e{-03} & 7.93\e{-03} & 5.70\e{-03} & 5.18\e{-03} \\
-                                        & Std dev & 3.18\e{-03} & 2.51\e{-01} & 2.09\e{-03} & 4.83\e{-03} & 2.64\e{-03} & 2.34\e{-03} \\
-    \multirow{2}{*}{RMSE\textsubscript{AF}} & Mean & 7.12\e{-03} & 5.63\e{-01} & 5.11\e{-03} & 7.79\e{-03} & 5.70\e{-03} & 5.81\e{-03} \\
-                                        & Std dev & 5.15\e{-03} & 2.98\e{-01} & 3.21\e{-03} & 4.05\e{-03} & 2.36\e{-03} & 3.72\e{-03} \\
-    \hline
-    \hline
-                                        & $t-value$ & 1.7104 & 0.4543 & 0.8288 & -0.1661 & 0.0000 & 0.9890 \\
-                                        & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ \\
-    \hline
-    \hline
+    % \multirow{3}{*}{MAPE} & Mean & 4.49\e{-03} & 2.89\e{-01} & 3.70\e{-03} & 6.53\e{-03} & 4.51\e{-03} & 4.32\e{-03} \\
+    %                                     & Std dev & 2.47\e{-03} & 1.01\e{-01} & 1.73\e{-03} & 3.50\e{-03} & 1.99\e{-03} & 1.88\e{-03} \\
+    % \multirow{3}{*}{MAPE\textsubscript{AF}} & Mean & 6.04\e{-03} & 2.93\e{-01} & 3.92\e{-03} & 6.10\e{-03} & 4.53\e{-03} & 5.53\e{-03} \\
+    %                                     & Std dev & 4.38\e{-03} & 1.50\e{-01} & 2.47\e{-03} & 3.19\e{-03} & 2.07\e{-03} & 3.20\e{-03} \\
+    % \hline
+    % \hline
+    %                                     & $t-value$ & 2.2248 & 0.1618 & 0.5520 & -0.6768 & 0.0513 & 2.2406 \\
+    %                                     & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ \\
+    % \hline
+    % \hline
+    % \multirow{2}{*}{MSE} & Mean & 4.20\e{-05} & 3.52\e{-01} & 2.76\e{-05} & 9.21\e{-05} & 3.92\e{-05} & 3.35\e{-05} \\
+    %                                     & Std dev & 5.01\e{-05} & 3.37\e{-01} & 2.98\e{-05} & 1.36\e{-05} & 4.06\e{-03} & 3.12\e{-05} \\
+    % \multirow{2}{*}{MSE\textsubscript{AF}} & Mean & 6.81\e{-05} & 2.62\e{-01} & 2.95\e{-05} & 6.46\e{-05} & 3.62\e{-05} & 5.25\e{-05} \\
+    %                   & Std dev & 9.54\e{-05} & 2.52\e{-01} & 3.55\e{-05} & 6.77\e{-05} & 3.29\e{-05} & 5.49\e{-05} \\
+    % \hline
+    % \hline
+    %                                     & $t-value$ & 1.7444 & -1.6066 & 0.3111 & \textbf{-2.8524} & -0.0057 & 2.0642 \\
+    %                                     & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & \textbf{Reject $H_0$} & Fail to reject $H_0$ & Fail to reject $H_0$ \\
+    % \hline
+    % \hline
+    % \multirow{2}{*}{RMSE} & Mean & 5.69\e{-03} & 5.39\e{-01} & 4.69\e{-03} & 7.93\e{-03} & 5.70\e{-03} & 5.18\e{-03} \\
+    %                                     & Std dev & 3.18\e{-03} & 2.51\e{-01} & 2.09\e{-03} & 4.83\e{-03} & 2.64\e{-03} & 2.34\e{-03} \\
+    % \multirow{2}{*}{RMSE\textsubscript{AF}} & Mean & 7.12\e{-03} & 5.63\e{-01} & 5.11\e{-03} & 7.79\e{-03} & 5.70\e{-03} & 5.81\e{-03} \\
+    %                                     & Std dev & 5.15\e{-03} & 2.98\e{-01} & 3.21\e{-03} & 4.05\e{-03} & 2.36\e{-03} & 3.72\e{-03} \\
+    % \hline
+    % \hline
+    %                                     & $t-value$ & 1.7104 & 0.4543 & 0.8288 & -0.1661 & 0.0000 & 0.9890 \\
+    %                                     & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ \\
+    % \hline
+    % \hline
     
-    \hline
+    % \hline
   \end{tabular*}
   \label{table:full-results}
 \end{table*}
@@ -1747,11 +1750,10 @@ fuzzy systems, with the exception of GBP/USD. % Conclusions shouldn't just enunc
 %% the experiments against Munkhdalai are not statistically conclusive. Then I added some statistical tests and I mention them.
 %% Please add another comment if you still think things must change in this section. Maybe rewrite the section? If this is
 %% the case, I'd find a general outline very useful.
+% Please see the comment at the bottom - JJ
 For EUR/USD, the method
 presented in \cite{Munkhdalai2019} performed as well as our method,
 and outperformed ours for AUD/USD. On the other hand,
-% Again, you need to explain why or make an hypothesis of why that happens - JJ
-% TODO 108: COMPLETE. See TODO 107.
 Table
 \ref{table:comparison-mae}---which considers MAE as the loss
 function---shows that our method performed the best for every forex
@@ -1779,12 +1781,10 @@ which would yield a non-Gaussian error distribution. Considering this
 restriction, it may be more prudent to consider MAE as a better metric
 to measure the performance of our method with activation functions
 against our method without activation functions. After examining the
-hypothesis tests %hypothesis or tests?  JJ
+hypothesis testing %hypothesis or tests?  JJ
 presented in Table \ref{table:full-results} we can
 conclude that the use of activation functions dramatically improves
-our method's performance, if we consider MAE. However, the use of
-activation functions goes in detriment of the performance of our method if we
-consider the other metrics. % Please summarize. I'm kind of lost. You seem to be drawing conclusions on how to measure performance, but there should be an objective way of doing so: ROI? You're kind of saying our method is good, but only if we measure it that way. If we do it in some other way, well, not so good. What's the deal then? Is this paper about evaluation of metrics? You need to give conclusive results in the conclusion. We think this metric is better, so our method is better and that's that. - JJ
+our method's performance. % Please summarize. I'm kind of lost. You seem to be drawing conclusions on how to measure performance, but there should be an objective way of doing so: ROI? You're kind of saying our method is good, but only if we measure it that way. If we do it in some other way, well, not so good. What's the deal then? Is this paper about evaluation of metrics? You need to give conclusive results in the conclusion. We think this metric is better, so our method is better and that's that. - JJ
 
 % Say this in the abstract - Mario
 % TODO 42: COMPLETE. I'm not adding it because the abstract word limit is almost reached.
@@ -1793,10 +1793,10 @@ Finally, it must be noted that the results shown in
 Tables \ref{table:comparison-rmse} and \ref{table:comparison-mae} have the
 purpose of demonstrating the competitiveness of our method for the
 creation of predictive models. Concluding that our method is better
-than the others shown in those tables would be naive, as the datasets
+than the others shown in those tables would be na\"ive, as the datasets
 used in our experiments and the methods used for testing the
 performance of the models differ to those used by Munkhdalai in
-\cite{Munkhdalai2019}. However, it must be noted that our method has
+\cite{Munkhdalai2019}. However, it should be noted that our method has
 the advantage of being more interpretable than the method proposed by
 Munkhdalai.
 % This is not proved, however. You need to show the method and how to interpret it. You have evaluated your method and compared it in a number of ways, and they said that the result is not conclusive. So why did you compare it? Shouldn't you compare it in tasks that are similar? - JJ
