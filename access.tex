@@ -1350,6 +1350,9 @@ have to trade at least 6 out of 9 (66\%; see Section
 \ref{section:implementation}) trades in the same direction, regarding
 their activations. We obtained the parameters shown in Table
 \ref{agents-parameters} by trial and error. In Table
+% These are not parameters, but arguments - JJ
+% Also, you need to present this as a challenge and show how you
+% solved it - JJ
 \ref{agents-parameters}, $HH$ means ``high height'', and represents
 the price difference between the high and the greater price between
 close or open prices of a trading day; $LH$ means ``low height'', and
@@ -1487,7 +1490,9 @@ same. % Nevertheless, the reader can notice that our method is
 % threshold, as in the proposed method.
 
 Table \ref{table:full-results} provides results involving different
-versions of our proposed method. The table shows results for a MAS
+versions of our proposed method. % But that was in the previous table
+                                % also. What's the point? - JJ
+The table shows results for a MAS
 where agents have no activation functions---which means that agents
 respond to any set of inputs, and results for a MAS where agents have
 activation functions, exactly as described in Section
@@ -1506,8 +1511,7 @@ functions. The parameters used for all the hypothesis tests can be
 found in Table \ref{table:parameters-tests}.
 
 \begin{table*}[t]
-  \caption{Results of our method with and without activation functions to restrict their actions} % Highlight the best results - JJ
-  % TODO 105: COMPLETE.
+  \caption{Results of our method with and without activation functions to restrict their actions}
   \scriptsize
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
@@ -1651,6 +1655,11 @@ how the agents react to the prices. % Maybe show an example? - JJ
 
 % I agree - Mario 
 
+% You need to discuss the "agent parameters" and how much they
+% influence the result. Maybe the result is actually dependent on them
+% setting it correctly. Also, that "by hand" needs to be
+% clarified. How can some other person apply the method to their
+% agents? - JJ
 
 \section{Future Work}
 \label{section:future-work}
