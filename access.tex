@@ -1654,8 +1654,21 @@ be displayed as membership functions being activated by inputs,
 along with their consequents being alpha-cut, aggregated and
 deffuzified to a final output value. The user can easily examine the
 rules that the agents are following and thus have a clear picture of
-how the agents react to the prices. % Maybe show an example? - JJ
-% TODO:
+how the agents react to the prices. For example, consider the
+following fuzzy rules: % Maybe show an example? - JJ
+% TODO: COMPLETE.
+
+\begin{enumerate}
+	\item if RSI(x) is LOW, then BUY is HIGH
+	\item if RSI(x) is MEDIUM, then BUY is MEDIUM
+	\item if RSI(x) is HIGH, then BUY is LOW
+\end{enumerate}
+
+If an agent is performing very well during the current market
+conditions, we can then assume that there is a relationship between
+the technical indicator $RSI$ and upward directional movements. After
+examining multiple agents, we can draw more complex conclusions about
+a market.
 
 % This is not proved, however. You need to show the method and how to
 % interpret it. You have evaluated your method and compared it 
