@@ -33,11 +33,14 @@
 \title{Using Fuzzy Inference Systems for the Creation of Forex Market Predictive Models}
 \author{
     \uppercase{Amaury Hernandez-\'{A}guila\authorrefmark{1},
-    \uppercase{Mario Garc\'{i}a-Valdez\authorrefmark{1}
-      and
-    Juan-Julián Merelo-Guerv\'{o}s\authorrefmark{2}}}}
-\address[1]{National Technological Institute of Mexico, Calzada Del Tecnoló\'{o}ico s/n, Fraccionamiento Tomas Aquino, Tijuana, BC 22414 Mexico (e-mail: {amerhag,mario}@tectijuana.edu.mx)}
+    Mario Garc\'{i}a-Valdez\authorrefmark{1},
+    Juan-Julián Merelo-Guerv\'{o}s\authorrefmark{2},
+    Manuel Castañ\'{o}n\authorrefmark{3} and
+    Oscar Castillo L\'{o}pez\authorrefmark{1}}}
+
+\address[1]{National Technological Institute of Mexico, Calzada Del Tecnoló\'{o}ico s/n, Fraccionamiento Tomas Aquino, Tijuana, BC 22414 Mexico (e-mail: {amerhag,mario,ocastillo}@tectijuana.edu.mx)}
 \address[2]{University of Granada, Campus Aynadamar Daniel Saucedo Aranda s/n, Granada 18071, 80523 Spain (e-mail: jmerelo@geneura.ugr.es)}
+\address[3]{University of Baja California, s/n,  Calzada Universidad No. 14418, Tijuana, México. Building 6E, Suite C-23, Tijuana Campus.(e-mail: puga@uabc.edu.mx)}
 % Grant information.
 % TODO 1:
 \tfootnote{Space for acknowledgments.}
@@ -633,51 +636,54 @@ receive their inputs from the same source.
 \section{Proposed Method}
 \label{section:proposed-method}
 
+The Overview, Design Concepts, and Details (ODD) protocol for describing Agent-Based Models (ABMs) are now broadly accepted and used to document individual and multi-agent models \cite{Grimm2020}. In the following section, we present a detailed description of the proposed method's structure and dynamics approaching the ODD protocol.     
+
 % I think this two paragraphs should be move to the previous section - M
 % TODO 20: COMPLETE. Ahh... yes, these two paragraphs look better in the previous section. Moved.
 
-The following subsections describe the proposed method in
-detail. Subsection~\ref{subsection:agent-architecture} describes the structure
-followed by each of the agents that shape a predictive model, while
-Subsection~\ref{subsection:multi-agent-system} describes how the agents in the
-predictive model are coordinated and how they interact with their
-environment. Finally, Subsection~\ref{subsection:ils} describes an
-iterated local search (ILS) method that finds a combination of agents that is suitable to be used
-as a predictive model for particular data sets.
+%Subsection~\ref{subsection:overview} describes the structure followed by each of the agents that shape a predictive model, while Subsection~\ref{subsection:design-concepts} describes how the agents in the predictive model are coordinated and how they interact with their environment. Finally, Subsection~\ref{subsection:details} describes an iterated local search (ILS) method that finds a combination of agents that is suitable to be used as a predictive model for particular data sets.
 
-\subsection{Agent Architecture}
-\label{subsection:agent-architecture}
+\subsection{Overview}
+\label{subsection:overview}
 
-Agent rules are defined by Mamdani intuitionistic fuzzy inference systems. Fuzzy systems
-are convenient, as they can be interpreted, as opposed to, for example, neural
-networks, where the weights associated to the neurons and the connections among
-themselves become obscure to interpretation. Furthermore, the use of
-intuitionistic fuzzy systems provides an additional layer for interpretation:
-indeterminacy.
+\subsubsection{Purpose and patterns}
+\label{subsubsection:purpose-and-patterns}
+We presents a method for creating forex market predictive models using multi-agent and fuzzy systems, which have the objective of simulating the interactions that provoke changes in the price. Agents in the system represent traders performing buy and sell orders in a market, and fuzzy systems are used to model the rules followed by traders performing trades in a live market and intuitionistic fuzzy logic to model their decisions' indeterminacy.
+
+Fuzzy systems are used to model a trader's knowledge and how they take trades according to a market's current conditions, and MAS are used to model the collective traders of a market and their respective influence on the price of it.
+
+\subsubsection{Entities, state variables and scales}
+\label{subsubsection:entities-state-variables-and-scales}
+
+Multi-agent systems are used to model the collective traders of a market and their respective influence on the price of it.
+
+%\subsubsection{Process overview and scheduling}
+%\label{subsubsection:process-overview-and-scheduling}
+
+\subsection{Design concepts}
+\label{subsection:design-concepts}
+
+\subsubsection{Basic principles}
+\label{subsubsection:basic-principles}
+
+Agent rules are defined by Mamdani intuitionistic fuzzy inference systems. Fuzzy systems	are convenient, as they can be interpreted, as opposed to, for example, neural	networks, where the weights associated to the neurons and the connections among	themselves become obscure to interpretation. Furthermore, the use of	intuitionistic fuzzy systems provides an additional layer for interpretation: indeterminacy.
 
 Indeterminacy arises as a consequent of the inclusion of non-membership to a % "surges" = serves? - Mac
 % or "arises" - JJ
 % TODO 86: COMPLETE.
-fuzzy system (see Subsection~\ref{subsection:intuitionistic-fuzzy-sets}). This
-concept allows the designer of a fuzzy system to model doubt or hesitancy in a
-data set. In the proposed method, indeterminacy is obtained in a heuristical
-manner, as part of the optimization algorithm that searches for a combination of
-agents that are used to create a predictive model.
+fuzzy system (see Subsection~\ref{subsection:intuitionistic-fuzzy-sets}). This concept allows the designer of a fuzzy system to model doubt or hesitancy in a data set. In the proposed method, indeterminacy is obtained in a heuristical manner, as part of the optimization algorithm that searches for a combination of agents that are used to create a predictive model.
 
-The membership functions in the fuzzy systems are always defined as Gaussian
-functions, although in future experiments this design choice can
-change, as other types of membership functions could provide benefits
-over Gaussian membership functions, such as better interpretability
-for particular problems being modelled, and improvements in
-computational cost. Gaussian membership functions were chosen because
-of their ability to model knowledge in a smoother way than their alternatives, 
-such as triangular or trapezoidal membership functions.
+\subsubsection{Individual Decision-Making}
+\label{subsubsection:individual-decision-making}
+
+The membership functions in the fuzzy systems are always defined as Gaussian functions, although in future experiments this design choice can
+change, as other types of membership functions could provide benefits over Gaussian membership functions, such as better interpretability
+for particular problems being modelled, and improvements in computational cost. Gaussian membership functions were chosen because
+of their ability to model knowledge in a smoother way than their alternatives,  such as triangular or trapezoidal membership functions.
 % "capability of -- alternatives" to "ability to model knowlege(data?) more effectively than alternatives,"
 % TODO 87: COMPLETE. Gaussians are not necessarily more effective than other MF,
 %% but they are "smoother". They will produce output surfaces that don't change abruptly.
-Although other membership functions can be better suited for certain situations, the proposed method is
-currently designed for the creation of predictive models for arbitrary data sets,
-where solutions are found using ILS.
+Although other membership functions can be better suited for certain situations, the proposed method is currently designed for the creation of predictive models for arbitrary data sets, where solutions are found using ILS.
 % Mention that they are more costly - Mario
 % TODO 21: COMPLETE.
 % I searched for references that mentioned that Gaussians are more
@@ -707,26 +713,16 @@ where solutions are found using ILS.
 % this is a duplicate of the below - Mac
 % TODO 88: COMPLETE. The next one is the good one.
 
-In the proposed method, the mean of each Gaussian
-membership function is equal to a random data point from the training data set,
-while the spread of the Guassian membership functions that represent a fuzzy
-rule will be equal to the standard deviation of the aforementioned
-randomly chosen data points. At least two Gaussian membership
-functions are used to describe each agents' rule antecedents and
-consequents for, as obtaining the standard deviation of only one data
-point would be equal to 0, which would generate Gaussian membership
-functions with spreads equal to 0.
+In the proposed method, the mean of each Gaussian membership function is equal to a random data point from the training data set,
+while the spread of the Guassian membership functions that represent a fuzzy rule will be equal to the standard deviation of the aforementioned
+randomly chosen data points. At least two Gaussian membership functions are used to describe each agents' rule antecedents and
+consequents for, as obtaining the standard deviation of only one data point would be equal to 0, which would generate Gaussian membership functions with spreads equal to 0.
 % Why - Mario I remember that this is also a novel idea. 
 % It is ok to say that this gives better results and try to say why - M
 % TODO 23: COMPLETE.
-In the case of the antecedents, the means are equal to data points
-from the training data set that represent inputs, while outputs in the
-training data set are used as the means for the membership functions
-that form the consequents. This is expressed by
-(\ref{equation:membership-function-spread}), where $\bar{x}$ represents
-the mean of sample inputs from the training data set, $s$ represents
-their standard deviation and $\mu(x)$ represents a Gaussian membership
-function.
+In the case of the antecedents, the means are equal to data points from the training data set that represent inputs, while outputs in the
+training data set are used as the means for the membership functions that form the consequents. This is expressed by (\ref{equation:membership-function-spread}), where $\bar{x}$ represents the mean of sample inputs from the training data set, $s$ represents
+their standard deviation and $\mu(x)$ represents a Gaussian membership function.
 
 % Express standard deviation of randomly chosen data points.
 % TODO 24: COMPLETE. This will be done for TODO #46.
@@ -741,39 +737,16 @@ function.
 % {Depiction of the fuzzy system architecture.
 %   \label{figure:fuzzy-system-architecture}}
 
-Data points are used as the mean of each membership function to
-guarantee an agent's ability to react to at least those input
+Data points are used as the mean of each membership function to guarantee an agent's ability to react to at least those input
 % "as this -- is able" to "to guarantee an agents ability" - Mac
 % TODO 89: COMPLETE.
-values, and thus every agent will respond to at least one data point,
-which is a common practice in certain methods, such as rule-based
-classifiers \cite{zhao2009building} \cite{almutairi2018rule}. On the
-other hand, using the standard deviation of those chosen data points
-as the spread of the Gaussian membership functions guarantees that
-uncertainties associated to each membership function will affect---in
-terms of fuzzy inferences---at least one of the other membership
-functions. If none of the membership functions were affecting, in any
-way, the rest of the membership functions, the use of a fuzzy system to
-represent the agent rules would be meaningless. 
+values, and thus every agent will respond to at least one data point, which is a common practice in certain methods, such as rule-based classifiers \cite{zhao2009building} \cite{almutairi2018rule}. On the other hand, using the standard deviation of those chosen data points as the spread of the Gaussian membership functions guarantees that uncertainties associated to each membership function will affect---in terms of fuzzy inferences---at least one of the other membership functions. If none of the membership functions were affecting, in any way, the rest of the membership functions, the use of a fuzzy system to represent the agent rules would be meaningless. 
 
 % Say that this is common practice in other rule-based systems
 % For instance rule-based classifiers, add a reference - M
 % TODO 25: COMPLETE. 
 
-The domain of each membership function is not fixed as it is
-determined by the chosen data points and their standard deviation. The
-domain of a membership function is defined by the set given
-by~(\ref{equation:mf-domain}), where $\bar{x}$ represents the mean of
-sample inputs from the training data set and $s$ represents their
-standard deviation. As a consequent of the previous definition, the
-domain of either the antecedents or the consequents in a fuzzy system
-is defined by the set given by~(\ref{equation:ant-con-domain}), where
-$\bar{x}_{min}$ and $\bar{x}_{max}$ represent the minimum and maximum
-means---from the set of means obtained from the training data
-set--used to define the membership functions, respectively, and
-$s_{min}$ and $s_{max}$ represent the minimum and maximum standard
-deviations that are associated to $\bar{x}_{min}$ and $\bar{x}_{max}$,
-respectively. %% As can be seen in
+The domain of each membership function is not fixed as it is determined by the chosen data points and their standard deviation. The domain of a membership function is defined by the set given by~(\ref{equation:mf-domain}), where $\bar{x}$ represents the mean of sample inputs from the training data set and $s$ represents their standard deviation. As a consequent of the previous definition, the domain of either the antecedents or the consequents in a fuzzy system is defined by the set given by~(\ref{equation:ant-con-domain}), where $\bar{x}_{min}$ and $\bar{x}_{max}$ represent the minimum and maximum means---from the set of means obtained from the training data set--used to define the membership functions, respectively, and $s_{min}$ and $s_{max}$ represent the minimum and maximum standard deviations that are associated to $\bar{x}_{min}$ and $\bar{x}_{max}$, respectively. %% As can be seen in
 %% the latter, the domain of both the antecedents and consequents is
 %% determined by the minimum and the maximum values contained by the union of
 % TODO 26: COMPLETE. Not needed anymore.
@@ -792,42 +765,18 @@ respectively. %% As can be seen in
   \{\,x \mid \bar{x}_{min} - s_{min} \leq x \leq \bar{x}_{max} + s_{max} \,\}
 \end{equation}
 
-As the agents' rules are represented by intuitionistic fuzzy systems, the core of
-the membership functions is not necessarily equal to 1---or it does not exist,
-if one considers the core of a membership function to be restricted to a value
-of 1---, as it is the case in traditional fuzzy systems \cite{wygralak2000axiomatic}. % Reference - M
+As the agents' rules are represented by intuitionistic fuzzy systems, the core of the membership functions is not necessarily equal to 1---or it does not exist, if one considers the core of a membership function to be restricted to a value of 1---, as it is the case in traditional fuzzy systems \cite{wygralak2000axiomatic}. % Reference - M
 % TODO 28: COMPLETE.
-The value of the greatest
-grade of membership in a membership function is determined heuristically using
-an optimization algorithm that is explained in
-Subsection~\ref{subsection:ils}.
+The value of the greatest grade of membership in a membership function is determined heuristically using an optimization algorithm that is explained in Subsection~\ref{subsubsection:stochasticity}.
 
-Indeterminacy is used to ``fuzzify'' specialization thresholds associated to inputs
-to the agent, which determine if the agent should respond to that
-input or not. Two agents with the same fuzzy rules, membership
-functions and specialization thresholds will respond differently to the
-same inputs if they have different non-membership functions. This way,
-the system uses uncertainty---coming from membership functions---and
-indeterminacy---coming from non-membership functions---to model the
-membership of an input and an specialization function,
-respectively. Considering the agent system architecture proposed by
-Shoham~\cite{Shoham1993}, in the proposed method an agent's fuzzy system
-represents an agent's rules, while its specialization functions represent an
-agent's beliefs.
+Indeterminacy is used to ``fuzzify'' specialization thresholds associated to inputs to the agent, which determine if the agent should respond to that
+input or not. Two agents with the same fuzzy rules, membership functions and specialization thresholds will respond differently to the
+same inputs if they have different non-membership functions. This way, the system uses uncertainty---coming from membership functions---and
+indeterminacy---coming from non-membership functions---to model the membership of an input and an specialization function, respectively. Considering the agent system architecture proposed by Shoham~\cite{Shoham1993}, in the proposed method an agent's fuzzy system represents an agent's rules, while its specialization functions represent an agent's beliefs.
 
-Inputs to an agent's fuzzy system are associated to grades of
-membership---as is usual in fuzzy inference systems---and this grade
-of membership can either belong or not to a set $\Lambda$, which is
-defined by~(\ref{equation:activation-interval}), where $\mu(x)$
-represents the grade of membership associated to an input $x$ and
-$\lambda$ represents an specialization threshold. An example of a set
-$\Lambda$ can be seen in Figure~\ref{figure:activation-threshold}. If
-a grade of membership can be found in a set $\Lambda$, then the agent
-will consider that input to be used to fire a consequent in its agent
-rules. It is noteworthy that different specialization thresholds $\lambda$
-and non-membership functions can be associated to each of the
-membership functions present in the antecedents of an agent's fuzzy
-system.
+Inputs to an agent's fuzzy system are associated to grades of membership---as is usual in fuzzy inference systems---and this grade of membership can either belong or not to a set $\Lambda$, which is defined by~(\ref{equation:activation-interval}), where $\mu(x)$ represents the grade of membership associated to an input $x$ and $\lambda$ represents an specialization threshold. An example of a set $\Lambda$ can be seen in Figure~\ref{figure:activation-threshold}. If a grade of membership can be found in a set $\Lambda$, then the agent will consider that input to be used to fire a consequent in its agent
+rules. It is noteworthy that different specialization thresholds $\lambda$ and non-membership functions can be associated to each of the
+membership functions present in the antecedents of an agent's fuzzy system.
 
 \begin{equation}
   \label{equation:activation-interval}
@@ -848,36 +797,29 @@ system.
 %% won't be activated. I added a short sentence to a paragraph above to further clarify
 %% the role of indeterminacy (hesitancy) in an agent. Tell me if this is enough.
 
-An agent's actions can be greatly limited by its specialization functions, as having
-a single input associated to a grade of membership which does not belong to the
-specialization interval $\Lambda$ is sufficient for an agent to take no action. This
-behavior allows to precisely control the magnitude of specialization of each agent
-in a predictive model, as the designer of the model---such as an optimization algorithm---can
-assign specialization thresholds and non-membership functions
-that restrict an agent to be activated to only a handful of inputs from a
-training data set. Furthermore, specialization functions work as a coordination
-mechanism for the agents in a predictive model, as they prevent certain agents
-from taking action in situations where they would perform sub-optimally and
-others would perform optimally.
+An agent's actions can be greatly limited by its specialization functions, as having a single input associated to a grade of membership which does not belong to the specialization interval $\Lambda$ is sufficient for an agent to take no action. This behavior allows to precisely control the magnitude of specialization of each agent in a predictive model, as the designer of the model---such as an optimization algorithm---can assign specialization thresholds and non-membership functions that restrict an agent to be activated to only a handful of inputs from a training data set. Furthermore, specialization functions work as a coordination mechanism for the agents in a predictive model, as they prevent certain agents from taking action in situations where they would perform sub-optimally and others would perform optimally.
 
-\subsection{Multi-agent System}
-\label{subsection:mult-agent-system}
+%\paragraph{Subjects and objects of decision}
+%\paragraph{(Multiple) levels of decisions making}
+%\paragraph{Rationality / objetives}
+%\paragraph{Decision rules + adaptation}
+%\paragraph{Social norms and cultural values}
+%\paragraph{Spatial aspects}
+%\paragraph{Temporal aspects}
+%\paragraph{Uncertainty}
 
-Predictive models that follow the proposed method are formed by a set
-of one or more agents constructed using the architecture described in
-Subsection~\ref{subsection:agent-architecture}, resulting in a MAS.
+%\subsubsection{Emergence}
+%\subsubsection{Adaptation}
+%\subsubsection{Objetives}
+%\subsubsection{Learning}
 
-Agents must work together in order to simulate a financial market. One
-way of achieving this is to obtain the output of every agent in the
-predictive model and to use an aggregation process to unify them into
-one single output. Instead, the proposed method uses specialization
-functions to restrict what agent outputs are used to respond to a set
-of inputs. This is similar to what happens in a real market: the
-aggregation of all the trades, from every trader, result in the current
-price of that market. Furthermore, although traders could decide how to trade a
-market at any given point, traders sometimes restrict themselves from
-trading because they consider a market's current condition to not be
-ideal.
+\subsubsection{Prediction}
+\label{subsubsection:prediction}
+
+Predictive models that follow the proposed method are formed by a set of one or more agents constructed using the architecture described in Subsection~\ref{subsubsection:individual-decision-making}, resulting in a MAS.
+
+Agents must work together in order to simulate a financial market. One way of achieving this is to obtain the output of every agent in the predictive model and to use an aggregation process to unify them into one single output. Instead, the proposed method uses specialization functions to restrict what agent outputs are used to respond to a set of inputs. This is similar to what happens in a real market: the aggregation of all the trades, from every trader, result in the current price of that market. Furthermore, although traders could decide how to trade a
+market at any given point, traders sometimes restrict themselves from trading because they consider a market's current condition to not be ideal.
 % "trades from -- in a market" to "trades, from every trader, result in the current price of that market." - Mac
 % TODO 90: COMPLETE.
 %  Can you relate this with how the market works? 
@@ -885,18 +827,15 @@ ideal.
 % that you highlight this - M
 % TODO 29: COMPLETE.
 
-The restriction imposed by the specialization functions ensures that every
-agent is specialized at different subsets of the training data
-set. During the creation of the agent, the agent is tested with
-each of the input data points from the training data set to compile a
-list of specialization levels---i.e., the grades of membership associated
-to each of the inputs, considering the membership functions in the
-antecedents of the agent's rules. Once the list of specialization levels
-is compiled, the list is sorted by using the sum of the specialization
-levels. After compiling the sorted list of specialization levels, the proposed
-method chooses one of them, from highest to lowest specialization,
-according to a \textit{depth} parameter. This process is depicted in
-Algorithm~\ref{algorithm:selection-of-activation-threshold}.
+The restriction imposed by the specialization functions ensures that every agent is specialized at different subsets of the training data set. During the creation of the agent, the agent is tested with each of the input data points from the training data set to compile a list of specialization levels---i.e., the grades of membership associated to each of the inputs, considering the membership functions in the antecedents of the agent's rules. Once the list of specialization levels is compiled, the list is sorted by using the sum of the specialization
+levels. 
+
+%\subsubsection{Sensing}
+
+\subsubsection{Interaction}
+\label{subsubsection:interaction}
+
+After compiling the sorted list of specialization levels, the proposed method chooses one of them, from highest to lowest specialization, according to a \textit{depth} parameter. This process is depicted in Algorithm~\ref{algorithm:selection-of-activation-threshold}.
 
 \begin{algorithm}
   \caption{Selection of specialization threshold}
@@ -923,36 +862,18 @@ Algorithm~\ref{algorithm:selection-of-activation-threshold}.
 %% thresholds.
 % TODO 30: COMPLETE.
 
-The chosen specialization level serves as an specialization threshold, as any set of
-inputs that do not activate all the membership functions according to the
-specialization level will fail to activate the agent to take an action. As a
-consequent---during the training stage of the method---any agent will be
-activated to a number of inputs equal to the value of the \textit{depth}
-parameter shown in Algorithm~\ref{algorithm:selection-of-activation-threshold}.
+The chosen specialization level serves as an specialization threshold, as any set of inputs that do not activate all the membership functions according to the specialization level will fail to activate the agent to take an action. As a consequent---during the training stage of the method---any agent will be activated to a number of inputs equal to the value of the \textit{depth} parameter shown in Algorithm~\ref{algorithm:selection-of-activation-threshold}.
 
-An implication of the aforementioned process is that specialization functions also
-create a restriction for the actions of the agents in a predictive model. This
-restriction works as a coordination mechanism to ensure agent participation in
-the prediction process never reaches one hundred percent, as certain 
+An implication of the aforementioned process is that specialization functions also create a restriction for the actions of the agents in a predictive model. This restriction works as a coordination mechanism to ensure agent participation in the prediction process never reaches one hundred percent, as certain 
 % "that not -- as certain" to "agent participation in the prediction process 
 % never reaches 100 percent at any given time, as this causes..." - Mac
 % TODO 91: COMPLETE.
-inputs will not trigger a response from any of the agents. In other words, the
-predictive model only outputs a response if, and only if, the agents have learned
-a pattern with a strong resemblance to certain inputs.
+inputs will not trigger a response from any of the agents. In other words, the predictive model only outputs a response if, and only if, the agents have learned a pattern with a strong resemblance to certain inputs.
 
-Although the specialization functions cause the agents to be specialized at
-responding to a number of inputs, multiple agents could respond to the same set of inputs.
+Although the specialization functions cause the agents to be specialized at responding to a number of inputs, multiple agents could respond to the same set of inputs.
 % Formulate an hypothesis of why this is going to be a good thing. Since this is one of the results of the paper, you need to prove that you were right in the end - JJ
 % TODO 93: COMPLETE.
-In this case, the outputs of the agents---positive or negative
-numbers, which represent buy or sell orders, respectively---are
-averaged. We have the hypothesis that specialization functions improve the
-performance of the models for the forecasting of forex markets, as
-agents only respond to those inputs where grades of membership in the
-fuzzy system's antecedents are the highest or, in other words, agents
-are restricted to respond to those inputs that are similar to those used
-to create the agents' membership functions.
+In this case, the outputs of the agents---positive or negative numbers, which represent buy or sell orders, respectively---are averaged. We have the hypothesis that specialization functions improve the performance of the models for the forecasting of forex markets, as agents only respond to those inputs where grades of membership in the fuzzy system's antecedents are the highest or, in other words, agents are restricted to respond to those inputs that are similar to those used to create the agents' membership functions.
 % But if outputs are "buy" or "sell" how are they averaged? - JJ
 % TODO 94: COMPLETE.
 % , as
@@ -968,20 +889,11 @@ to create the agents' membership functions.
 %     i\mu_{A}(x)}
 % \end{equation}
 
-The process of agent specialization using specialization functions is well suited
-for the creation of predictive models where it is not desired to obtain a
-response for any arbitrary set of inputs. In the case of financial market
-forecasting, this is translated to a recommandation of not trading a
-particular market, i.e.\ an unkown pattern is arising and the trader following
-the recommendations from the predictive model should be wary.
+The process of agent specialization using specialization functions is well suited for the creation of predictive models where it is not desired to obtain a response for any arbitrary set of inputs. In the case of financial market forecasting, this is translated to a recommendation of not trading a particular market, i.e.\ an unknown pattern is arising and the trader following the recommendations from the predictive model should be wary.
 
-However, it must be noted that the proposed method can be extended to the
-creation of predictive models that always yield a response. This can be
-achieved by selecting the agent that is closer to being activated.
+However, it must be noted that the proposed method can be extended to the creation of predictive models that always yield a response. This can be achieved by selecting the agent that is closer to being activated.
 
-Finally, we believe that the specialization functions found with the
-proposed method could be used for other methods, particularly neural
-network-based architectures.
+Finally, we believe that the specialization functions found with the proposed method could be used for other methods, particularly neural network-based architectures.
 
 % Also we could use other models, like neural networks ?? Mario
 % TODO 32: COMPLETE. Maybe we could use neural networks, but I only have a vague
@@ -994,37 +906,26 @@ network-based architectures.
 % A placeholder for this has already been added. I'll create the
 % figure for TODO #48.
 
-\subsection{Parameter Tuning Using Iterated Local Search} % Parameter tunning using a MH ?? - Mario
+\subsubsection{Stochasticity}
+\label{subsubsection:stochasticity}
+
+%\subsection{Parameter Tuning Using Iterated Local Search} % Parameter tunning using a MH ?? - Mario
 %% Say something more specific
 % TODO 34: COMPLETE.
 % I was considering something like "Searching for optimal collections
 % of agents", but, in the end, it's just a bunch of parameters.
-\label{subsection:ils}
+%\label{subsection:ils}
 
 % I would say this is a type of iterated local search. You add a new agent (or remove) only if it improves solutions - JJ
 % TODO 117: COMPLETE.
 
-The sets of inputs and outputs that are used as the means of the
-membership functions in the agent rules are determined randomly---as
-we explained in Subsection~\ref{subsection:agent-architecture}. In
-order to obtain a predictive model, ILS is used to find
-combinations of agents that generate a suitable simulation of a
-financial market.
+The sets of inputs and outputs that are used as the means of the membership functions in the agent rules are determined randomly---as we explained in Subsection~\ref{subsection:agent-architecture}. In order to obtain a predictive model, ILS is used to find combinations of agents that generate a suitable simulation of a financial market.
 
-The proposed method uses a basic search algorithm that adds and/or removes
-agents from a list of agents, where these agents work together to create a
-simulation of the market. The list of agents begins at iteration 0 with a
-single, random agent, and in the following iterations it is randomly decided to either
-add new agents or remove them from the list. The modifications are committed
-only if the addition or removal operation improves the performance of the
-predictive model, and the algorithm finishes after a number of iterations
-has been reached. % Not clear when this ends. After a number of iterations? - JJ
+The proposed method uses a basic search algorithm that adds and/or removes agents from a list of agents, where these agents work together to create a simulation of the market. The list of agents begins at iteration 0 with a single, random agent, and in the following iterations it is randomly decided to either add new agents or remove them from the list. The modifications are committed only if the addition or removal operation improves the performance of the predictive model, and the algorithm finishes after a number of iterations has been reached. 
+% Not clear when this ends. After a number of iterations? - JJ
 % TODO 95: COMPLETE.
-The performance improvement is measured with a loss function, which is
-used to determine if a predictive model is better than its
-predecessor. %
-This algorithm is depicted in detail in
-Algorithm~\ref{algorithm:ils}. %
+The performance improvement is measured with a loss function, which is used to determine if a predictive model is better than its predecessor. %
+This algorithm is depicted in detail in Algorithm~\ref{algorithm:ils}. %
 % hook it to the last paragraph. "This performance improvement is measured with a loss function, which is used to determine..." - JJ
 % TODO 96: COMPLETE.
 % Although any measure of error should suffice in order to provide a
@@ -1065,14 +966,7 @@ Algorithm~\ref{algorithm:ils}. %
 \end{algorithm}
 
 % TODO 35: COMPLETE. This is still the way we're doing things.
-As is mentioned in Subsection~\ref{subsection:multi-agent-system}, the
-resulting predictive model does not necessarily respond to every set
-of inputs. This behavior is accentuated when the model is tested
-against a data set that is different than the one used for the
-training stage of the method---i.e., a testing data set---, as inputs
-from this data set could not resemble at all any of those present in
-the training data set. We have the hypothesis that this behavior helps
-the generated models achieve better performances.
+As is mentioned in Subsection~\ref{subsection:multi-agent-system}, the resulting predictive model does not necessarily respond to every set of inputs. This behavior is accentuated when the model is tested against a data set that is different than the one used for the training stage of the method---i.e., a testing data set---, as inputs from this data set could not resemble at all any of those present in the training data set. We have the hypothesis that this behavior helps the generated models achieve better performances.
 % And this is fixed how? - JJ
 % TODO 97: COMPLETE. Mentioned that this is not a problem, but something good.
 
@@ -1143,57 +1037,24 @@ the generated models achieve better performances.
 % \label{figure:fitting2}
 % \end{figure}
 
-\section{Implementation}
-\label{section:implementation}
+The agents in the prediction models are represented as objects with the following properties: agent's rules, which stores an intuitionistic fuzzy system; specializations, which stores the antecedents of the fuzzy system; and specialization thresholds, which stores the levels that need to be surpassed by a set of inputs in order to activate the agent.
 
-The agents in the prediction models are represented as objects with
-the following properties: agent's rules, which stores an
-intuitionistic fuzzy system; specializations, which stores the antecedents
-of the fuzzy system; and specialization thresholds, which stores the
-levels that need to be surpassed by a set of inputs in order to
-activate the agent.
+Indeterminacy in an agent's fuzzy system is determined randomly and optimal values are found with the ILS method described in Subsection \ref{subsubsection:stochasticity}. In order to obtain intuitionistic fuzzy sets where (\ref{eq:intuitionistic-interval}) holds true, our implementation generates membership functions where the greatest possible grade of membership is $M$ and non-membership functions where the greatest possible grade of non-membership is $1 - M$. The mean and spread of the Gaussian membership functions are equal to the mean and spread of the Gaussian non-membership functions in all cases.
 
-Indeterminacy in an agent's fuzzy system is determined randomly and
-optimal values are found with the ILS method described in
-Subsection \ref{subsection:ils}. In order to obtain
-intuitionistic fuzzy sets where (\ref{eq:intuitionistic-interval}) holds
-true, our implementation generates membership functions where the
-greatest possible grade of membership is $M$ and non-membership
-functions where the greatest possible grade of non-membership is $1 -
-M$. The mean and spread of the Gaussian membership functions are
-equal to the mean and spread of the Gaussian non-membership functions
-in all cases.
+%\subsubsection{Collectives}
+%\subsubsection{Observation}
 
-The agents that are randomly generated for the ILS need to
-pass a test before they can be considered a candidate to be part of a
-predictive model. Considering a training data set, an agent's
-specialization functions are evaluated against the inputs set obtained
-from that training data set in order to generate a set of specializations,
-where each specialization is the equivalent of calculating the grade of
-membership associated to a set of inputs. After performing this step,
-all the specializations are summed to obtain a score $S$ that represents
-the intensity to which that agent reacts to that set of inputs. This
-score is defined by (\ref{equation:activation-score}), where $N$
-represents the number of inputs, and $\mu(x_{i})$ represents each of
-the grades of membership associated to each input. The scores
-associated to each set of inputs are ordered in a descending manner,
-so the first elements are the scores that represent those sets of
-inputs that would fire an agent's consequents the most. The ordered
-scores list is also used to obtain the outputs that are associated to
-these ordered scores, so we can know what are the outputs that the
-agent \textit{should} evaluate to given those particular sets of
-inputs. The resulting set of outputs are used to determine if the
-agent is a suitable candidate; if most of the outputs associated to
-the highest scores have the same direction (negative or positive),
-then it is a suitable candidate. This mechanism ensures that the
-chosen agents are specialized in similar inputs that yield similar
-outputs. For our implementation, the highest scores have to be
-associated to outputs that share the same direction at least 66\% of
-the time. This value was chosen empirically after performing some
-preliminary tests, where different values greater than 50\%---as we
-want the majority of the outputs to share the same direction---were
-used. However, it is not statistically proven that this value will
-yield better results than other values.
+
+\subsection{Details}
+\label{subsection:details}
+
+\subsubsection{Initialization}
+\label{subsubsection:initialization}
+
+The agents that are randomly generated for the ILS need to pass a test before they can be considered a candidate to be part of a predictive model. Considering a training data set, an agent's specialization functions are evaluated against the inputs set obtained from that training data set in order to generate a set of specializations, where each specialization is the equivalent of calculating the grade of membership associated to a set of inputs. 
+
+
+After performing this step, all the specializations are summed to obtain a score $S$ that represents the intensity to which that agent reacts to that set of inputs. This score is defined by (\ref{equation:activation-score}), where $N$ represents the number of inputs, and $\mu(x_{i})$ represents each of the grades of membership associated to each input. The scores associated to each set of inputs are ordered in a descending manner, so the first elements are the scores that represent those sets of inputs that would fire an agent's consequents the most. The ordered scores list is also used to obtain the outputs that are associated to these ordered scores, so we can know what are the outputs that the agent \textit{should} evaluate to given those particular sets of inputs. The resulting set of outputs are used to determine if the agent is a suitable candidate; if most of the outputs associated to the highest scores have the same direction (negative or positive), then it is a suitable candidate. This mechanism ensures that the chosen agents are specialized in similar inputs that yield similar outputs. For our implementation, the highest scores have to be associated to outputs that share the same direction at least 66\% of the time. This value was chosen empirically after performing some preliminary tests, where different values greater than 50\%---as we want the majority of the outputs to share the same direction---were used. However, it is not statistically proven that this value will yield better results than other values.
 % Why this arbitrary value? Is this a sensible/sensitive parameter?   - jj
 % TODO 98: COMPLETE.
 
@@ -1202,39 +1063,15 @@ yield better results than other values.
   S =\sum_{i=1}^{N}{\mu(x_{i})}
 \end{equation}
 
-The optimization process for the predictive models loads configuration
-files as its first step, depending on the market that we want to use
-to obtain training and testing data sets. These configuration files
-set parameters for the proposed method, such as the train-test ratio
-and number of inputs, outputs and number of rules for the agents'
-fuzzy systems.
+The optimization process for the predictive models loads configuration files as its first step, depending on the market that we want to use to obtain training and testing data sets. These configuration files set parameters for the proposed method, such as the train-test ratio and number of inputs, outputs and number of rules for the agents' fuzzy systems.
 
-For our implementation of the proposed method we chose Common Lisp as
-our language, so we could use a software library for the creation of
-intuitionistic fuzzy systems that we implemented in the past
-\cite{Hernandez-Aguila2016} \cite{Hernandez-Aguila2017-2}. All the
-populations are compressed and stored in a PostgreSQL database, which
-enables us to resume the optimization of a model at any time. Storing
-the populations in a database also enables us to use populations of
-agents to be tested in other data sets, as well as to extract agents
-from certain populations to be used in other prediction models. The
-source code of our implementation can be found in the git repositories
-at this link:
-\url{https://bitbucket.org/overmind-group/workspace/projects/OT}.
+For our implementation of the proposed method we chose Common Lisp as our language, so we could use a software library for the creation of intuitionistic fuzzy systems that we implemented in the past \cite{Hernandez-Aguila2016} \cite{Hernandez-Aguila2017-2}. All the populations are compressed and stored in a PostgreSQL database, which enables us to resume the optimization of a model at any time. Storing the populations in a database also enables us to use populations of agents to be tested in other data sets, as well as to extract agents from certain populations to be used in other prediction models. The source code of our implementation can be found in the git repositories at this link: \url{https://bitbucket.org/overmind-group/workspace/projects/OT}.
 % Opened an issue about the license; also, specify the concrete repository, not the general URL for all of them - JJ
 
-The evaluation of the agents proved to be a computationally expensive
-task, as the system needs to evaluate hundreds of fuzzy systems per
-iteration in the optimization process. For this reason, we implemented
-a caching system where the output of an agent is stored in memory
-using a technique called \textit{memoization}
-\cite{johnson1995memoization} in a functional programming
-context. After \textit{memoizing} an agent, if that agent is required
-to be evaluated with exactly the same inputs as the ones used during
-the \textit{memoization} process, then we can assume that the output
-will be the same, and thus we can simply query for the output stored
-in memory. The caching system prevents our implementation from
-re-evaluating hundreds of fuzzy systems in the optimization process.
+The evaluation of the agents proved to be a computationally expensive task, as the system needs to evaluate hundreds of fuzzy systems per iteration in the optimization process. For this reason, we implemented a caching system where the output of an agent is stored in memory using a technique called \textit{memoization} \cite{johnson1995memoization} in a functional programming context. After \textit{memoizing} an agent, if that agent is required to be evaluated with exactly the same inputs as the ones used during the \textit{memoization} process, then we can assume that the output will be the same, and thus we can simply query for the output stored in memory. The caching system prevents our implementation from re-evaluating hundreds of fuzzy systems in the optimization process.
+
+%\subsubsection{Input data}
+%\label{subsubsection:input-data}
 
 % I think this is a highlight, maybe going to intro  and abstract if this was
 % tested - Mario
@@ -1301,6 +1138,9 @@ re-evaluating hundreds of fuzzy systems in the optimization process.
 % io-ema
 % io-macd
 % io-macd-signal
+
+%\subsubsection{Sub models}
+%\label{subsubsection:sub-models}
 
 \section{Experiments}
 \label{section:experiments}
@@ -1730,8 +1570,67 @@ if our current optimization method is exploring a wide enough search space.
 This paper has been supported in part by project DeepBio (TIN2017-85727-C4-2-P).
 
 \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{img/amaury-1by1half-in.png}}]{Amaury
-  Hernandez-Aguila} 
+  Hernandez-Aguila}
+
+  Amaury Hernandez-Aguila received the Ph.D degree in Computer Science and the
+  M.Sc. degree in Computer Science from the Tijuana Institute of Technology,
+  Mexico, in 2014 and 2019, respectively. He is currently participating in a
+  post-doctoral program in Tijuana Institute of Technology, researching how
+  multi-agent systems and fuzzy logic can be used for the prediction of
+  financial markets. In addition to research, he is working for a company based
+  in Shanghai, China, where he is the lead designer and developer of a
+  blockchain-based programming language called CX.
+
 \end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{img/Garcia.jpg}}]{Mario García Valdez} 
+  Dr. García-Valdez is a full-time research professor at the Tijuana
+  Institute of Technology. He's interested in the personalization of
+  interactive systems, voluntary computing, parallel evolutionary
+  computation, interactive evolutionary computation.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{img/jj-2016-10.jpg}}]{JJ Merelo Guervós} 
+  JJ Merelo is professor at the university of Granada, where he obtained a
+  degree in Theoretical Physics and a PhD in Physics in 1994. He's mainly
+  interested in evolutionary algorithms, open source software and complex
+  systems.
+  
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{img/Puga.jpg}}]{Manuel
+Castañón Puga} Manuel Castañón-Puga is Professor at Autonomous University of
+Baja California. He obtained a PhD on Computer Sciences from Autonomous
+University of Baja California in México, and a Masters on Computer Sciences and
+Bachelor in Engineering at Tijuana Technology Institute, in his native Tijuana,
+México. His research of modeling and simulation, agent-base simulation,
+hybrid-intelligent agents and multi-agent systems explores the way in which
+software agents could be used to describe multidimensional environments,
+innovation, evolution and adaptation in complex adaptive systems. Dr.
+Castañón-Puga collaborates with multidisciplinary researchers and scientists to
+create multidimensional computer simulations of societies, political ideologies,
+trading economies and urban landscapes. His research also intends to incorporate
+the ideas of complexity into the mainstream of engineering and in particular to
+its instruction at the undergraduate level. \end{IEEEbiography}
+
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{img/Castillo.png}}]{Oscar
+Castillo López} Oscar Castillo holds the Doctor in Science degree (Doctor
+Habilitatus) in Computer Science from the Polish Academy of Sciences.
+He is a Professor of Computer Science in the Graduate Division, Tijuana
+Institute of Technology, Tijuana, Mexico. In addition, he is serving as Research
+Director of Computer Science and head of the research group on Hybrid Fuzzy
+Intelligent Systems. Currently, he is President of HAFSA (Hispanic American
+Fuzzy Systems Association) and Past President of IFSA (International Fuzzy
+Systems Association). Prof. Castillo is also Chair of the Mexican Chapter of the
+Computational Intelligence Society (IEEE). He also belongs to the Technical
+Committee on Fuzzy Systems of IEEE and to the Task Force on “Extensions to
+Type-1 Fuzzy Systems”. He is currently Associate Editor of the Information
+Sciences Journal, Applied Soft Computing Journal, Journal of Engineering
+Applications on Artificial Intelligence, Granular Computing Journal and the
+International Journal of Fuzzy Systems. Finally, he recently received the Recognition as
+Highly Cited Researcher in 2017 and 2018 by Clarivate Analytics and Web of
+Science \end{IEEEbiography}
 
 \bibliography{bibliography}
 \bibliographystyle{IEEEtran}
