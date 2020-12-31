@@ -647,7 +647,7 @@ The Overview, Design Concepts, and Details (ODD) protocol for describing Agent-B
 
 \subsubsection{Purpose and patterns}
 \label{subsubsection:purpose-and-patterns}
-We presents a method for creating forex market predictive models using multi-agent and fuzzy systems, which have the objective of simulating the interactions that provoke changes in the price. Agents in the system represent traders performing buy and sell orders in a market, and fuzzy systems are used to model the rules followed by traders performing trades in a live market and intuitionistic fuzzy logic to model their decisions' indeterminacy.
+We present a method for creating forex market predictive models using multi-agent and fuzzy systems, which have the objective of simulating the interactions that provoke changes in the price. Agents in the system represent traders performing buy and sell orders in a market, and fuzzy systems are used to model the rules followed by traders performing trades in a live market and intuitionistic fuzzy logic to model their decisions' indeterminacy.
 
 Fuzzy systems are used to model a trader's knowledge and how they take trades according to a market's current conditions, and MAS are used to model the collective traders of a market and their respective influence on the price of it.
 
@@ -682,7 +682,10 @@ of their ability to model knowledge in a smoother way than their alternatives,  
 % "capability of -- alternatives" to "ability to model knowlege(data?) more effectively than alternatives,"
 % TODO 87: COMPLETE. Gaussians are not necessarily more effective than other MF,
 %% but they are "smoother". They will produce output surfaces that don't change abruptly.
-Although other membership functions can be better suited for certain situations, the proposed method is currently designed for the creation of predictive models for arbitrary data sets, where solutions are found using ILS.
+Although other membership functions can be better suited for certain
+situations, the proposed method is currently designed for the creation
+of predictive models for arbitrary data sets, where solutions are
+found using iterated local search (ILS).
 % Mention that they are more costly - Mario
 % TODO 21: COMPLETE.
 % I searched for references that mentioned that Gaussians are more
