@@ -675,6 +675,12 @@ fuzzy system (see Subsection~\ref{subsection:intuitionistic-fuzzy-sets}). This c
 \subsubsection{Individual Decision-Making}
 \label{subsubsection:individual-decision-making}
 
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.6\linewidth]
+{img/ils.pdf}
+{Iterated local search.
+  \label{figure:flowchart-ils}}
+
 The membership functions in the fuzzy systems are always defined as Gaussian functions, although in future experiments this design choice can
 change, as other types of membership functions could provide benefits over Gaussian membership functions, such as better interpretability
 for particular problems being modelled, and improvements in computational cost. Gaussian membership functions were chosen because
@@ -774,9 +780,9 @@ The value of the greatest grade of membership in a membership function is determ
 Indeterminacy is used to ``fuzzify'' specialization thresholds associated to inputs to the agent, which determine if the agent should respond to that
 input or not. Two agents with the same fuzzy rules, membership functions and specialization thresholds will respond differently to the
 same inputs if they have different non-membership functions. This way, the system uses uncertainty---coming from membership functions---and
-indeterminacy---coming from non-membership functions---to model the membership of an input and an specialization function, respectively. Considering the agent system architecture proposed by Shoham~\cite{Shoham1993}, in the proposed method an agent's fuzzy system represents an agent's rules, while its specialization functions represent an agent's beliefs.
+indeterminacy---coming from non-membership functions---to model the membership of an input and a specialization function, respectively. Considering the agent system architecture proposed by Shoham~\cite{Shoham1993}, in the proposed method an agent's fuzzy system represents an agent's rules, while its specialization functions represent an agent's beliefs.
 
-Inputs to an agent's fuzzy system are associated to grades of membership---as is usual in fuzzy inference systems---and this grade of membership can either belong or not to a set $\Lambda$, which is defined by~(\ref{equation:activation-interval}), where $\mu(x)$ represents the grade of membership associated to an input $x$ and $\lambda$ represents an specialization threshold. An example of a set $\Lambda$ can be seen in Figure~\ref{figure:activation-threshold}. If a grade of membership can be found in a set $\Lambda$, then the agent will consider that input to be used to fire a consequent in its agent
+Inputs to an agent's fuzzy system are associated to grades of membership---as is usual in fuzzy inference systems---and this grade of membership can either belong or not to a set $\Lambda$, which is defined by~(\ref{equation:activation-interval}), where $\mu(x)$ represents the grade of membership associated to an input $x$ and $\lambda$ represents a specialization threshold. An example of a set $\Lambda$ can be seen in Figure~\ref{figure:activation-threshold}. If a grade of membership can be found in a set $\Lambda$, then the agent will consider that input to be used to fire a consequent in its agent
 rules. It is noteworthy that different specialization thresholds $\lambda$ and non-membership functions can be associated to each of the
 membership functions present in the antecedents of an agent's fuzzy system.
 
@@ -788,7 +794,7 @@ membership functions present in the antecedents of an agent's fuzzy system.
 \Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
 [width=0.6\linewidth]
 {img/lambda-set.png}
-{Depiction of an specialization threshold $\lambda$ and a set $\Lambda$ in a membership function.
+{Depiction of a specialization threshold $\lambda$ and a set $\Lambda$ in a membership function.
   \label{figure:activation-threshold}}
 % what does this has to do with "hesitancy" of an agent? - JJ
 % TODO 116: COMPLETE. Nothing directly. The non-membership functions
@@ -864,7 +870,7 @@ After compiling the sorted list of specialization levels, the proposed method ch
 %% thresholds.
 % TODO 30: COMPLETE.
 
-The chosen specialization level serves as an specialization threshold, as any set of inputs that do not activate all the membership functions according to the specialization level will fail to activate the agent to take an action. As a consequent---during the training stage of the method---any agent will be activated to a number of inputs equal to the value of the \textit{depth} parameter shown in Algorithm~\ref{algorithm:selection-of-activation-threshold}.
+The chosen specialization level serves as a specialization threshold, as any set of inputs that do not activate all the membership functions according to the specialization level will fail to activate the agent to take an action. As a consequent---during the training stage of the method---any agent will be activated to a number of inputs equal to the value of the \textit{depth} parameter shown in Algorithm~\ref{algorithm:selection-of-activation-threshold}.
 
 An implication of the aforementioned process is that specialization functions also create a restriction for the actions of the agents in a predictive model. This restriction works as a coordination mechanism to ensure agent participation in the prediction process never reaches one hundred percent, as certain 
 % "that not -- as certain" to "agent participation in the prediction process 
@@ -1041,7 +1047,7 @@ As is mentioned in Subsection~\ref{subsection:multi-agent-system}, the resulting
 
 The agents in the prediction models are represented as objects with the following properties: agent's rules, which stores an intuitionistic fuzzy system; specializations, which stores the antecedents of the fuzzy system; and specialization thresholds, which stores the levels that need to be surpassed by a set of inputs in order to activate the agent.
 
-Indeterminacy in an agent's fuzzy system is determined randomly and optimal values are found with the ILS method described in Subsection \ref{subsubsection:stochasticity}. In order to obtain intuitionistic fuzzy sets where (\ref{eq:intuitionistic-interval}) holds true, our implementation generates membership functions where the greatest possible grade of membership is $M$ and non-membership functions where the greatest possible grade of non-membership is $1 - M$. The mean and spread of the Gaussian membership functions are equal to the mean and spread of the Gaussian non-membership functions in all cases.
+Indeterminacy in an agent's fuzzy system is determined randomly and optimal values are found with the ILS method described in Algorithm~\ref{algorithm:ils}. In order to obtain intuitionistic fuzzy sets where (\ref{eq:intuitionistic-interval}) holds true, our implementation generates membership functions where the greatest possible grade of membership is $M$ and non-membership functions where the greatest possible grade of non-membership is $1 - M$. The mean and spread of the Gaussian membership functions are equal to the mean and spread of the Gaussian non-membership functions in all cases.
 
 %\subsubsection{Collectives}
 %\subsubsection{Observation}
