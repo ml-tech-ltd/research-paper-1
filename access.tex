@@ -209,8 +209,7 @@ is considered as a future work, as is discussed in Section
 The reader will find an in-depth explanation of our method in Section
 \ref{section:proposed-method}, and explanations for the concepts
 required to understand the method can be found in Section
-\ref{section:preliminaries}. A description of an implementation of our method can be
-found in Section \ref{section:implementation}. In order to evaluate
+\ref{section:preliminaries}. In order to evaluate
 the perforance of our method, experiments were performed and are
 described in Section \ref{section:experiments}. The results of the
 experiments are presented in Section \ref{section:results}, and a
@@ -919,7 +918,7 @@ Finally, we believe that the specialization functions found with the proposed me
 % I would say this is a type of iterated local search. You add a new agent (or remove) only if it improves solutions - JJ
 % TODO 117: COMPLETE.
 
-The sets of inputs and outputs that are used as the means of the membership functions in the agent rules are determined randomly---as we explained in Subsection~\ref{subsection:agent-architecture}. In order to obtain a predictive model, ILS is used to find combinations of agents that generate a suitable simulation of a financial market.
+The sets of inputs and outputs that are used as the means of the membership functions in the agent rules are determined by using random data points from the dataset---as we explained in Subsection~\ref{subsubsection:individual-decision-making}. In order to obtain a predictive model, ILS is used to find combinations of agents that generate a suitable simulation of a financial market.
 
 The proposed method uses a basic search algorithm that adds and/or removes agents from a list of agents, where these agents work together to create a simulation of the market. The list of agents begins at iteration 0 with a single, random agent, and in the following iterations it is randomly decided to either add new agents or remove them from the list. The modifications are committed only if the addition or removal operation improves the performance of the predictive model, and the algorithm finishes after a number of iterations has been reached. 
 % Not clear when this ends. After a number of iterations? - JJ
