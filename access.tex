@@ -684,10 +684,16 @@ fuzzy system (see Subsection~\ref{subsection:intuitionistic-fuzzy-sets}). This c
 \label{subsubsection:individual-decision-making}
 
 \Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
-[width=0.6\linewidth]
-{img/ils.pdf}
-{Iterated local search.
-  \label{figure:flowchart-ils}}
+[width=0.25\linewidth]
+{img/flowchart-gen-agent.pdf}
+{Flowchart for the agent creation process.
+  \label{figure:flowchart-gen-agent}}
+
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.8\linewidth]
+{img/flowchart-evaluate-model.pdf}
+{Flowchart for the evaluation of a predictive model.
+  \label{figure:flowchart-evaluate-model}}
 
 The membership functions in the fuzzy systems are always defined as Gaussian functions, although in future experiments this design choice can
 change, as other types of membership functions could provide benefits over Gaussian membership functions, such as better interpretability
@@ -937,7 +943,14 @@ Finally, we believe that the specialization functions found with the proposed me
 
 The sets of inputs and outputs that are used as the means of the membership functions in the agent rules are determined by using random data points from the dataset---as we explained in Subsection~\ref{subsubsection:individual-decision-making}. In order to obtain a predictive model, ILS is used to find combinations of agents that generate a suitable simulation of a financial market.
 
-The proposed method uses a basic search algorithm that adds and/or removes agents from a list of agents, where these agents work together to create a simulation of the market. The list of agents begins at iteration 0 with a single, random agent, and in the following iterations it is randomly decided to either add new agents or remove them from the list. The modifications are committed only if the addition or removal operation improves the performance of the predictive model, and the algorithm finishes after a number of iterations has been reached. 
+The proposed method uses a basic search algorithm that adds and/or removes agents from a list of agents, where these agents work together to create a simulation of the market. The list of agents begins at iteration 0 with a single, random agent, and in the following iterations it is randomly decided to either add new agents or remove them from the list. The modifications are committed only if the addition or removal operation improves the performance of the predictive model, and the algorithm finishes after a number of iterations has been reached. This process is described by the flowchart in Figure \ref{figure:flowchart-ils}.
+
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.7\linewidth]
+{img/flowchart-ils.pdf}
+{Flowchart for the iterated local search.
+  \label{figure:flowchart-ils}}
+
 % Not clear when this ends. After a number of iterations? - JJ
 % TODO 95: COMPLETE.
 The performance improvement is measured with a loss function, which is used to determine if a predictive model is better than its predecessor. %
