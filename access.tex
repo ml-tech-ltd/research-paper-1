@@ -655,7 +655,7 @@ The Overview, Design Concepts, and Details (ODD) protocol for describing Agent-B
 
 \subsubsection{Purpose and patterns}
 \label{subsubsection:purpose-and-patterns}
-We presents a method for creating forex market predictive models using multi-agent and fuzzy systems, which have the objective of simulating the interactions that provoke changes in the price. Agents in the system represent traders performing buy and sell orders in a market, and fuzzy systems are used to model the rules followed by traders performing trades in a live market and intuitionistic fuzzy logic to model their decisions' indeterminacy.
+We present a method for creating forex market predictive models using multi-agent and fuzzy systems, which have the objective of simulating the interactions that provoke changes in the price. Agents in the system represent traders performing buy and sell orders in a market, and fuzzy systems are used to model the rules followed by traders performing trades in a live market and intuitionistic fuzzy logic to model their decisions' indeterminacy.
 
 Fuzzy systems are used to model a trader's knowledge and how they take trades according to a market's current conditions, and MAS are used to model the collective traders of a market and their respective influence on the price of it.
 
@@ -690,7 +690,10 @@ of their ability to model knowledge in a smoother way than their alternatives,  
 % "capability of -- alternatives" to "ability to model knowlege(data?) more effectively than alternatives,"
 % TODO 87: COMPLETE. Gaussians are not necessarily more effective than other MF,
 %% but they are "smoother". They will produce output surfaces that don't change abruptly.
-Although other membership functions can be better suited for certain situations, the proposed method is currently designed for the creation of predictive models for arbitrary data sets, where solutions are found using ILS.
+Although other membership functions can be better suited for certain
+situations, the proposed method is currently designed for the creation
+of predictive models for arbitrary data sets, where solutions are
+found using iterated local search (ILS).
 % Mention that they are more costly - Mario
 % TODO 21: COMPLETE.
 % I searched for references that mentioned that Gaussians are more
@@ -779,9 +782,9 @@ The value of the greatest grade of membership in a membership function is determ
 Indeterminacy is used to ``fuzzify'' specialization thresholds associated to inputs to the agent, which determine if the agent should respond to that
 input or not. Two agents with the same fuzzy rules, membership functions and specialization thresholds will respond differently to the
 same inputs if they have different non-membership functions. This way, the system uses uncertainty---coming from membership functions---and
-indeterminacy---coming from non-membership functions---to model the membership of an input and an specialization function, respectively. Considering the agent system architecture proposed by Shoham~\cite{Shoham1993}, in the proposed method an agent's fuzzy system represents an agent's rules, while its specialization functions represent an agent's beliefs.
+indeterminacy---coming from non-membership functions---to model the membership of an input and a specialization function, respectively. Considering the agent system architecture proposed by Shoham~\cite{Shoham1993}, in the proposed method an agent's fuzzy system represents an agent's rules, while its specialization functions represent an agent's beliefs.
 
-Inputs to an agent's fuzzy system are associated to grades of membership---as is usual in fuzzy inference systems---and this grade of membership can either belong or not to a set $\Lambda$, which is defined by~(\ref{equation:activation-interval}), where $\mu(x)$ represents the grade of membership associated to an input $x$ and $\lambda$ represents an specialization threshold. An example of a set $\Lambda$ can be seen in Figure~\ref{figure:activation-threshold}. If a grade of membership can be found in a set $\Lambda$, then the agent will consider that input to be used to fire a consequent in its agent
+Inputs to an agent's fuzzy system are associated to grades of membership---as is usual in fuzzy inference systems---and this grade of membership can either belong or not to a set $\Lambda$, which is defined by~(\ref{equation:activation-interval}), where $\mu(x)$ represents the grade of membership associated to an input $x$ and $\lambda$ represents a specialization threshold. An example of a set $\Lambda$ can be seen in Figure~\ref{figure:activation-threshold}. If a grade of membership can be found in a set $\Lambda$, then the agent will consider that input to be used to fire a consequent in its agent
 rules. It is noteworthy that different specialization thresholds $\lambda$ and non-membership functions can be associated to each of the
 membership functions present in the antecedents of an agent's fuzzy system.
 
@@ -793,7 +796,7 @@ membership functions present in the antecedents of an agent's fuzzy system.
 \Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
 [width=0.6\linewidth]
 {img/lambda-set.png}
-{Depiction of an specialization threshold $\lambda$ and a set $\Lambda$ in a membership function.
+{Depiction of a specialization threshold $\lambda$ and a set $\Lambda$ in a membership function.
   \label{figure:activation-threshold}}
 % what does this has to do with "hesitancy" of an agent? - JJ
 % TODO 116: COMPLETE. Nothing directly. The non-membership functions
@@ -869,7 +872,7 @@ After compiling the sorted list of specialization levels, the proposed method ch
 %% thresholds.
 % TODO 30: COMPLETE.
 
-The chosen specialization level serves as an specialization threshold, as any set of inputs that do not activate all the membership functions according to the specialization level will fail to activate the agent to take an action. As a consequent---during the training stage of the method---any agent will be activated to a number of inputs equal to the value of the \textit{depth} parameter shown in Algorithm~\ref{algorithm:selection-of-activation-threshold}.
+The chosen specialization level serves as a specialization threshold, as any set of inputs that do not activate all the membership functions according to the specialization level will fail to activate the agent to take an action. As a consequent---during the training stage of the method---any agent will be activated to a number of inputs equal to the value of the \textit{depth} parameter shown in Algorithm~\ref{algorithm:selection-of-activation-threshold}.
 
 An implication of the aforementioned process is that specialization functions also create a restriction for the actions of the agents in a predictive model. This restriction works as a coordination mechanism to ensure agent participation in the prediction process never reaches one hundred percent, as certain 
 % "that not -- as certain" to "agent participation in the prediction process 
@@ -928,11 +931,18 @@ Finally, we believe that the specialization functions found with the proposed me
 
 The sets of inputs and outputs that are used as the means of the membership functions in the agent rules are determined by using random data points from the dataset---as we explained in Subsection~\ref{subsubsection:individual-decision-making}. In order to obtain a predictive model, ILS is used to find combinations of agents that generate a suitable simulation of a financial market.
 
-The proposed method uses a basic search algorithm that adds and/or removes agents from a list of agents, where these agents work together to create a simulation of the market. The list of agents begins at iteration 0 with a single, random agent, and in the following iterations it is randomly decided to either add new agents or remove them from the list. The modifications are committed only if the addition or removal operation improves the performance of the predictive model, and the algorithm finishes after a number of iterations has been reached. 
+The proposed method uses a basic search algorithm that adds and/or removes agents from a list of agents, where these agents work together to create a simulation of the market. The list of agents begins at iteration 0 with a single, random agent, and in the following iterations it is randomly decided to either add new agents or remove them from the list. The modifications are committed only if the addition or removal operation improves the performance of the predictive model, and the algorithm finishes after a number of iterations has been reached. This process is described by the flowchart in Figure \ref{figure:flowchart-ils}.
+
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.8\linewidth]
+{img/flowchart-ils.pdf}
+{Flowchart for the iterated local search.
+  \label{figure:flowchart-ils}}
+
 % Not clear when this ends. After a number of iterations? - JJ
 % TODO 95: COMPLETE.
 The performance improvement is measured with a loss function, which is used to determine if a predictive model is better than its predecessor. %
-This algorithm is depicted in detail in Algorithm~\ref{algorithm:ils}. %
+% This algorithm is depicted in detail in Algorithm~\ref{algorithm:ils}. %
 % hook it to the last paragraph. "This performance improvement is measured with a loss function, which is used to determine..." - JJ
 % TODO 96: COMPLETE.
 % Although any measure of error should suffice in order to provide a
@@ -945,32 +955,32 @@ This algorithm is depicted in detail in Algorithm~\ref{algorithm:ils}. %
 % but the name depends on the community - Mario
 % Amaury: Changed to "measure of error".
 
-\begin{algorithm}
-  \caption{Iterated local search used to find a solution in the proposed method}
-  \label{algorithm:ils}
-  \begin{algorithmic}[1]
-    \Procedure{ILS}{$S$};
-    \State $push(make\_agent(), S)$ %% \Comment{$S$ is our solution.}
+% \begin{algorithm}
+%   \caption{Iterated local search used to find a solution in the proposed method}
+%   \label{algorithm:ils}
+%   \begin{algorithmic}[1]
+%     \Procedure{ILS}{$S$};
+%     \State $push(make\_agent(), S)$ %% \Comment{$S$ is our solution.}
 
-    \State $c \gets 0$
-    \While{$c < ITERATIONS$}
+%     \State $c \gets 0$
+%     \While{$c < ITERATIONS$}
 
-    \If {$random () < 0.5$}
-    \State $candidate \gets append(make\_agent(), S)$
-    \Else
-    \State $candidate \gets remove\_random\_agent(S)$
-    \EndIf
+%     \If {$random () < 0.5$}
+%     \State $candidate \gets append(make\_agent(), S)$
+%     \Else
+%     \State $candidate \gets remove\_random\_agent(S)$
+%     \EndIf
 
-    \If {$eval(candidate) < eval(S)$}
-    \State $S \gets candidate$
-    \EndIf
+%     \If {$eval(candidate) < eval(S)$}
+%     \State $S \gets candidate$
+%     \EndIf
     
-    \EndWhile
+%     \EndWhile
 
-    \State \textbf{return} $S$
-    \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
+%     \State \textbf{return} $S$
+%     \EndProcedure
+%   \end{algorithmic}
+% \end{algorithm}
 
 % TODO 35: COMPLETE. This is still the way we're doing things.
 As is mentioned in Subsection~\ref{subsection:multi-agent-system}, the resulting predictive model does not necessarily respond to every set of inputs. This behavior is accentuated when the model is tested against a data set that is different than the one used for the training stage of the method---i.e., a testing data set---, as inputs from this data set could not resemble at all any of those present in the training data set. We have the hypothesis that this behavior helps the generated models achieve better performances.
@@ -1046,7 +1056,7 @@ As is mentioned in Subsection~\ref{subsection:multi-agent-system}, the resulting
 
 The agents in the prediction models are represented as objects with the following properties: agent's rules, which stores an intuitionistic fuzzy system; specializations, which stores the antecedents of the fuzzy system; and specialization thresholds, which stores the levels that need to be surpassed by a set of inputs in order to activate the agent.
 
-Indeterminacy in an agent's fuzzy system is determined randomly and optimal values are found with the ILS method described in Subsection \ref{subsubsection:stochasticity}. In order to obtain intuitionistic fuzzy sets where (\ref{eq:intuitionistic-interval}) holds true, our implementation generates membership functions where the greatest possible grade of membership is $M$ and non-membership functions where the greatest possible grade of non-membership is $1 - M$. The mean and spread of the Gaussian membership functions are equal to the mean and spread of the Gaussian non-membership functions in all cases.
+Indeterminacy in an agent's fuzzy system is determined randomly and optimal values are found with the ILS method described in Figure~\ref{figure:flowchart-ils}. In order to obtain intuitionistic fuzzy sets where (\ref{eq:intuitionistic-interval}) holds true, our implementation generates membership functions where the greatest possible grade of membership is $M$ and non-membership functions where the greatest possible grade of non-membership is $1 - M$. The mean and spread of the Gaussian membership functions are equal to the mean and spread of the Gaussian non-membership functions in all cases.
 
 %\subsubsection{Collectives}
 %\subsubsection{Observation}
