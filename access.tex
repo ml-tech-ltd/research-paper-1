@@ -185,19 +185,27 @@ adapting our method to a distributed evaluation of the agents' rules
 is considered as a future work, as is discussed in Section
 \ref{section:future-work}.
 
-%%% This text is related with MAS not our proposal directly
+The present work uses fuzzy systems in combination with MAS to create
+Forex market predictive models. A predictive model is a relationship
+between inputs and outputs based on a data model, which can be used to
+perform regression analysis \cite{barbieri2004optimal}. In the case of
+Forex market predictive models, the inputs can represent financial
+indicators, such as market prices, financial statements' data, or the
+public's sentiment towards the asset, while the outputs usually
+represent data that help a trader take a decision regarding the
+direction---buy or sell---and the quantity of an asset to trade
+\cite{taveeapiradeecharoen2018dynamic}.
 
-The present work uses fuzzy systems in combination with MAS
-to create a market model, where the agents in the
-MAS represent traders, and the trades performed by
-these traders are used to simulate the real prices of a market.
-MAS have been demonstrated to be an effective
-approach to simulate very complex systems, such as those represented
-by financial markets \cite{Lebaron2001} \cite{Grothmann2002} \cite{Li2014} \cite{Chen2004} \cite{Kim2018}.
-Additionally, the agents in the MAS can be examined to understand how individual traders are
-interacting in a financial market \cite{Wei2014} \cite{Rajab2019},
-which is a feature that we leverage in our method, by using fuzzy
-systems to construct the agents' rules, resulting in interpretable inference systems. 
+The agents in the MAS represent traders, and the trades performed by
+these traders are used to simulate the real prices of a market.  MAS
+have been demonstrated to be an effective approach to simulate very
+complex systems, such as those represented by financial markets
+\cite{Lebaron2001} \cite{Grothmann2002} \cite{Li2014} \cite{Chen2004}
+\cite{Kim2018}.  Additionally, the agents in the MAS can be examined
+to understand how individual traders are interacting in a financial
+market \cite{Wei2014} \cite{Rajab2019}, which is a feature that we
+leverage in our method, by using fuzzy systems to construct the
+agents' rules, resulting in interpretable inference systems.
 % ", as we use -- interpretable." to "by using fuzzy systems to construct the agents' rules, 
 % resulting in interpretable inference systems." - Mac
 % TODO 113: COMPLETE.
@@ -269,6 +277,7 @@ order to better understand the proposed method in Section
 % Amaury: I don't know if it sounds weird to say it can be omitted.
 % Readers will adapt and skip sections with out problems - M
 % TODO 14: COMPLETE. This was already commented out.
+
 \subsection{Fuzzy Sets}
 \label{subsection:fuzzy-sets}
 
