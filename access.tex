@@ -1262,6 +1262,33 @@ days that were considered.
 % (:USD_CHF -0.3109499999999996) (:GBP_USD -0.580085)
 % (:USD_CAD 0.0896650000000001) (:AUD_USD -0.05712499999999987))
 
+\begin{table*}[t]
+  \caption{Comparison between our results and the ones obtained by Munkhdalai et al.}
+  % Please explain that the bottom rows are compared in the table
+  % below - JJ
+  % Clarify also if the difference is significant with respect to
+  % others - JJ
+  % TODO: COMPLETE? I'm now mentioning in the paragraph above that the bottom rows represent
+  %% our results, and that the table below shows additional data for statistical tests.
+  %% I'm thinking that this clarifies that the difference between my two versions of the algorithm
+  %% is significant.
+  %% I was also thinking that maybe you wanted to add an explanation to the caption of this table.
+  %% Can you give me a more detailed explanation of your request? (in case it's not solved already by my changes).
+  \scriptsize
+  \centering
+  \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
+    \hline
+    \textbf{Strategy} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
+    \hline
+
+    Ours without SF        & 0.0050          & 0.4903          & 0.0041          & 0.0073          & 0.0050          & 0.0048 \\
+    Ours with SF           & \textbf{0.0033} & \textbf{0.1810} & \textbf{0.0019} & \textbf{0.0038} & \textbf{0.0033} & \textbf{0.0027} \\
+    \hline
+
+  \end{tabular*}
+  \label{table:results-buy-and-hold}
+\end{table*}
+
 Table \ref{table:comparison-mae} shows
 subsets of the results presented by Munkhdalai et
 al. \cite{Munkhdalai2019}, comparing them with the results of the
