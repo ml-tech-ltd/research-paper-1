@@ -152,12 +152,15 @@ of interpretability for the fuzzy systems through the concept of
 indeterminacy. Although there are alternatives to IFL, such as type-2
 fuzzy systems, the defuzzification of IFL systems can be faster than
 the aforementioned systems \cite{Hernandez-Aguila2017-2}, while also
-providing comparable interpretability \cite{Hernandez-Aguila2016} \cite{castillo2019comments} .
+providing comparable interpretability \cite{Hernandez-Aguila2016} \cite{castillo2019comments}.
 
-Fuzzy logic has proved to be useful in many fields, and one can find
-many works involving financial market prediction using fuzzy systems,
-such as the works by Tsai et al. \cite{Tsai2019} and Zeng et
-al. \cite{Zeng2019}, where fuzzy time-series are used to perform the
+Arguably, the most prominent use of fuzzy systems has occured in the
+field of control of nonlinear systems \cite{sun2020event}
+\cite{sun2020fuzzy}, but fuzzy systems have proved to be useful in
+many other fields. In the case of financial market prediction, fuzzy
+systems have been used successfully,
+such as in the works by Tsai et al. \cite{Tsai2019} and Zeng et
+al. \cite{Zeng2019}, where fuzzy time-series are used to perform price
 predictions; as in the works by Rajab and Sharma \cite{Rajab2019} and
 Vlasenko et al. \cite{Vlasenko2019}, where a neuro-fuzzy approach is
 taken; or as in the works by Yue et al. \cite{Yue2019},
@@ -172,32 +175,68 @@ well as rule systems that define their decision
 processes. Furthermore, MAS coordinate the inputs given to each agent,
 as well as how we can use the agents' outputs to generate a simulation
 of market prices.
-
-The present work uses fuzzy systems in combination with MAS
-to create a market model, where the agents in the
-MAS represent traders, and the trades performed by
-these traders are used to simulate the real prices of a market.
-MAS have been demonstrated to be an effective
-approach to simulate very complex systems, such as those represented
-by financial markets \cite{Lebaron2001} \cite{Grothmann2002,Li2014,Chen2004,Kim2018}.
-Additionally, the agents in the MAS can be examined to understand how individual traders are
-interacting in a financial market \cite{Wei2014} \cite{Rajab2019},
-which is a feature that we leverage in our method, by using fuzzy
-systems to construct the agents' rules, resulting in interpretable inference systems. 
-% ", as we use -- interpretable." to "by using fuzzy systems to construct the agents' rules, 
-% resulting in interpretable inference systems." - Mac
-% TODO 113: COMPLETE.
+% Moved to here - Mario 
+%%%
 Furthermore, MAS architectures can be executed in a distributed manner
 \cite{Gao2019} \cite{Yu2015}, enabling faster
-performance due to the rules of diferent agents being evaluated in
-parallel.
-% " which perform -- parallel" to "enabling faster performance due to 
-% the rules of different agents being evaluated in parallel." - Mac
-% TODO 65: COMPLETE.
-The current implementation of our method does not follow such architecture, but
+performance due to the rules of different agents being evaluated in
+parallel. The current implementation of our method does not follow such architecture, but
 adapting our method to a distributed evaluation of the agents' rules
 is considered as a future work, as is discussed in Section
 \ref{section:future-work}.
+
+The present work uses fuzzy systems in combination with MAS to create
+Forex market predictive models. A predictive model is a relationship
+between inputs and outputs based on a data model, which can be used to
+perform regression analysis \cite{barbieri2004optimal}. In the case of
+Forex market predictive models, the inputs can represent financial
+indicators, such as market prices, financial statements' data, or the
+public's sentiment towards the asset, while the outputs usually
+represent data that help a trader take a decision regarding the
+direction---buy or sell---and the quantity of an asset to trade
+\cite{taveeapiradeecharoen2018dynamic}.
+
+The agents in the MAS represent traders, and the trades performed by
+these traders are used to simulate the real prices of a market.  MAS
+have been demonstrated to be an effective approach to simulate very
+complex systems, such as those represented by financial markets
+\cite{Lebaron2001} \cite{Grothmann2002} \cite{Li2014} \cite{Chen2004}
+\cite{Kim2018}.  Additionally, the agents in the MAS can be examined
+to understand how individual traders are interacting in a financial
+market \cite{Wei2014} \cite{Rajab2019}, which is a feature that we
+leverage in our method, by using fuzzy systems to construct the
+agents' rules, resulting in interpretable inference systems.
+% ", as we use -- interpretable." to "by using fuzzy systems to construct the agents' rules, 
+% resulting in interpretable inference systems." - Mac
+% TODO 113: COMPLETE.
+
+% " which perform -- parallel" to "enabling faster performance due to 
+% the rules of different agents being evaluated in parallel." - Mac
+% TODO 65: COMPLETE.
+
+We highlight the main contributions as follows: 
+\begin{itemize}
+  \item First, Our method describes a novel architecture that employs MAS and 
+  a Mamdani intuitionistic fuzzy inference systems for modeling agents'
+  rules, and beliefs. This approach enables the creation of MAS predictive models, 
+  that include certain elements not found in the literature of financial market prediction
+  as indeterminacy, and doubt.
+  
+  \item Second, we propose a process for agent specialization that are part of each agent's beliefs,
+  in the case of financial market forecasting, this models the decision of agent between 
+  making a trade or not. We found, that adding this concepts helps to decrease 
+  the error between predicted and real market prices. 
+  
+  \item Lastly, we prove thru the results of experiments, that the models generated by our method are
+competitive against those generated by state of the art methods: deep learning, random forest, AdaBoost, XGBoost and SVM.  
+% Maybe add a mini description of the experiments. - Mario
+
+%   \item Lastly, our method describes a simple and effective method for the tuning of parameters
+% for MAS. 
+% Not a main contribution - Mario
+\end{itemize}
+
+
 % Say something about distributed MAS, they are faster? better? are we using distributed or concurrent implementation?
 % TODO 11: COMPLETE.
 % For this work, fuzzy
@@ -222,16 +261,7 @@ the perforance of our method, experiments were performed and are
 described in Section \ref{section:experiments}. The results of the
 experiments are presented in Section \ref{section:results}, and a
 discussion of these results can be found in Section
-\ref{section:conclusion}. As a prelude, we find that: i) our method
-describes a novel architecture that employs MAS and fuzzy systems for
-the creation of predictive models; ii) the ``specialization'' functions found
-in the agents' fuzzy systems help to decrease the error between
-predicted and real market prices; iii) the results from the
-experiments indicate us that the models generated by our method are
-competitive against models generated by deep learning, random forest,
-AdaBoost, XGBoost and SVM; iv) our method
-describes a simple and effective method for the tuning of parameters
-for MAS. Finally, Section \ref{section:future-work}
+\ref{section:conclusion}. Finally, Section \ref{section:future-work}
 discusses some directions that our presented method can take in the
 future to better demonstrate its capabilities.
 
@@ -247,6 +277,7 @@ order to better understand the proposed method in Section
 % Amaury: I don't know if it sounds weird to say it can be omitted.
 % Readers will adapt and skip sections with out problems - M
 % TODO 14: COMPLETE. This was already commented out.
+
 \subsection{Fuzzy Sets}
 \label{subsection:fuzzy-sets}
 
@@ -655,7 +686,7 @@ The Overview, Design Concepts, and Details (ODD) protocol for describing Agent-B
 
 \subsubsection{Purpose and patterns}
 \label{subsubsection:purpose-and-patterns}
-We presents a method for creating forex market predictive models using multi-agent and fuzzy systems, which have the objective of simulating the interactions that provoke changes in the price. Agents in the system represent traders performing buy and sell orders in a market, and fuzzy systems are used to model the rules followed by traders performing trades in a live market and intuitionistic fuzzy logic to model their decisions' indeterminacy.
+We present a method for creating forex market predictive models using multi-agent and fuzzy systems, which have the objective of simulating the interactions that provoke changes in the price. Agents in the system represent traders performing buy and sell orders in a market, and fuzzy systems are used to model the rules followed by traders performing trades in a live market and intuitionistic fuzzy logic to model their decisions' indeterminacy.
 
 Fuzzy systems are used to model a trader's knowledge and how they take trades according to a market's current conditions, and MAS are used to model the collective traders of a market and their respective influence on the price of it.
 
@@ -690,7 +721,10 @@ of their ability to model knowledge in a smoother way than their alternatives,  
 % "capability of -- alternatives" to "ability to model knowlege(data?) more effectively than alternatives,"
 % TODO 87: COMPLETE. Gaussians are not necessarily more effective than other MF,
 %% but they are "smoother". They will produce output surfaces that don't change abruptly.
-Although other membership functions can be better suited for certain situations, the proposed method is currently designed for the creation of predictive models for arbitrary data sets, where solutions are found using ILS.
+Although other membership functions can be better suited for certain
+situations, the proposed method is currently designed for the creation
+of predictive models for arbitrary data sets, where solutions are
+found using iterated local search (ILS).
 % Mention that they are more costly - Mario
 % TODO 21: COMPLETE.
 % I searched for references that mentioned that Gaussians are more
@@ -779,9 +813,9 @@ The value of the greatest grade of membership in a membership function is determ
 Indeterminacy is used to ``fuzzify'' specialization thresholds associated to inputs to the agent, which determine if the agent should respond to that
 input or not. Two agents with the same fuzzy rules, membership functions and specialization thresholds will respond differently to the
 same inputs if they have different non-membership functions. This way, the system uses uncertainty---coming from membership functions---and
-indeterminacy---coming from non-membership functions---to model the membership of an input and an specialization function, respectively. Considering the agent system architecture proposed by Shoham~\cite{Shoham1993}, in the proposed method an agent's fuzzy system represents an agent's rules, while its specialization functions represent an agent's beliefs.
+indeterminacy---coming from non-membership functions---to model the membership of an input and a specialization function, respectively. Considering the agent system architecture proposed by Shoham~\cite{Shoham1993}, in the proposed method an agent's fuzzy system represents an agent's rules, while its specialization functions represent an agent's beliefs.
 
-Inputs to an agent's fuzzy system are associated to grades of membership---as is usual in fuzzy inference systems---and this grade of membership can either belong or not to a set $\Lambda$, which is defined by~(\ref{equation:activation-interval}), where $\mu(x)$ represents the grade of membership associated to an input $x$ and $\lambda$ represents an specialization threshold. An example of a set $\Lambda$ can be seen in Figure~\ref{figure:activation-threshold}. If a grade of membership can be found in a set $\Lambda$, then the agent will consider that input to be used to fire a consequent in its agent
+Inputs to an agent's fuzzy system are associated to grades of membership---as is usual in fuzzy inference systems---and this grade of membership can either belong or not to a set $\Lambda$, which is defined by~(\ref{equation:activation-interval}), where $\mu(x)$ represents the grade of membership associated to an input $x$ and $\lambda$ represents a specialization threshold. An example of a set $\Lambda$ can be seen in Figure~\ref{figure:activation-threshold}. If a grade of membership can be found in a set $\Lambda$, then the agent will consider that input to be used to fire a consequent in its agent
 rules. It is noteworthy that different specialization thresholds $\lambda$ and non-membership functions can be associated to each of the
 membership functions present in the antecedents of an agent's fuzzy system.
 
@@ -793,7 +827,7 @@ membership functions present in the antecedents of an agent's fuzzy system.
 \Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
 [width=0.6\linewidth]
 {img/lambda-set.png}
-{Depiction of an specialization threshold $\lambda$ and a set $\Lambda$ in a membership function.
+{Depiction of a specialization threshold $\lambda$ and a set $\Lambda$ in a membership function.
   \label{figure:activation-threshold}}
 % what does this has to do with "hesitancy" of an agent? - JJ
 % TODO 116: COMPLETE. Nothing directly. The non-membership functions
@@ -869,7 +903,7 @@ After compiling the sorted list of specialization levels, the proposed method ch
 %% thresholds.
 % TODO 30: COMPLETE.
 
-The chosen specialization level serves as an specialization threshold, as any set of inputs that do not activate all the membership functions according to the specialization level will fail to activate the agent to take an action. As a consequent---during the training stage of the method---any agent will be activated to a number of inputs equal to the value of the \textit{depth} parameter shown in Algorithm~\ref{algorithm:selection-of-activation-threshold}.
+The chosen specialization level serves as a specialization threshold, as any set of inputs that do not activate all the membership functions according to the specialization level will fail to activate the agent to take an action. As a consequent---during the training stage of the method---any agent will be activated to a number of inputs equal to the value of the \textit{depth} parameter shown in Algorithm~\ref{algorithm:selection-of-activation-threshold}.
 
 An implication of the aforementioned process is that specialization functions also create a restriction for the actions of the agents in a predictive model. This restriction works as a coordination mechanism to ensure agent participation in the prediction process never reaches one hundred percent, as certain 
 % "that not -- as certain" to "agent participation in the prediction process 
@@ -928,11 +962,18 @@ Finally, we believe that the specialization functions found with the proposed me
 
 The sets of inputs and outputs that are used as the means of the membership functions in the agent rules are determined by using random data points from the dataset---as we explained in Subsection~\ref{subsubsection:individual-decision-making}. In order to obtain a predictive model, ILS is used to find combinations of agents that generate a suitable simulation of a financial market.
 
-The proposed method uses a basic search algorithm that adds and/or removes agents from a list of agents, where these agents work together to create a simulation of the market. The list of agents begins at iteration 0 with a single, random agent, and in the following iterations it is randomly decided to either add new agents or remove them from the list. The modifications are committed only if the addition or removal operation improves the performance of the predictive model, and the algorithm finishes after a number of iterations has been reached. 
+The proposed method uses a basic search algorithm that adds and/or removes agents from a list of agents, where these agents work together to create a simulation of the market. The list of agents begins at iteration 0 with a single, random agent, and in the following iterations it is randomly decided to either add new agents or remove them from the list. The modifications are committed only if the addition or removal operation improves the performance of the predictive model, and the algorithm finishes after a number of iterations has been reached. This process is described by the flowchart in Figure \ref{figure:flowchart-ils}.
+
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.8\linewidth]
+{img/flowchart-ils.pdf}
+{Flowchart for the iterated local search.
+  \label{figure:flowchart-ils}}
+
 % Not clear when this ends. After a number of iterations? - JJ
 % TODO 95: COMPLETE.
 The performance improvement is measured with a loss function, which is used to determine if a predictive model is better than its predecessor. %
-This algorithm is depicted in detail in Algorithm~\ref{algorithm:ils}. %
+% This algorithm is depicted in detail in Algorithm~\ref{algorithm:ils}. %
 % hook it to the last paragraph. "This performance improvement is measured with a loss function, which is used to determine..." - JJ
 % TODO 96: COMPLETE.
 % Although any measure of error should suffice in order to provide a
@@ -945,32 +986,32 @@ This algorithm is depicted in detail in Algorithm~\ref{algorithm:ils}. %
 % but the name depends on the community - Mario
 % Amaury: Changed to "measure of error".
 
-\begin{algorithm}
-  \caption{Iterated local search used to find a solution in the proposed method}
-  \label{algorithm:ils}
-  \begin{algorithmic}[1]
-    \Procedure{ILS}{$S$};
-    \State $push(make\_agent(), S)$ %% \Comment{$S$ is our solution.}
+% \begin{algorithm}
+%   \caption{Iterated local search used to find a solution in the proposed method}
+%   \label{algorithm:ils}
+%   \begin{algorithmic}[1]
+%     \Procedure{ILS}{$S$};
+%     \State $push(make\_agent(), S)$ %% \Comment{$S$ is our solution.}
 
-    \State $c \gets 0$
-    \While{$c < ITERATIONS$}
+%     \State $c \gets 0$
+%     \While{$c < ITERATIONS$}
 
-    \If {$random () < 0.5$}
-    \State $candidate \gets append(make\_agent(), S)$
-    \Else
-    \State $candidate \gets remove\_random\_agent(S)$
-    \EndIf
+%     \If {$random () < 0.5$}
+%     \State $candidate \gets append(make\_agent(), S)$
+%     \Else
+%     \State $candidate \gets remove\_random\_agent(S)$
+%     \EndIf
 
-    \If {$eval(candidate) < eval(S)$}
-    \State $S \gets candidate$
-    \EndIf
+%     \If {$eval(candidate) < eval(S)$}
+%     \State $S \gets candidate$
+%     \EndIf
     
-    \EndWhile
+%     \EndWhile
 
-    \State \textbf{return} $S$
-    \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
+%     \State \textbf{return} $S$
+%     \EndProcedure
+%   \end{algorithmic}
+% \end{algorithm}
 
 % TODO 35: COMPLETE. This is still the way we're doing things.
 As is mentioned in Subsection~\ref{subsection:multi-agent-system}, the resulting predictive model does not necessarily respond to every set of inputs. This behavior is accentuated when the model is tested against a data set that is different than the one used for the training stage of the method---i.e., a testing data set---, as inputs from this data set could not resemble at all any of those present in the training data set. We have the hypothesis that this behavior helps the generated models achieve better performances.
@@ -1046,11 +1087,54 @@ As is mentioned in Subsection~\ref{subsection:multi-agent-system}, the resulting
 
 The agents in the prediction models are represented as objects with the following properties: agent's rules, which stores an intuitionistic fuzzy system; specializations, which stores the antecedents of the fuzzy system; and specialization thresholds, which stores the levels that need to be surpassed by a set of inputs in order to activate the agent.
 
-Indeterminacy in an agent's fuzzy system is determined randomly and optimal values are found with the ILS method described in Subsection \ref{subsubsection:stochasticity}. In order to obtain intuitionistic fuzzy sets where (\ref{eq:intuitionistic-interval}) holds true, our implementation generates membership functions where the greatest possible grade of membership is $M$ and non-membership functions where the greatest possible grade of non-membership is $1 - M$. The mean and spread of the Gaussian membership functions are equal to the mean and spread of the Gaussian non-membership functions in all cases.
+Indeterminacy in an agent's fuzzy system is determined randomly and optimal values are found with the ILS method described in Figure~\ref{figure:flowchart-ils}. In order to obtain intuitionistic fuzzy sets where (\ref{eq:intuitionistic-interval}) holds true, our implementation generates membership functions where the greatest possible grade of membership is $M$ and non-membership functions where the greatest possible grade of non-membership is $1 - M$. The mean and spread of the Gaussian membership functions are equal to the mean and spread of the Gaussian non-membership functions in all cases.
 
 %\subsubsection{Collectives}
 %\subsubsection{Observation}
 
+The list below summarizes the design concepts of the predictive models
+generated by our proposed method.
+
+\begin{itemize}
+\item Emergence
+  \begin{itemize}
+  \item Models find patterns that yield the lowest predictive error through specialization functions.
+  \end{itemize}
+\item Adaptation
+  \begin{itemize}
+  \item Agents evolve to specialize in similar patterns (same market trend/direction, and similar input and output magnitudes)
+  \end{itemize}
+\item Fitness
+  \begin{itemize}
+  \item Minimization of RMSE
+  \end{itemize}
+\item Prediction
+  \begin{itemize}
+  \item The mean of the agents' outputs represents an estimation of the next price of a market being modelled
+  \end{itemize}
+\item Sensing
+  \begin{itemize}
+  \item Raw market prices (open, high, low, close) and timestamps when these prices occurred are sensed (fed as inputs) by the agents in the predictive models
+  \item Different beliefs are associated to each agent in a predictive model, which make the agent preprocess raw market prices differently from other agents in the model
+  \end{itemize}
+\item Interaction
+  \begin{itemize}
+  \item There is no interaction among the agents when it comes to taking decisions or processing data coming from their environment
+  \item Agents' outputs are averaged in the end to create a final price prediction for a market
+  \end{itemize}
+\item Stochasticity
+  \begin{itemize}
+  \item Agents' rules are constructed using random data points taken from a training data set
+  \end{itemize}
+% \item Collectives
+%  \begin{itemize}
+%  \item 
+%  \end{itemize}
+\item Observation
+  \begin{itemize}
+  \item The predictive models generate a time series which represents a series of predictions for future market prices
+  \end{itemize}
+\end{itemize}
 
 \subsection{Details}
 \label{subsection:details}
@@ -1168,15 +1252,25 @@ series cross-validation method to obtain their performance metrics.
 For our experiments, we decided to use random samples of 63 trading
 days---which corresponds to a quarter of the trading days in a
 year---for our data sets, which can be extracted from the last 5000
-trading days (from August 28th 2004 to May 18th 2020). We did not use
-the exactly the same data sets as Munkhdalai et al. because they do
-not provide the starting and ending dates for their data sets, and
-because a bigger data set---around 15 years of data, instead of 1 year
-of data---provides a better challenge for avoiding accidental ``cherry
+trading days (from August 28th 2004 to May 18th 2020), for the same
+Forex markets used in \cite{Munkhdalai2019}. We did not use exactly
+the same data sets as Munkhdalai et al., because they do not provide
+the starting and ending dates for their data sets, and because a
+bigger data set---around 15 years of data, instead of 1 year of
+data---provides a better challenge for avoiding accidental ``cherry
 picking'' \cite{morse2010cherry} when choosing optimal hyperparameters
 for the method. %
 % why did you do this instead of the same thing as Munkhdalai - JJ
 % TODO 100: COMPLETE.
+
+Each of the data points in the datasets includes open, high, low, close
+prices, as well as a timestamp and the volume of the asset exchanged
+associated to each day (data point) in the dataset. The data was
+obtained from Tiingo \footnote{https://api.tiingo.com}, an online financial market data provider. Tiingo
+states that their market data has been cleaned from erronous and
+missing prices, so we are assuming this to be true and using their
+data verbatim.
+
 These data sets
 are split into two parts, a training data set which corresponds to
 70\% of the data set, and a test data set which corresponds to 30\% of
@@ -1195,7 +1289,7 @@ learning neural networks (recurrent neural networks (RNN), long
 short-term memory (LSTM) neural networks, and gated recurrent unit
 (GRU) neural networks), where the learning rate was set at 0.001 using
 the Adam optimizer \cite{kingma2014adam}, batch size at 64 instances
-for each iteration, MSE as the loss function,and maximum number of
+for each iteration, MSE as the loss function, and maximum number of
 epochs at 3000 for the first fold, and then they used 300 epochs with
 the first pre-trained model for the remaining folds. Regarding
 multi-layer perceptrons (MLP), the authors used an input layer of 5 neurons
