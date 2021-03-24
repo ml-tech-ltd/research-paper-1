@@ -1564,6 +1564,36 @@ tests.
   \label{table:parameters-tests}
 \end{table}
 
+%((:EUR_USD -0.11937499999999979) (:USD_JPY -2.4735000000000156)
+% (:USD_CHF -0.3109499999999996) (:GBP_USD -0.580085)
+% (:USD_CAD 0.0896650000000001) (:AUD_USD -0.05712499999999987))
+
+Finally, Table \ref{table:results-buy-and-hold} shows a comparison of
+our method against a buy and hold strategy. For the buy and hold, we
+subtract the closing price of May 18th 2020 to the closing price of
+August 28th 2004, which represents a buy order that was opened on the
+former date and that was closed on the later date.
+
+\begin{table*}[t]
+  \caption{Comparison of our method in terms of revenue, with and without SF, against buy and hold strategy}
+  \scriptsize
+  \centering
+  \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
+    \hline
+    \textbf{Strategy} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
+    \hline
+
+    Buy and hold        & -0.1194         & -2.4735         & -0.3109         & -0.5800         & 0.0897          & -0.0571 \\
+    \hline
+    Ours without SF     & -0.0068         & -0.6736         & 0.0095          & 0.0439          & -0.0388         & 0.0349 \\
+    \hline
+    Ours with SF        & 0.0137          & 2.7859          & 0.0056          & 0.0344          & 0.0100          & 0.0238 \\
+    \hline
+    
+  \end{tabular*}
+  \label{table:results-buy-and-hold}
+\end{table*}
+
 \section{Conclusion}
 \label{section:conclusion}
 
@@ -1611,6 +1641,12 @@ for our method, as agents not always decide to take trades---, and in
 these cases it has been found that MAE is a better metric
 \cite{chai2014root} \cite{willmott2005advantages}
 \cite{willmott2009ambiguities}.
+
+As an additional test, we compared our method against a buy and hold
+strategy. Table \ref{table:results-buy-and-hold} shows that our method
+performs better than buy and hold for all Forex markets---in terms of
+revenue---, and that the use of specialization functions improves the
+results of our method.
 
 %Table \ref{table:full-results} provides a
 %more complete overview of our results, as it shows the means and
