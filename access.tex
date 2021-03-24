@@ -1276,7 +1276,7 @@ are split into two parts, a training data set which corresponds to
 70\% of the data set, and a test data set which corresponds to 30\% of
 the data set. As a consequence, a validation step was not involved in
 our experiments. Regarding the performance metrics, we provide results
-using MAE, in order to compare against the results presented
+using MAE and RMSE, in order to compare against the results presented
 in \cite{Munkhdalai2019}. A total
 of 30 experiments were performed for each forex market, and we provide
 the means and standard deviations for each of our performance metrics
@@ -1352,38 +1352,7 @@ days that were considered.
 \section{Results}
 \label{section:results}
 
-%((:EUR_USD -0.11937499999999979) (:USD_JPY -2.4735000000000156)
-% (:USD_CHF -0.3109499999999996) (:GBP_USD -0.580085)
-% (:USD_CAD 0.0896650000000001) (:AUD_USD -0.05712499999999987))
-
-\begin{table*}[t]
-  \caption{Comparison between our results and the ones obtained by Munkhdalai et al.}
-  % Please explain that the bottom rows are compared in the table
-  % below - JJ
-  % Clarify also if the difference is significant with respect to
-  % others - JJ
-  % TODO: COMPLETE? I'm now mentioning in the paragraph above that the bottom rows represent
-  %% our results, and that the table below shows additional data for statistical tests.
-  %% I'm thinking that this clarifies that the difference between my two versions of the algorithm
-  %% is significant.
-  %% I was also thinking that maybe you wanted to add an explanation to the caption of this table.
-  %% Can you give me a more detailed explanation of your request? (in case it's not solved already by my changes).
-  \scriptsize
-  \centering
-  \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
-    \hline
-    \textbf{Strategy} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
-    \hline
-
-    Ours without SF        & 0.0050          & 0.4903          & 0.0041          & 0.0073          & 0.0050          & 0.0048 \\
-    Ours with SF           & \textbf{0.0033} & \textbf{0.1810} & \textbf{0.0019} & \textbf{0.0038} & \textbf{0.0033} & \textbf{0.0027} \\
-    \hline
-
-  \end{tabular*}
-  \label{table:results-buy-and-hold}
-\end{table*}
-
-Table \ref{table:comparison-mae} shows
+Tables \ref{table:comparison-mae} and \ref{table:comparison-rmse} show
 subsets of the results presented by Munkhdalai et
 al. \cite{Munkhdalai2019}, comparing them with the results of the
 method presented in this paper. In the case of neural networks (RNN, GRU,
@@ -1414,16 +1383,14 @@ results cannot provide conclusive proof that one method is better than
 another, as the testing datasets and methods are not the same. Table
 \ref{table:full-results} provides again the means of our results, in
 addition to their standard deviations, sample sizes and statistical
-tests, where these statistical tests prove that the use of specialization
-functions make our models perform better than those that do not use
-specialization functions.
+tests.
 
 % But that was in the previous table
 % also. What's the point? - JJ
 % TODO: COMPLETE.
 
 \begin{table*}[t]
-  \caption{Comparison between our results and the ones obtained by Munkhdalai et al.}
+  \caption{Comparison between our results and the ones obtained by Munkhdalai et al., using MAE as the loss function}
   % Please explain that the bottom rows are compared in the table
   % below - JJ
   % Clarify also if the difference is significant with respect to
@@ -1438,7 +1405,7 @@ specialization functions.
   \centering
   \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
     \hline
-    \textbf{Model} & \textbf{Specialization function} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
+    \textbf{Model} & \textbf{Activation function} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
     \hline
 
           & Sigmoid & 0.0060 & 5.4000 & 0.0081 & 0.0126 & 0.0060 & 0.0079 \\
@@ -1494,6 +1461,62 @@ specialization functions.
 % threshold, as in the proposed method.
 
 \begin{table*}[t]
+  \caption{Comparison between our results and the ones obtained by Munkhdalai et al., using RMSE as the loss function}
+ % Indicate also when that difference is significant. It *looks* significant, but it might not really be as in some cases it's very small - JJ
+ % TODO 103: COMPLETE. Being able to say that the difference is significant would require statistical testing,
+ %% which cannot be done because Munkhdalai did not provide standard devations and the experiments are performed differently.
+ %% Do you have any other ideas on how I could do this? Maybe mention those that are obviously too different (for example, 0.1 vs 0.001).
+ %% I'm marking this as complete because I can't find a way of properly indicating when the differences are significant.
+ \scriptsize
+  \centering
+  \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
+    \hline
+    \textbf{Model} & \textbf{Activation function} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
+    \hline
+
+           & Sigmoid & 0.0079 & 6.0677 & 0.0097 & 0.0188 & 0.0075 & 0.0090 \\
+    RNN    & Swish & 0.0059 & 0.6435 & 0.0062 & 0.0099 & 0.0085 & 0.0054 \\
+           & Munkhdalai et al. & \textbf{0.0057} & 0.5993 & 0.0059 & 0.0098 & 0.0062 & \textbf{0.0045} \\
+
+    \hline
+
+           & Cosine & 0.0129 & 2.6072 & 0.0168 & 0.0548 & 0.0133 & 0.0187 \\
+    GRU    & Linear & 0.0058 & 0.6054 & 0.0061 & 0.0104 & 0.0066 & 0.0052 \\
+           & Munkhdalai et al. & 0.0059 & 0.6871 & 0.0060 & 0.0083 & 0.0060 & 0.0082 \\
+
+    \hline
+
+           & ReLU & 0.0069 & 1.6890 & 0.0079 & 0.0155 & 0.0074 & 0.0058 \\
+    LSTM   & Swish & 0.0061 & 0.6890 & 0.0072 & 0.0088 & 0.0081 & 0.0069 \\
+           & Munkhdalai et al. & 0.0062 & 0.6757 & 0.0087 & 0.0092 & 0.0078 & 0.0055 \\
+    
+    \hline
+
+           & ReLU & 0.0064 & 0.9711 & 0.0081 & 0.0217 & 0.0066 & 0.0048 \\
+    MLP    & Swish & 0.0058 & 0.9360 & 0.0061 & 0.0097 & 0.0070 & 0.0054 \\
+           & Munkhdalai et al. & 0.0061 & 0.7722 & 0.0082 & 0.0088 & 0.0064 & 0.0053 \\
+
+    \hline
+
+    \multicolumn{2}{l}{Random forest} & 0.0068 & 0.6781 & 0.0081 & 0.0244 & 0.0075 & 0.0056 \\
+    \multicolumn{2}{l}{AdaBoost} & 0.0076 & 0.8198 & 0.0136 & 0.0238 & 0.0080 & 0.0082 \\
+    \multicolumn{2}{l}{XGBoost} & 0.0076 & 0.6554 & 0.0071 & 0.0241 & 0.0085 & 0.0058 \\
+    \multicolumn{2}{l}{SVM} & 0.0332 & 0.6387 & 0.0394 & 0.0329 & 0.0125 & 0.0200 \\
+
+    \hline
+    \hline
+
+    \multicolumn{2}{l}{Ours without AF}        & \textbf{0.0057}          & \textbf{0.5391}          & \textbf{0.0047}          & 0.0079          & \textbf{0.0057}          & 0.0052 \\
+    \multicolumn{2}{l}{Ours with AF}           & 0.0071                   & 0.5630                   & 0.0051                   & \textbf{0.0078} & \textbf{0.0057}          & 0.0058 \\
+    % \multicolumn{2}{l}{Ours with AF as weight} & \textbf{0.0052} & \textbf{0.4625} & \textbf{0.0042} & 0.0084          & \textbf{0.0047} & \textbf{0.0050} \\
+
+    \hline
+
+  \end{tabular*}
+  \label{table:comparison-rmse}
+\end{table*}
+
+\begin{table*}[t]
   \caption{Results of our method with and without specialization functions to restrict their actions}
   \scriptsize
   \centering
@@ -1514,6 +1537,14 @@ specialization functions.
                                         & Conclusion & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ & Reject $H_0$ \\
     \hline
     \hline
+    \multirow{2}{*}{RMSE} & Mean & 5.69\e{-03} & 5.39\e{-01} & 4.69\e{-03} & 7.93\e{-03} & 5.70\e{-03} & 5.18\e{-03} \\
+                                        & Std dev & 3.18\e{-03} & 2.51\e{-01} & 2.09\e{-03} & 4.83\e{-03} & 2.64\e{-03} & 2.34\e{-03} \\
+    \multirow{2}{*}{RMSE\textsubscript{AF}} & Mean & 7.12\e{-03} & 5.63\e{-01} & 5.11\e{-03} & 7.79\e{-03} & 5.70\e{-03} & 5.81\e{-03} \\
+                                        & Std dev & 5.15\e{-03} & 2.98\e{-01} & 3.21\e{-03} & 4.05\e{-03} & 2.36\e{-03} & 3.72\e{-03} \\
+    \hline
+    \hline
+                                        & $t-value$ & 1.7104 & 0.4543 & 0.8288 & -0.1661 & 0.0000 & 0.9890 \\
+                                        & Conclusion & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ & Fail to reject $H_0$ \\
   \end{tabular*}
   \label{table:full-results}
 \end{table*}
@@ -1532,6 +1563,36 @@ specialization functions.
   \end{tabular}
   \label{table:parameters-tests}
 \end{table}
+
+%((:EUR_USD -0.11937499999999979) (:USD_JPY -2.4735000000000156)
+% (:USD_CHF -0.3109499999999996) (:GBP_USD -0.580085)
+% (:USD_CAD 0.0896650000000001) (:AUD_USD -0.05712499999999987))
+
+Finally, Table \ref{table:results-buy-and-hold} shows a comparison of
+our method against a buy and hold strategy. For the buy and hold, we
+subtract the closing price of May 18th 2020 to the closing price of
+August 28th 2004, which represents a buy order that was opened on the
+former date and that was closed on the later date.
+
+\begin{table*}[t]
+  \caption{Comparison of our method in terms of revenue, with and without SF, against buy and hold strategy}
+  \scriptsize
+  \centering
+  \begin{tabular*}{0.9\textwidth}{c @{\extracolsep{\fill}} ccccccc}
+    \hline
+    \textbf{Strategy} & \textbf{EUR/USD} & \textbf{USD/JPY} & \textbf{USD/CHF} & \textbf{GBP/USD} & \textbf{USD/CAD} & \textbf{AUD/USD} \\
+    \hline
+
+    Buy and hold        & -0.1194         & -2.4735         & -0.3109         & -0.5800         & 0.0897          & -0.0571 \\
+    \hline
+    Ours without SF     & -0.0068         & -0.6736         & 0.0095          & 0.0439          & -0.0388         & 0.0349 \\
+    \hline
+    Ours with SF        & 0.0137          & 2.7859          & 0.0056          & 0.0344          & 0.0100          & 0.0238 \\
+    \hline
+    
+  \end{tabular*}
+  \label{table:results-buy-and-hold}
+\end{table*}
 
 \section{Conclusion}
 \label{section:conclusion}
@@ -1566,22 +1627,26 @@ models generated by RNN, LSTM, GRU, MLP, random forest, AdaBoost,
 XGBoost, and SVM. The results lead us to conclude that our method
 proves to be competitive for predicting forex markets, as shown in
 Table \ref{table:comparison-mae}, where our method performed the best
-for every forex market, if our models use specialization functions. We
-decided to use MAE as our performance measurement as MAE works well
-when the error distribution is not Gaussian---which is the case for
-our method, as agents not always decide to take trades---, in contrast
-to other metrics, such as RMSE \cite{chai2014root}, and because it has
-been reported to be a good metric for measuring the performance of
-predictive models \cite{willmott2005advantages}
+for every forex market, if our models use specialization
+functions. This demonstrates that using specialization functions to
+create agents that are specialized at particular market conditions
+help to increase the generated models' efficacy.
+
+We can also observe in Table \ref{table:comparison-mae} that our
+method achieves competitive predictive errors when RMSE is used as its
+performance metric. Specialization functions seem to increase the
+predictive error when RMSE is used, but this is misleading, as the
+error distribution in our method is not Gaussian---which is the case
+for our method, as agents not always decide to take trades---, and in
+these cases it has been found that MAE is a better metric
+\cite{chai2014root} \cite{willmott2005advantages}
 \cite{willmott2009ambiguities}.
 
-
-Furthermore, according to the experiments, the use of specialization
-functions decreases the predictive error. This demonstrates that using
-them to create agents that are specialized at
-particular market conditions help to increase the generated models'
-efficacy.
-
+As an additional test, we compared our method against a buy and hold
+strategy. Table \ref{table:results-buy-and-hold} shows that our method
+performs better than buy and hold for all Forex markets---in terms of
+revenue---, and that the use of specialization functions improves the
+results of our method.
 
 %Table \ref{table:full-results} provides a
 %more complete overview of our results, as it shows the means and
