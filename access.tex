@@ -679,7 +679,7 @@ The Overview, Design Concepts, and Details (ODD) protocol for describing Agent-B
 % I think this two paragraphs should be move to the previous section - M
 % TODO 20: COMPLETE. Ahh... yes, these two paragraphs look better in the previous section. Moved.
 
-%Subsection~\ref{subsection:overview} describes the structure followed by each of the agents that shape a predictive model, while Subsection~\ref{subsection:design-concepts} describes how the agents in the predictive model are coordinated and how they interact with their environment. Finally, Subsection~\ref{subsection:details} describes an iterated local search (ILS) method that finds a combination of agents that is suitable to be used as a predictive model for particular data sets.
+% Subsection~\ref{subsection:overview} describes the structure followed by each of the agents that shape a predictive model, while Subsection~\ref{subsection:design-concepts} describes how the agents in the predictive model are coordinated and how they interact with their environment. Finally, Subsection~\ref{subsection:details} describes an iterated local search (ILS) method that finds a combination of agents that is suitable to be used as a predictive model for particular data sets.
 
 \subsection{Overview}
 \label{subsection:overview}
@@ -839,6 +839,18 @@ membership functions present in the antecedents of an agent's fuzzy system.
 %% the role of indeterminacy (hesitancy) in an agent. Tell me if this is enough.
 
 An agent's actions can be greatly limited by its specialization functions, as having a single input associated to a grade of membership which does not belong to the specialization interval $\Lambda$ is sufficient for an agent to take no action. This behavior allows to precisely control the magnitude of specialization of each agent in a predictive model, as the designer of the model---such as an optimization algorithm---can assign specialization thresholds and non-membership functions that restrict an agent to be activated to only a handful of inputs from a training data set. Furthermore, specialization functions work as a coordination mechanism for the agents in a predictive model, as they prevent certain agents from taking action in situations where they would perform sub-optimally and others would perform optimally.
+
+The design of each agent's fuzzy system follows the general
+architecture shown in Figure
+\ref{figure:agent-fuzzy-system-architecture}. Each agent can have an
+arbitrary number of rules, and there can be an arbitrary number of
+agents in a predictive model, with rules defined heuristically.
+
+\Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
+[width=0.95\linewidth]
+{img/fuzzy-rules.pdf}
+{Architecture of an agent's fuzzy system.
+  \label{figure:agent-fuzzy-system-architecture}}
 
 %\paragraph{Subjects and objects of decision}
 %\paragraph{(Multiple) levels of decisions making}
