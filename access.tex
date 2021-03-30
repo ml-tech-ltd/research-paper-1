@@ -787,7 +787,7 @@ values, and thus every agent will respond to at least one data point, which is a
 % For instance rule-based classifiers, add a reference - M
 % TODO 25: COMPLETE. 
 
-The domain of each membership function is not fixed as it is determined by the chosen data points and their standard deviation. The domain of a membership function is defined by the set given by~(\ref{equation:mf-domain}), where $\bar{x}$ represents the mean of sample inputs from the training data set and $s$ represents their standard deviation. As a consequent of the previous definition, the domain of either the antecedents or the consequents in a fuzzy system is defined by the set given by~(\ref{equation:ant-con-domain}), where $\bar{x}_{min}$ and $\bar{x}_{max}$ represent the minimum and maximum means---from the set of means obtained from the training data set--used to define the membership functions, respectively, and $s_{min}$ and $s_{max}$ represent the minimum and maximum standard deviations that are associated to $\bar{x}_{min}$ and $\bar{x}_{max}$, respectively. %% As can be seen in
+The domain of each membership function is not fixed as it is determined by the chosen data points and their standard deviation. The domain of a membership function is defined by the set given by~(\ref{equation:mf-domain}), where $\bar{x}$ represents the mean of sample inputs from the training data set and $s$ represents their standard deviation. As a consequent of the previous definition, the domain of either the antecedents or the consequents in a fuzzy system is defined by the set given by~(\ref{equation:ant-con-domain}), where $\bar{x}_{min}$ and $\bar{x}_{max}$ represent the minimum and maximum means---from the set of means obtained from the training data set---used to define the membership functions, respectively, and $s_{min}$ and $s_{max}$ represent the minimum and maximum standard deviations that are associated to $\bar{x}_{min}$ and $\bar{x}_{max}$, respectively. %% As can be seen in
 %% the latter, the domain of both the antecedents and consequents is
 %% determined by the minimum and the maximum values contained by the union of
 % TODO 26: COMPLETE. Not needed anymore.
@@ -805,6 +805,10 @@ The domain of each membership function is not fixed as it is determined by the c
   \label{equation:ant-con-domain}
   \{\,x \mid \bar{x}_{min} - s_{min} \leq x \leq \bar{x}_{max} + s_{max} \,\}
 \end{equation}
+
+The number of inputs in the fuzzy systems of each agent can vary. As
+an agent can potentially have dozens of inputs, associating linguistic
+variables to these inputs becomes inconvenient.
 
 As the agents' rules are represented by intuitionistic fuzzy systems, the core of the membership functions is not necessarily equal to 1---or it does not exist, if one considers the core of a membership function to be restricted to a value of 1---, as it is the case in traditional fuzzy systems \cite{wygralak2000axiomatic}. % Reference - M
 % TODO 28: COMPLETE.
@@ -1312,7 +1316,7 @@ price). In addition to neural network-based algorithms,
 random forest, AdaBoost, XGBoost and SVM
 architectures.
 
-Finding optimal values for the hyper-parameters of our method is a
+Finding optimal values for the hyper-parameters---what input variables to consider for the agents---of our method is a
 challenge due to the high number of combinations that can lead to
 favorable results. We decided to find arguments through trial and error for these
 parameters that allowed our method to generate models that yielded
@@ -1328,6 +1332,13 @@ height'' and represents the absolute price difference between the open
 and close prices of a trading day; and the subscript following each of
 the aforementioned abbreviations represents the number of past trading
 days that were considered.
+
+The output variable for the agents represents the price difference
+\cite{granger1980introduction} between a current session's close
+price's and the next future close price. These outputs---like an
+agent's inputs---are obtained from the training dataset. This price
+difference can either be positive---which represents a ``buy
+prediction''---or negative---which represents a ``sell prediction''.
 
 % Change table and figures' captions.
 % TODO 39: COMPLETE. I'll do this for TODO #47.
@@ -1353,6 +1364,8 @@ days that were considered.
   \end{tabular}
   \label{agents-parameters}
 \end{table}
+
+
 
 \section{Results}
 \label{section:results}
