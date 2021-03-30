@@ -772,6 +772,17 @@ their standard deviation and $\mu(x)$ represents a Gaussian membership function.
   \mu(x) = e^{-\dfrac{(x - \bar{x})^{2}}{2 s}}
 \end{equation}
 
+We decided to use this method for choosing the means of the Gaussian
+membership functions in order to guarantee that these functions
+perfectly describe a relationship between a set of inputs and a set of
+outputs from the training dataset. A heuristic process still takes
+place in the optimization stage of our method, as the effectiveness of
+an agent will depend on what input sets get chosen to be used to
+describe their rules. The input grades of memberships obtained by an
+agent will affect membership functions obtained from different input
+data sets, so the ILS is indirectly looking for input and output data
+sets that work well together.
+
 % \Figure[](topskip=0pt, botskip=0pt, midskip=0pt)
 % [width=0.6\linewidth]
 % {img/antecedents.png}
